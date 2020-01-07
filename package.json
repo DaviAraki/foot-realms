@@ -1,0 +1,23 @@
+{
+  "name": "foot-realms",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "boardgame.io": "^0.33.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DaviAraki/foot-realms.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DaviAraki/foot-realms/issues"
+  },
+  "homepage": "https://github.com/DaviAraki/foot-realms#readme"
+}

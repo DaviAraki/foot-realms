@@ -28,8 +28,9 @@ const FootRealms = {
                   },
             ],
             offer:{
-                playZone:[],
-                deck:[]
+                offerZone:[],
+                deck:[],
+                turn:0
             }
         }
     ),
@@ -38,7 +39,26 @@ const FootRealms = {
         buyCard,
         pass,
     },
-    
+   
+    endIf:(G, ctx)=>{
+        if(G.offer.turn===8){
+            maxPoints = 0;
+            leader = G.players[0];
+            for(var i=0;i < G.players.length;i++){
+                if(G.players.points>maxPoints){
+                    maxPoints = G.players.points
+                    leader = G.players[i];
+                }
+                if(G.players.points===maxPoints){
+                    leader = drawGame;
+                }
+            }
+            if(leader === drawGame){
+                return {draw : true}
+            }
+            return{winner : leader};
+        }
+    },
    
     stages:{
         inicio:{
@@ -59,8 +79,9 @@ const FootRealms = {
                 for(i=0; i<G.players.length; i++){
                     while(G.players[i].hand.length<5){
                         draw(G,ctx);
-                    }
-                }
+                    };
+                };
+                G.offer.turn ++;
             },
             next:'inicio',
         }
@@ -94,6 +115,14 @@ export function playCard(G, ctx, cardIndex) {
 export function selectCard(G,ctx,cardIndex) {
     G.players[ctx.currentPlayer].admZone.push(G.players[ctx.currentPlayer].hand[cardIndex]);
     G.players[ctx.currentPlayer].hand.splice(cardIndex,1);   
+}
+export function buyCard(G,ctx,cardIndex) {
+    if(G.players[ctx.currentPlayer].money>=G.offer.offerZone[cardIndex].cost){
+        var cost = G.offer.offerZone[cardIndex].cost;
+        G.players[ctx.currentPlayer].playZone.push(G.offer.offerZone[cardIndex]);
+        G.players[ctx.currentPlayer].money= G.players[ctx.currentPlayer].money - cost;
+        G.offer.offerZone.splice(cardIndex,1); 
+    }    
 }
 export function countMoney(G, ctx) {
     for (var i = 0; i < G.players[ctx.currentPlayer].hand.length; i++) {
