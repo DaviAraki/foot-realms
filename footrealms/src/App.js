@@ -60,10 +60,11 @@ const FootRealms = {
         }
     },
    
-    stages:{
+    phases:{
         inicio:{
             moves:{selectCard,pass},
-            next:'disputa'
+            next:'disputa',
+            start: true,
         },
         disputa:{
             next:'administracao'
