@@ -102,7 +102,7 @@ export function shuffle(G, ctx){
     G.players[ctx.currentPlayer].deck = ctx.random.Shuffle(G.players[ctx.currentPlayer].deck);
 }
 export function pass(G, ctx) {
-    ctx.events.endTurn();    
+    ctx.events.endPhase();    
 }
 export function playCard(G, ctx, cardIndex) {
       G.players[ctx.currentPlayer].money = G.players[ctx.currentPlayer].money + G.players[ctx.currentPlayer].hand[cardIndex].coin;
@@ -125,11 +125,6 @@ export function buyCard(G,ctx,cardIndex) {
         G.offer.offerZone.splice(cardIndex,1); 
     }    
 }
-export function countMoney(G, ctx) {
-    for (var i = 0; i < G.players[ctx.currentPlayer].hand.length; i++) {
-      G.players[ctx.currentPlayer].money = G.players[ctx.currentPlayer].money + G.players[ctx.currentPlayer].hand[i].coin;
-    }
-  }
 const App = Client({game: FootRealms});
 
 export default App;
