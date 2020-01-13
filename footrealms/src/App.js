@@ -42,8 +42,8 @@ const FootRealms = {
    
     endIf:(G, ctx)=>{
         if(G.offer.turn===8){
-            maxPoints = 0;
-            leader = G.players[0];
+            let maxPoints = 0;
+            let leader = G.players[0];
             for(var i=0;i < G.players.length;i++){
                 if(G.players.points>maxPoints){
                     maxPoints = G.players.points
