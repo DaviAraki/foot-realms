@@ -96,7 +96,7 @@ export function draw(G, ctx){
         shuffle(G, ctx);
         G.players[ctx.currentPlayer].discard = [];
       }
-      G.players[ctx.currentPlayer].hand.push(G.players[ctx.currentPlayer].deck.pop());
+      G.players[ctx.currentPlayer].admZone.push(G.players[ctx.currentPlayer].deck.pop());
 }
 export function shuffle(G, ctx){
     G.players[ctx.currentPlayer].deck = ctx.random.Shuffle(G.players[ctx.currentPlayer].deck);
@@ -104,14 +104,13 @@ export function shuffle(G, ctx){
 export function pass(G, ctx) {
     ctx.events.endPhase();    
 }
-export function playCard(G, ctx, cardIndex) {
-      G.players[ctx.currentPlayer].money = G.players[ctx.currentPlayer].money + G.players[ctx.currentPlayer].hand[cardIndex].coin;
-      for (var i = 0; i < G.players[ctx.currentPlayer].hand[cardIndex].cards; i++) {
+export function playCard(G,ctx,cardIndex) {
+      G.players[ctx.currentPlayer].money = G.players[ctx.currentPlayer].money + G.players[ctx.currentPlayer].admZone[cardIndex].coin;
+      for (var i = 0; i < G.players[ctx.currentPlayer].admZone[cardIndex].cards; i++) {
         draw(G, ctx);
-      }
-      G.players[ctx.currentPlayer].discard.push(G.players[ctx.currentPlayer].hand[cardIndex]);
-      G.players[ctx.currentPlayer].hand.splice(cardIndex, 1);
-
+      };
+      G.players[ctx.currentPlayer].playZone.push(G.players[ctx.currentPlayer].admZone[cardIndex]);
+      G.players[ctx.currentPlayer].admZone.splice(cardIndex, 1);
 }
 export function selectCard(G,ctx,cardIndex) {
     G.players[ctx.currentPlayer].admZone.push(G.players[ctx.currentPlayer].hand[cardIndex]);

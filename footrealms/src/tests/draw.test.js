@@ -21,9 +21,9 @@ it ("When i draw, the top card of my deck goes to my hand", ()=>{
         players:[
         {
            name: "Player A",
-           hand:[new commonFoward()],
+           hand:[],
            deck:[],
-           admZone:[],
+           admZone: [new commonFoward()],
            playZone:[],
            money:1,
            score:0,
