@@ -16,16 +16,6 @@ const FootRealms = {
                     score:0,
                     points:0
                   },
-                  {
-                    name: "Player B",
-                    hand:[],
-                    deck:[],
-                    admZone:[],
-                    playZone:[],
-                    money:0,
-                    score:0,
-                    points:0
-                  },
             ],
             offer:{
                 offerZone:[],
