@@ -41,18 +41,18 @@ const FootRealms = {
     phases:{
         inicio:{
             moves:{selectCard,pass},
-            onBegin: {
-                drawHand(G,ctx);,
-                setDesafio(G,ctx)    
+            onBegin:(G,ctx)=>{
+                drawHand(G,ctx);
+                setDesafio(G,ctx);
             },
             next:'disputa',
             start: true,
         },
         disputa:{
             moves:{pass},
-            onBegin:{
-                setChuteira(G,ctx);,
-                defineWinner(G,ctx);,
+            onBegin:(G,ctx)=>{
+                setChuteira(G,ctx);
+                defineWinner(G,ctx);
             },
             next:'administracao'
                 
@@ -65,11 +65,6 @@ const FootRealms = {
         classificacao:{
             moves:{pass},
             onEnd: (G,ctx)=>{
-                for(i=0; i<G.players.length; i++){
-                    while(G.players[i].hand.length<5){
-                        draw(G,ctx);
-                    };
-                };
                 G.offer.turn ++;
             },
             next:'inicio',
@@ -78,13 +73,19 @@ const FootRealms = {
 
 }
 
-export function draw(G, ctx){
+export function draw(G, ctx, destiny){
     if (G.players[ctx.currentPlayer].deck.length === 0) {
         G.players[ctx.currentPlayer].deck = G.players[ctx.currentPlayer].discard;
         shuffle(G, ctx);
         G.players[ctx.currentPlayer].discard = [];
-      }
-      G.players[ctx.currentPlayer].admZone.push(G.players[ctx.currentPlayer].deck.pop());
+    }
+    let destino = destiny
+    if(destino == 1){
+        G.players[ctx.currentPlayer].hand.push(G.players[ctx.currentPlayer].deck.pop());
+    }
+    else 
+        G.players[ctx.currentPlayer].admZone.push(G.players[ctx.currentPlayer].deck.pop());  
+    
 }
 export function setChuteira(G,ctx) {
     while(G.ctx.currentPlayer.hand.length>0){
@@ -150,8 +151,8 @@ export function buyCard(G,ctx,cardIndex) {
     }    
 }
 export function drawHand(G,ctx) {
-    while(G.ctx.currentPlayer.hand.length<5){
-        drawHand(G,ctx);
+    while(G.players[ctx.currentPlayer].hand.length<5){
+        draw(G,ctx,1);
     }
     
 }

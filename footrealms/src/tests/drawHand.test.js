@@ -1,14 +1,13 @@
 import commonFoward from "../components/Cards/commonFoward";
-import { draw } from "../App";
-import { ctx } from "boardgame.io/dist/cjs/reducer-2b585701";
+import { draw, drawHand } from "../App";
 
-it ("When i draw, the top card of my deck goes to my hand", ()=>{
+it ("When the turn begins i draw until i have 5 cards", ()=>{
     const G = {
         players:[
             {
                name: "Player A",
                hand:[],
-               deck:[new commonFoward()],
+               deck:[new commonFoward(),new commonFoward(),new commonFoward(),new commonFoward(),new commonFoward()],
                admZone:[],
                playZone:[],
                money:1,
@@ -17,14 +16,14 @@ it ("When i draw, the top card of my deck goes to my hand", ()=>{
              }
         ]
     };
-    draw(G, {currentPlayer:"0"},0);
+    drawHand(G, {currentPlayer:"0"} ,1);
     expect(G).toEqual({ 
         players:[
         {
            name: "Player A",
-           hand:[],
+           hand:[new commonFoward(),new commonFoward(),new commonFoward(),new commonFoward(),new commonFoward()],
            deck:[],
-           admZone: [new commonFoward()],
+           admZone: [],
            playZone:[],
            money:1,
            score:0,
