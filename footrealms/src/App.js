@@ -88,10 +88,9 @@ export function draw(G, ctx, destiny){
     
 }
 export function setChuteira(G,ctx) {
-    while(G.ctx.currentPlayer.hand.length>0){
-        let i = 0;
+    for(let i = 0; i<G.players[ctx.currentPlayer].hand.length; i++){
         G.players[ctx.currentPlayer].score = G.players[ctx.currentPlayer].score + G.players[ctx.currentPlayer].hand[i].chuteira;
-    }    
+    }
 }
 export function setDesafio(G, ctx) {
     if(G.offer.turn<2){
