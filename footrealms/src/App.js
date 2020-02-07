@@ -95,7 +95,7 @@ export function setChuteira(G,ctx) {
 }
 export function setDesafio(G, ctx) {
     if(G.offer.turn<2){
-        for(let i = 0; i>2; i++){
+        for(let i = 0; i<2; i++){
             G.offer.desafio = G.offer.desafio +  G.offer.offerZone[i].chuteira
         }
     }else if(G.offer.turn<4){
