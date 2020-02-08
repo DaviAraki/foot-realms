@@ -10,6 +10,7 @@ it ("When i draw, the top card of my deck goes to my hand", ()=>{
                hand:[new commonFoward(),new superStar],
                deck:[],
                admZone:[],
+               discardZone:[],
                playZone:[],
                money:1,
                score:0,
