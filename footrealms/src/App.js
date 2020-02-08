@@ -113,10 +113,10 @@ export function setDesafio(G, ctx) {
         
 }
 export function defineWinner(G,ctx) {
-    if(G.players[ctx.currentPlayer].chuteira > G.offer.desafio){
-        G.players.points = G.players.points + 3;
+    if(G.players[ctx.currentPlayer].score > G.offer.desafio){
+        G.players[ctx.currentPlayer].points = G.players[ctx.currentPlayer].points + 3;
     }
-    G.players.chuteira = 0;
+    G.players[ctx.currentPlayer].score = 0;
     G.offer.desafio = 0;
 }
 export function shuffle(G, ctx){
