@@ -1,7 +1,7 @@
 import {Game} from 'boardgame.io/core'
 import {Client} from 'boardgame.io/react'
 import './App.css';
-
+import commonFoward from "./components/Cards/commonFoward";
 const FootRealms = {
     setup:()=>(
         {
@@ -9,7 +9,7 @@ const FootRealms = {
                  {
                     name: "Player A",
                     hand:[],
-                    deck:[],
+                    deck:[].concat(commonFoward.create(6)),
                     admZone:[],
                     playZone:[],
                     discardZone:[],
@@ -19,7 +19,7 @@ const FootRealms = {
                   },
             ],
             offer:{
-                offerZone:[],
+                offerZone:[].concat(commonFoward.create(6)),
                 deck:[],
                 turn:0,
                 desafio:0
@@ -30,6 +30,8 @@ const FootRealms = {
         playCard,
         buyCard,
         pass,
+        selectCard,
+        discardCard,
     },
    
     endIf:(G, ctx)=>{
@@ -124,6 +126,9 @@ export function defineWinner(G,ctx) {
 export function shuffle(G, ctx){
     G.players[ctx.currentPlayer].deck = ctx.random.Shuffle(G.players[ctx.currentPlayer].deck);
 }
+// export function shuffle(G,ctx){
+//     G.players[ctx.currentPlayer].deck.sort(() => Math.random() - 0.5);
+// }
 export function pass(G, ctx) {
     ctx.events.endPhase();    
 }
