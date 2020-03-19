@@ -82,7 +82,7 @@ export function draw(G, ctx, destiny){
         G.players[ctx.currentPlayer].discard = [];
     }
     let destino = destiny
-    if(destino == 1){
+    if(destino === 1){
         G.players[ctx.currentPlayer].hand.push(G.players[ctx.currentPlayer].deck.pop());
     }
     else 
