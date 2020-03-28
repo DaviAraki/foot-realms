@@ -5,7 +5,7 @@ import superStar from "../components/Cards/superStar";
 it("When i buy a card, the card goes to my playzone and i spent money equals the bought card cost",()=>{
     const G = {
        offer:{
-           offerZone:[new commonFoward(), new superStar],
+           offerZone:[new commonFoward(), new superStar()],
            turn:1,
            desafio:0
        }
