@@ -9,9 +9,17 @@ const styleBoard = {
 const styleOffer = {
     backgroundColor: "green",
     border: "1px solid black",
-    height: "65mm",
     color: "white",
 }
+const styleOfferCards = {
+    backgroundColor: "green",
+    border: "1px solid black",
+    color: "white",
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "row",
+}
+
 export default class GameBoard extends React.Component {
 
     render() {
@@ -23,7 +31,7 @@ export default class GameBoard extends React.Component {
             <div className="game-board" style={styleBoard}>
                 <div className="card-offer" style={styleOffer}>
                     <div>Offer:</div>
-                    <div className="card-offer-cards">
+                    <div className="card-offer-cards" style={styleOfferCards}>
                         {cards}
                     </div>
                 </div>
