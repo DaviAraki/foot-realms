@@ -2,6 +2,7 @@ import {Game} from 'boardgame.io/core'
 import {Client} from 'boardgame.io/react'
 import './App.css';
 import commonFoward from "./components/Cards/commonFoward";
+import GameBoard from './components/GameBoard';
 const FootRealms = {
     setup:()=>(
         {
@@ -162,6 +163,6 @@ export function drawHand(G,ctx) {
     }
     
 }
-const App = Client({game: FootRealms});
+const App = Client({game: FootRealms, board: GameBoard});
 
 export default App;
