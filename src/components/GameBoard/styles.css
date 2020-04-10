@@ -3,9 +3,8 @@
 .game-board {
   font-family: Rubik, Arial, Helvetica, sans-serif;
   font-size: 14px;
-  font-smoothing: antialised;
   -webkit-font-smoothing: antialised;
-  max-width: calc(1.1 * 5 * 45mm);
+  max-width: calc(1.1 * 6 * 45mm);
   width: 100%;
   margin: 0;
   padding: 3mm;
