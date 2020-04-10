@@ -13,13 +13,13 @@
   font-size: 5mm;
 }
 .player-board > h1,
-.player-board > h1+div {
+.player-board > .player-hand {
   width: 100%;
 }
 
-.player-hand,
-.player-deck,
-.player-discard {
+.player-hand > div,
+.player-deck  > div,
+.player-discard  > div {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

@@ -3,13 +3,15 @@ import { playCard } from "../App";
 import manager2 from "../components/Cards/manager2"
 
 it("When i play a card, i receive the money indicated, i draw the cards indicated and it goes to the playzone", () => {
+    const f = new commonFoward();
+    const m = new manager2();
     const G = {
         players: [
             {
                 name: "Player A",
                 hand: [],
-                deck: [new commonFoward()],
-                admZone: [new manager2()],
+                deck: [f],
+                admZone: [m],
                 playZone: [],
                 money: 1,
                 score: 0,
@@ -18,19 +20,9 @@ it("When i play a card, i receive the money indicated, i draw the cards indicate
         ]
     };
     playCard(G, { currentPlayer: "0" }, 0);
-    expect(G).toEqual({
-        players: [
-            {
-                name: "Player A",
-                hand: [],
-                deck: [],
-                admZone: [new commonFoward()],
-                playZone: [new manager2()],
-                money: 2,
-                score: 0,
-                points: 0
-            }
-        ]
-    }
-    )
-})
+    expect(G.players[0].admZone.length).toEqual(1);
+    expect(G.players[0].admZone[0]).toBe(f);
+    expect(G.players[0].playZone.length).toEqual(1);
+    expect(G.players[0].playZone[0]).toBe(m);
+    expect(G.players[0].money).toEqual(2); 
+});

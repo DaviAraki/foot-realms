@@ -17,18 +17,7 @@ it ("When i draw, the top card of my deck goes to my hand", ()=>{
         ]
     };
     selectCard(G, {currentPlayer:"0"} ,0);
-    expect(G).toEqual({ 
-        players:[
-        {
-           name: "Player A",
-           hand:[],
-           deck:[],
-           admZone:[new commonFoward()],
-           playZone:[],
-           money:1,
-           score:0,
-           points:0
-         }
-    ]}
-    )
-})
+    expect(G.players[0].admZone.length).toEqual(1);
+    expect(G.players[0].hand.length).toEqual(0); 
+
+});

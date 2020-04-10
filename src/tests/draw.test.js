@@ -2,12 +2,13 @@ import commonFoward from "../components/Cards/commonFoward";
 import { draw } from "../App";
 
 it ("When i draw, the top card of my deck goes to my hand", ()=>{
+    const f = new commonFoward();
     const G = {
         players:[
             {
                name: "Player A",
                hand:[],
-               deck:[new commonFoward()],
+               deck:[f],
                admZone:[],
                playZone:[],
                money:1,
@@ -16,19 +17,9 @@ it ("When i draw, the top card of my deck goes to my hand", ()=>{
              }
         ]
     };
-    draw(G, {currentPlayer:"0"},0);
-    expect(G).toEqual({ 
-        players:[
-        {
-           name: "Player A",
-           hand:[],
-           deck:[],
-           admZone: [new commonFoward()],
-           playZone:[],
-           money:1,
-           score:0,
-           points:0
-         }
-    ]}
-    )
+    draw(G, {currentPlayer:"0"},1);
+    expect(G.players[0].deck.length).toEqual(0);
+    expect(G.players[0].hand.length).toEqual(1);
+    expect(G.players[0].hand[0]).toBe(f);
+
 })
