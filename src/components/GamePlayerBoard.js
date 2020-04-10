@@ -1,5 +1,5 @@
 import React from "react";
-import GameCard from "./GameCard";
+import GameCard from "./GameCard/";
 
 const styleplayerBoard = {
     backgroundColor: "lightblue",
