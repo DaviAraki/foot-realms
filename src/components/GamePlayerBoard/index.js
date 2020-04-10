@@ -13,6 +13,9 @@ export default class GameBoard extends React.Component {
     let cardsDeck = this.props.player.deck.map((card) => (
       <GameCard card={card} key={card.id}/>
     ));
+    let cardsAdm = this.props.player.admZone.map((card) => (
+      <GameCard card={card} key={card.id}/>
+    ))
 
     return (
       <div className="player-board">
@@ -25,6 +28,10 @@ export default class GameBoard extends React.Component {
           <h1>Hand</h1>
           <div>{cardsHand}</div>
         </div>
+        <div className="player-hand">
+          <h1>Administration Zone:</h1>
+          <div>{cardsAdm}</div>
+        </div>
         <div className="player-deck">
           <h1>Deck:</h1>
           <div>{cardsDeck}</div>
@@ -33,6 +40,7 @@ export default class GameBoard extends React.Component {
           <h1>Discard:</h1>
           <div>{cardsDeck}</div>
         </div>
+
       </div>
     );
   }

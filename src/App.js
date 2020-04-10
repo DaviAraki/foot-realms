@@ -75,10 +75,10 @@ const FootRealms = {
 
 export function draw(G, ctx, destiny) {
   if (G.players[ctx.currentPlayer].deck.length === 0) {
-    G.players[ctx.currentPlayer].deck = G.players[ctx.currentPlayer].discard;
-    G.players[ctx.currentPlayer].discard = [];
+    G.players[ctx.currentPlayer].deck = G.players[ctx.currentPlayer].discardZone;
+    G.players[ctx.currentPlayer].discardZone = [];
     shuffle(G, ctx);
-    G.players[ctx.currentPlayer].discard = [];
+    G.players[ctx.currentPlayer].discardZone = [];
   }
   let destino = destiny;
   if (destino === 1) {
@@ -129,9 +129,7 @@ export function defineWinner(G, ctx) {
   G.offer.desafio = 0;
 }
 export function shuffle(G, ctx) {
-  G.players[ctx.currentPlayer].deck = ctx.random.Shuffle(
-    G.players[ctx.currentPlayer].deck
-  );
+  G.players[ctx.currentPlayer].deck = ctx.random.Shuffle(G.players[ctx.currentPlayer].deck);
 }
 // export function shuffle(G,ctx){
 //     G.players[ctx.currentPlayer].deck.sort(() => Math.random() - 0.5);
@@ -156,10 +154,12 @@ export function playCard(G, ctx, cardIndex) {
   G.players[ctx.currentPlayer].admZone.splice(cardIndex, 1);
 }
 export function selectCard(G, ctx, cardIndex) {
-  G.players[ctx.currentPlayer].admZone.push(
-    G.players[ctx.currentPlayer].hand[cardIndex]
-  );
-  G.players[ctx.currentPlayer].hand.splice(cardIndex, 1);
+  if(cardIndex<G.players[ctx.currentPlayer].hand.length){
+    G.players[ctx.currentPlayer].admZone.push(
+      G.players[ctx.currentPlayer].hand[cardIndex]
+    );
+    G.players[ctx.currentPlayer].hand.splice(cardIndex, 1);
+  }
 }
 export function discardCard(G, ctx, cardIndex) {
   G.players[ctx.currentPlayer].discardZone.push(
@@ -181,6 +181,6 @@ export function drawHand(G, ctx) {
     draw(G, ctx, 1);
   }
 }
-const App = Client({ game: FootRealms, board: GameBoard });
+const App = Client({ game: FootRealms, board: GameBoard , numPlayers : 1});
 
 export default App;
