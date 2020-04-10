@@ -1,7 +1,7 @@
 import React from "react";
-import GameCard from "./GameCard/";
-import GamePlayerBoard from "./GamePlayerBoard";
-import './GameBoard/styles.css'
+import GameCard from "../GameCard";
+import GamePlayerBoard from "../GamePlayerBoard";
+import './styles.css'
 
 
 
