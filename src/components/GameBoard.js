@@ -1,30 +1,9 @@
 import React from "react";
 import GameCard from "./GameCard/";
 import GamePlayerBoard from "./GamePlayerBoard";
+import './GameBoard/styles.css'
 
-const styleBoard = {
-    backgroundColor: "lightgreen",
-    border: "1px solid black",
 
-}
-const styleOffer = {
-    backgroundColor: "green",
-    border: "1px solid black",
-    color: "white",
-}
-const stylePlayers = {
-    backgroundColor: "blue",
-    border: "1px solid black",
-    color: "white",
-}
-const styleOfferCards = {
-    backgroundColor: "green",
-    border: "1px solid black",
-    color: "white",
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "row",
-}
 
 export default class GameBoard extends React.Component {
 
@@ -36,16 +15,16 @@ export default class GameBoard extends React.Component {
             <GamePlayerBoard player={player} />
         );
         return (
-            <div className="game-board" style={styleBoard}>
-                <div className="card-offer" style={styleOffer}>
-                    <div>Offer:</div>
-                    <div className="card-offer-cards" style={styleOfferCards}>
+            <div className="game-board">
+                <div className="card-offer">
+                    <h1>Offer:</h1>
+                    <div className="card-offer-cards">
                         {cards}
                     </div>
                 </div>
-                <div className="card-players" style={styleOffer}>
-                    <div>Players:</div>
-                    <div className="card-offer-players" style={stylePlayers}>
+                <div className="player-boards" >
+                    <h1>Players:</h1>
+                    <div className="player-areas">
                         {players}
                     </div>
                 </div>

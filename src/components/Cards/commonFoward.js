@@ -3,7 +3,7 @@ import basicCard from "./basicCard";
 export default class commonFoward extends basicCard{
     constructor(){
         super({
-            name: "commonFoward",
+            name: "Foward (C)",
             cards: 0,
             coin: 1,
             cost: 1,

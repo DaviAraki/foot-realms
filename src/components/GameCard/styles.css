@@ -7,7 +7,8 @@
   height: 65mm;
   border-radius: 3mm;
   position: relative;
-  font-family: sans-serif;
+  margin: 0.5mm;
+  color: hsla(200, 100%, 100%, 100%)
 }
 
 .game-card > div {
