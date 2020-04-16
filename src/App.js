@@ -78,17 +78,18 @@ export function draw(G, ctx, destiny) {
     G.players[ctx.currentPlayer].deck = G.players[ctx.currentPlayer].discardZone;
     G.players[ctx.currentPlayer].discardZone = [];
     shuffle(G, ctx);
-    G.players[ctx.currentPlayer].discardZone = [];
   }
-  let destino = destiny;
-  if (destino === 1) {
-    G.players[ctx.currentPlayer].hand.push(
-      G.players[ctx.currentPlayer].deck.pop()
-    );
-  } else
-    G.players[ctx.currentPlayer].admZone.push(
-      G.players[ctx.currentPlayer].deck.pop()
-    );
+  if(G.players[ctx.currentPlayer].deck.length>0){
+    let destino = destiny;
+    if (destino === 1) {
+      G.players[ctx.currentPlayer].hand.push(
+        G.players[ctx.currentPlayer].deck.pop()
+      );
+    } else
+      G.players[ctx.currentPlayer].admZone.push(
+        G.players[ctx.currentPlayer].deck.pop()
+      );
+  }
 }
 export function setChuteira(G, ctx) {
   while (G.players[ctx.currentPlayer].hand.length > 0) {
@@ -181,11 +182,9 @@ export function buyCard(G, ctx, cardIndex) {
   }
 }
 export function drawHand(G, ctx) {
-  if ((G.players[ctx.currentPlayer].deck.length > 0) || (G.players[ctx.currentPlayer].discardZone.length > 0)) {
-    while (G.players[ctx.currentPlayer].hand.length < 5) {   
+  while ((G.players[ctx.currentPlayer].hand.length < 5) && ((G.players[ctx.currentPlayer].deck.length > 0) || (G.players[ctx.currentPlayer].discardZone.length > 0))){   
         draw(G, ctx, 1);
     }
-  }
 }
 const App = Client({ game: FootRealms, board: GameBoard , numPlayers : 1});
 
