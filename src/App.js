@@ -2,6 +2,11 @@ import { Game } from "boardgame.io/core";
 import { Client } from "boardgame.io/react";
 import "./App.css";
 import commonFoward from "./components/Cards/commonFoward";
+import bigManager from "./components/Cards/bigManager";
+import commonCaptain from "./components/Cards/commonCaptain"
+import commonManager from "./components/Cards/commonManager"
+import manager2 from "./components/Cards/manager2"
+import superStar from "./components/Cards/superStar"
 import GameBoard from "./components/GameBoard";
 import generateUniqueId from "./utils/generateUniqueId";
 const FootRealms = {
@@ -11,7 +16,7 @@ const FootRealms = {
         id: generateUniqueId(),
         name: "Player A",
         hand: [],
-        deck: [].concat(commonFoward.create(6)),
+        deck: [].concat(commonFoward.create(5)),
         admZone: [],
         inPlay: [],
         discardZone: [],
@@ -22,7 +27,7 @@ const FootRealms = {
     ],
     offer: {
       offerZone: [].concat(commonFoward.create(6)),
-      deck: [],
+      deck: [].concat(commonFoward.create(5), bigManager.create(5), commonManager.create(5), commonCaptain.create(5), manager2.create(5), superStar.create(5)),
       turn: 0,
       desafio: 0,
     },
