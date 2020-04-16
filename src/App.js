@@ -125,6 +125,10 @@ export function defineWinner(G, ctx) {
     G.players[ctx.currentPlayer].points =
       G.players[ctx.currentPlayer].points + 3;
   }
+  else if (G.players[ctx.currentPlayer].score === G.offer.desafio) {
+    G.players[ctx.currentPlayer].points =
+      G.players[ctx.currentPlayer].points + 1;
+  }
   G.players[ctx.currentPlayer].score = 0;
   G.offer.desafio = 0;
 }
