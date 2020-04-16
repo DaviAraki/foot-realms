@@ -132,12 +132,12 @@ export function defineWinner(G, ctx) {
   G.players[ctx.currentPlayer].score = 0;
   G.offer.desafio = 0;
 }
-export function shuffle(G, ctx) {
-  G.players[ctx.currentPlayer].deck = ctx.random.Shuffle(G.players[ctx.currentPlayer].deck);
-}
-// export function shuffle(G,ctx){
-//     G.players[ctx.currentPlayer].deck.sort(() => Math.random() - 0.5);
+// export function shuffle(G, ctx) {
+//   G.players[ctx.currentPlayer].deck = ctx.random.Shuffle(G.players[ctx.currentPlayer].deck);
 // }
+export function shuffle(G,ctx){
+    G.players[ctx.currentPlayer].deck.sort(() => Math.random() - 0.5);
+}
 export function pass(G, ctx) {
   ctx.events.endPhase();
 }
