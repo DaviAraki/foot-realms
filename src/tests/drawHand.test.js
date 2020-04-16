@@ -10,6 +10,7 @@ it ("When the turn begins i draw until i have 5 cards", ()=>{
                deck:[new commonFoward(),new commonFoward(),new commonFoward(),new commonFoward(),new commonFoward()],
                admZone:[],
                playZone:[],
+               discardZone:[],
                money:1,
                score:0,
                points:0

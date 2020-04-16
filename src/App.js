@@ -181,8 +181,10 @@ export function buyCard(G, ctx, cardIndex) {
   }
 }
 export function drawHand(G, ctx) {
-  while (G.players[ctx.currentPlayer].hand.length < 5) {
-    draw(G, ctx, 1);
+  if ((G.players[ctx.currentPlayer].deck.length > 0) || (G.players[ctx.currentPlayer].discardZone.length > 0)) {
+    while (G.players[ctx.currentPlayer].hand.length < 5) {   
+        draw(G, ctx, 1);
+    }
   }
 }
 const App = Client({ game: FootRealms, board: GameBoard , numPlayers : 1});
