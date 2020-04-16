@@ -9,6 +9,7 @@ import manager2 from "./components/Cards/manager2"
 import superStar from "./components/Cards/superStar"
 import GameBoard from "./components/GameBoard";
 import generateUniqueId from "./utils/generateUniqueId";
+
 const FootRealms = {
   setup: () => ({
     players: [
@@ -51,9 +52,6 @@ const FootRealms = {
       onBegin:(G,ctx) => {
         shuffleOffer(G);        
         pass(G,ctx);
-      },
-      onEnd: (G, ctx) => {
-        G.offer.turn++;
       },
       next:"inicio",
       start : true,    
@@ -208,9 +206,9 @@ export function drawHand(G, ctx) {
     }
 }
 export function giveOffer(G, ctx) {
-  while ((G.offer.offerZone.length < 5) && ((G.players[ctx.currentPlayer].deck.length > 0) || (G.players[ctx.currentPlayer].discardZone.length > 0))) {
-    if (G.offer.deck > 0) {
-      G.offer.offerZone.hand.push(
+  while (G.offer.offerZone.length < 5) {
+    if (G.offer.deck.length > 0) {
+      G.offer.offerZone.push(
         G.offer.deck.pop()
       );
     }
