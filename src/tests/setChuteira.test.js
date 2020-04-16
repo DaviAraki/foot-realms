@@ -2,7 +2,7 @@ import commonFoward from "../components/Cards/commonFoward";
 import {setChuteira } from "../App";
 import superStar from "../components/Cards/superStar";
 
-it ("When i draw, the top card of my deck goes to my hand", ()=>{
+it ("the socre number should be equal the added value of all chuteiras in cards in hand", ()=>{
     const G = {
         players:[
             {
