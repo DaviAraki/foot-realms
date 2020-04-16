@@ -26,7 +26,7 @@ const FootRealms = {
       },
     ],
     offer: {
-      offerZone: [].concat(commonFoward.create(6)),
+      offerZone: [],
       deck: [].concat(commonFoward.create(5), bigManager.create(5), commonManager.create(5), commonCaptain.create(5), manager2.create(5), superStar.create(5)),
       turn: 0,
       desafio: 0,
@@ -47,14 +47,25 @@ const FootRealms = {
   },
 
   phases: {
+    setUpPhase:{
+      onBegin:(G,ctx) => {
+        shuffleOffer(G);        
+        pass(G,ctx);
+      },
+      onEnd: (G, ctx) => {
+        G.offer.turn++;
+      },
+      next:"inicio",
+      start : true,    
+    },
     inicio: {
       moves: { selectCard, pass },
       onBegin: (G, ctx) => {
         drawHand(G, ctx);
+        giveOffer(G, ctx);
         setDesafio(G, ctx);
       },
       next: "disputa",
-      start: true,
     },
     disputa: {
       moves: { pass },
@@ -108,21 +119,23 @@ export function setChuteira(G, ctx) {
   }
 }
 export function setDesafio(G, ctx) {
-  if (G.offer.turn < 2) {
-    for (let i = 0; i < 2; i++) {
-      G.offer.desafio = G.offer.desafio + G.offer.offerZone[i].chuteira;
-    }
-  } else if (G.offer.turn < 4) {
-    for (let i = 0; i > 3; i++) {
-      G.offer.desafio = G.offer.desafio + G.offer.offerZone[i].chuteira;
-    }
-  } else if (G.offer.turn < 6) {
-    for (let i = 0; i > 4; i++) {
-      G.offer.desafio = G.offer.desafio + G.offer.offerZone[i].chuteira;
-    }
-  } else if (G.offer.turn < 8) {
-    for (let i = 0; i > 5; i++) {
-      G.offer.desafio = G.offer.desafio + G.offer.offerZone[i].chuteira;
+  if(G.offer.offerZone.length > 0){
+    if (G.offer.turn < 3 ) {
+      for (let i = 0; i < 2; i++) {
+        G.offer.desafio = G.offer.desafio + G.offer.offerZone[i].chuteira;
+      }
+    } else if (G.offer.turn < 5 ) {
+      for (let i = 0; i < 3; i++) {
+        G.offer.desafio = G.offer.desafio + G.offer.offerZone[i].chuteira;
+      }
+    } else if (G.offer.turn < 7) {
+      for (let i = 0; i < 4; i++) {
+        G.offer.desafio = G.offer.desafio + G.offer.offerZone[i].chuteira;
+      }
+    } else if (G.offer.turn < 9) {
+      for (let i = 0; i < 5; i++) {
+        G.offer.desafio = G.offer.desafio + G.offer.offerZone[i].chuteira;
+      }
     }
   }
 }
@@ -143,6 +156,9 @@ export function defineWinner(G, ctx) {
 // }
 export function shuffle(G,ctx){
     G.players[ctx.currentPlayer].deck.sort(() => Math.random() - 0.5);
+} 
+export function shuffleOffer(G) {
+  G.offer.deck.sort(() => Math.random() - 0.5);
 }
 export function pass(G, ctx) {
   ctx.events.endPhase();
@@ -190,6 +206,15 @@ export function drawHand(G, ctx) {
   while ((G.players[ctx.currentPlayer].hand.length < 5) && ((G.players[ctx.currentPlayer].deck.length > 0) || (G.players[ctx.currentPlayer].discardZone.length > 0))){   
         draw(G, ctx, 1);
     }
+}
+export function giveOffer(G, ctx) {
+  while ((G.offer.offerZone.length < 5) && ((G.players[ctx.currentPlayer].deck.length > 0) || (G.players[ctx.currentPlayer].discardZone.length > 0))) {
+    if (G.offer.deck > 0) {
+      G.offer.offerZone.hand.push(
+        G.offer.deck.pop()
+      );
+    }
+  }
 }
 const App = Client({ game: FootRealms, board: GameBoard , numPlayers : 1});
 

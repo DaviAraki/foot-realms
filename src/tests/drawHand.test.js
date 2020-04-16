@@ -59,7 +59,6 @@ it("When the turn begins i draw until i have 5 cards, if my deck run out of card
         ]
     };
     drawHand(G, { currentPlayer: "0" }, 1);
-    console.log(G.players[0].hand);
     expect(G.players[0].hand.length).toEqual(3);
     expect(G.players[0].deck.length).toEqual(0);
 });
