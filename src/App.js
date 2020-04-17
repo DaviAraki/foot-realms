@@ -19,7 +19,7 @@ const FootRealms = {
         hand: [],
         deck: [].concat(commonFoward.create(5)),
         admZone: [],
-        inPlay: [],
+        playZone: [],
         discardZone: [],
         money: 0,
         score: 0,
@@ -43,7 +43,7 @@ const FootRealms = {
 
   endIf: (G, ctx) => {
     if (G.offer.turn === 8) {
-      return G.players[0].points;
+      return G.players[ctx.currentPlayer].points;
     }
   },
 
@@ -85,6 +85,30 @@ const FootRealms = {
       next: "inicio",
     },
   },
+
+  ai: {
+    enumerate:(G,ctx)=>{
+      let moves = [{ move: 'pass', args: null }];
+
+      for (let i = 0; i < G.players[ctx.currentPlayer].hand.length; i++) {
+        moves.push({ move: 'playCard', args: [i] });
+
+      }
+      for (let i = 0; i < G.offer.offerZone.length; i++) {
+        if (G.players[ctx.currentPlayer].money >= G.offer.offerZone[i].cost) {
+          moves.push({ move: 'buyCard', args: [i] });
+        }
+      }
+      for (let i = 0; i < G.players[ctx.currentPlayer].hand.length; i++) {
+        moves.push({ move: 'selectCard', args: [i] });
+      }
+      for (let i = 0; i < G.players[ctx.currentPlayer].hand.length; i++) {
+        moves.push({ move: 'discardCard', args: [i] });
+      }
+
+      return moves;
+    }
+  }
 };
 
 export function draw(G, ctx, destiny) {
@@ -214,6 +238,10 @@ export function giveOffer(G, ctx) {
     }
   }
 }
-const App = Client({ game: FootRealms, board: GameBoard , numPlayers : 1});
+const App = Client({
+   game: FootRealms, 
+   board: GameBoard, 
+   numPlayers : 1,
+  });
 
 export default App;
