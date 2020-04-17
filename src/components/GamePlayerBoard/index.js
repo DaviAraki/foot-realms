@@ -4,7 +4,7 @@ import "./styles.css";
 
 export default class GameBoard extends React.Component {
   render() {
-    let cardsInPlay = this.props.player.inPlay.map((card) => (
+    let cardsInPlay = this.props.player.playZone.map((card) => (
         <GameCard card={card} key={card.id}/>
       ));  
     let cardsHand = this.props.player.hand.map((card) => (
