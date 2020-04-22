@@ -16,12 +16,15 @@
 .player-board > .player-hand {
   width: 100%;
 }
-.player-board > .player-adm{
+.player-board > .player-admnistration{
+  width: 100%;
+}
+.player-board > .player-discard{
   width: 100%;
 }
 
 .player-hand > div,
-.player-adm > diz,
+.player-admnistration > div,
 .player-deck  > div,
 .player-discard  > div {
   display: flex;

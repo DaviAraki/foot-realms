@@ -17,7 +17,7 @@ const FootRealms = {
         id: generateUniqueId(),
         name: "Player A",
         hand: [],
-        deck: [].concat(commonFoward.create(5)),
+        deck: [].concat(commonFoward.create(7),commonManager.create(3)),
         admZone: [],
         playZone: [],
         discardZone: [],
@@ -33,13 +33,13 @@ const FootRealms = {
       desafio: 0,
     },
   }),
-  moves: {
-    playCard,
-    buyCard,
-    pass,
-    selectCard,
-    discardCard,
-  },
+  // moves: {
+  //   playCard,
+  //   buyCard,
+  //   pass,
+  //   selectCard,
+  //   discardCard,
+  // },
 
   endIf: (G, ctx) => {
     if (G.offer.turn === 8) {
@@ -50,7 +50,8 @@ const FootRealms = {
   phases: {
     setUpPhase:{
       onBegin:(G,ctx) => {
-        shuffleOffer(G);        
+        shuffleOffer(G);  
+        shuffle(G,ctx);      
         pass(G,ctx);
       },
       next:"inicio",
@@ -62,6 +63,9 @@ const FootRealms = {
         drawHand(G, ctx);
         giveOffer(G, ctx);
         setDesafio(G, ctx);
+      }, 
+      onEnd: (G, ctx) => {
+        console.log("disputa")
       },
       next: "disputa",
     },
@@ -71,16 +75,27 @@ const FootRealms = {
         setChuteira(G, ctx);
         defineWinner(G, ctx);
       },
+      onEnd: (G, ctx) => {
+        console.log("administracao")
+      },
       next: "administracao",
     },
     administracao: {
       moves: { playCard, pass, buyCard, discardCard },
       next: "classificacao",
+      onEnd: (G,ctx) =>{
+        console.log("classificação")
+      }
     },
     classificacao: {
       moves: { pass },
+      // onBegin: (G,ctx) =>{
+      //   pass(G,ctx)
+      // },
       onEnd: (G, ctx) => {
         G.offer.turn++;
+        cleanUp (G,ctx);
+        console.log("inicio")
       },
       next: "inicio",
     },
@@ -90,21 +105,30 @@ const FootRealms = {
     enumerate:(G,ctx)=>{
       let moves = [{ move: 'pass', args: null }];
 
-      for (let i = 0; i < G.players[ctx.currentPlayer].hand.length; i++) {
-        moves.push({ move: 'playCard', args: [i] });
+      if(ctx.phase === 'administracao'){
+        for (let i = 0; i < G.players[ctx.currentPlayer].admZone.length; i++) {
+          moves.push({ move: 'playCard', args: [i] });
 
-      }
-      for (let i = 0; i < G.offer.offerZone.length; i++) {
-        if (G.players[ctx.currentPlayer].money >= G.offer.offerZone[i].cost) {
-          moves.push({ move: 'buyCard', args: [i] });
         }
+        for (let i = 0; i < G.players[ctx.currentPlayer].admZone.length; i++) {
+          moves.push({ move: 'discardCard', args: [i] });
+        }
+        for (let i = 0; i < G.offer.offerZone.length; i++) {
+          if (G.players[ctx.currentPlayer].money >= G.offer.offerZone[i].cost) {
+            moves.push({ move: 'buyCard', args: [i] });
+          }
+        }
+        console.log(moves.length)
+        console.log(ctx.phase)
       }
-      for (let i = 0; i < G.players[ctx.currentPlayer].hand.length; i++) {
-        moves.push({ move: 'selectCard', args: [i] });
+      if(ctx.phase === 'inicio'){
+        for (let i = 0; i < G.players[ctx.currentPlayer].hand.length; i++) {
+          moves.push({ move: 'selectCard', args: [i] });
+        }
+        console.log(moves.length)
+        console.log(ctx.phase)
       }
-      for (let i = 0; i < G.players[ctx.currentPlayer].hand.length; i++) {
-        moves.push({ move: 'discardCard', args: [i] });
-      }
+
 
       return moves;
     }
@@ -208,6 +232,15 @@ export function selectCard(G, ctx, cardIndex) {
     );
     G.players[ctx.currentPlayer].hand.splice(cardIndex, 1);
   }
+}
+export function cleanUp(G, ctx){
+  while(G.players[ctx.currentPlayer].playZone.length > 0){
+    G.players[ctx.currentPlayer].discardZone.push(
+      G.players[ctx.currentPlayer].playZone[0]
+    )
+    G.players[ctx.currentPlayer].playZone.splice(0, 1);
+  }
+  
 }
 export function discardCard(G, ctx, cardIndex) {
   G.players[ctx.currentPlayer].discardZone.push(
