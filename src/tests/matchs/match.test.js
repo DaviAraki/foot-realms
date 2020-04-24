@@ -172,7 +172,6 @@ it('should run', async () => {
         expect(typeof Simulate).toBe('function');
         const state = InitializeGame({ game: FootRealms, numPlayers : 1 });
         const { state: endState } =  await Simulate({game: FootRealms, bots: bot, state});
-        console.log(endState)
         expect(endState.ctx.gameover).not.toBeUndefined();
 
         // var data = JSON.stringify(endState);
