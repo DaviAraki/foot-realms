@@ -1,7 +1,7 @@
 import { Game } from 'boardgame.io/core';
 import { playCard, pass, drawHand,buyCard,shuffleOffer, cleanUp, draw, selectCard,setChuteira ,setDesafio,shuffle, defineWinner, giveOffer, discardCard  } from '../../App';
 import { RandomBot, MCTSBot } from 'boardgame.io/ai';
-import { InitializeGame, CreateGameReducer } from 'boardgame.io/dist/boardgameio';
+import { InitializeGame, CreateGameReducer } from 'boardgame.io/dist/cjs/internal';
 import commonFoward from "../../components/Cards/commonFoward";
 import bigManager from "../../components/Cards/bigManager";
 import commonCaptain from "../../components//Cards/commonCaptain"
@@ -11,7 +11,7 @@ import superStar from "../../components/Cards/superStar"
 import GameBoard from "../../components/GameBoard";
 import generateUniqueId from "../../utils/generateUniqueId";
 import { Simulate } from 'boardgame.io/ai'
-import {ProcessGameConfig} from'boardgame.io/dist/boardgameio'
+import {ProcessGameConfig} from'boardgame.io/dist/cjs/internal'
 for (let i = 0; i < 1; i++) {
     it('should run', async () => {
         const FootRealms = ProcessGameConfig({
