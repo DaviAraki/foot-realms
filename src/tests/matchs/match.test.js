@@ -1,8 +1,8 @@
 import { Game } from 'boardgame.io/core';
-import { playCard, pass, drawHand,buyCard, draw, selectCard,setChuteira ,setDesafio,shuffle, defineWinner, giveOffer, discardCard  } from '../../App';
+import { playCard, pass, drawHand,buyCard,shuffleOffer, draw, selectCard,setChuteira ,setDesafio,shuffle, defineWinner, giveOffer, discardCard  } from '../../App';
 import { RandomBot, MCTSBot } from 'boardgame.io/ai';
 import ActionList from '../../actions/ActionList';
-import { InitializeGame, CreateGameReducer } from 'boardgame.io/core/initialize';
+import { InitializeGame, CreateGameReducer } from 'boardgame.io/dist/cjs/initialize-a0059b3c';
 import commonFoward from "../../components/Cards/commonFoward";
 import bigManager from "../../components/Cards/bigManager";
 import commonCaptain from "../../components//Cards/commonCaptain"
@@ -14,7 +14,7 @@ import generateUniqueId from "../../utils/generateUniqueId";
 import { Simulate } from 'boardgame.io/ai'
 
 for (let i = 0; i < 1; i++) {
-    it('should run', () => {
+    it('should run', async () => {
         const FootRealms = {
             setup: () => ({
                 players: [
@@ -141,10 +141,10 @@ for (let i = 0; i < 1; i++) {
         };
         // expect(typeof RandomBot).toBe('function');
 
-        let rnd = new MCTSBot({ 'seed': 'test', enumerate: ActionList, game: FootRealms, playerID: '0', iterations: 200 });
+        let rnd = new MCTSBot({ 'seed': i, enumerate: ActionList, game: FootRealms, playerID: '0', iterations: 200 });
         expect(typeof Simulate).toBe('function');
         const state = InitializeGame({ game: FootRealms });
-        const { state: endState } = Simulate({ game: FootRealms, bots: [rnd], state, depth: 1000 });
+        const { state: endState } =  await Simulate({game: FootRealms, bots: rnd, state, depth: 1000 });
         expect(endState.ctx.gameover).not.toBeUndefined();
 
         // var data = JSON.stringify(endState);
