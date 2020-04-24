@@ -1,8 +1,7 @@
 import { Game } from 'boardgame.io/core';
-import { playCard, pass, drawHand,buyCard,shuffleOffer, draw, selectCard,setChuteira ,setDesafio,shuffle, defineWinner, giveOffer, discardCard  } from '../../App';
+import { playCard, pass, drawHand,buyCard,shuffleOffer, cleanUp, draw, selectCard,setChuteira ,setDesafio,shuffle, defineWinner, giveOffer, discardCard  } from '../../App';
 import { RandomBot, MCTSBot } from 'boardgame.io/ai';
-import ActionList from '../../actions/ActionList';
-import { InitializeGame, CreateGameReducer } from 'boardgame.io/dist/cjs/initialize-a0059b3c';
+import { InitializeGame, CreateGameReducer } from 'boardgame.io/dist/boardgameio';
 import commonFoward from "../../components/Cards/commonFoward";
 import bigManager from "../../components/Cards/bigManager";
 import commonCaptain from "../../components//Cards/commonCaptain"
@@ -12,10 +11,10 @@ import superStar from "../../components/Cards/superStar"
 import GameBoard from "../../components/GameBoard";
 import generateUniqueId from "../../utils/generateUniqueId";
 import { Simulate } from 'boardgame.io/ai'
-
+import {ProcessGameConfig} from'boardgame.io/dist/boardgameio'
 for (let i = 0; i < 1; i++) {
     it('should run', async () => {
-        const FootRealms = {
+        const FootRealms = ProcessGameConfig({
             setup: () => ({
                 players: [
                     {
@@ -138,14 +137,44 @@ for (let i = 0; i < 1; i++) {
                     return moves;
                 }
             }
-        };
+        });
         // expect(typeof RandomBot).toBe('function');
+        const enumerate = (G, ctx, playerID) => {
+            let moves = [{ move: 'pass', args: null }];
 
-        let rnd = new MCTSBot({ 'seed': i, enumerate: ActionList, game: FootRealms, playerID: '0', iterations: 200 });
+            if (ctx.phase === 'administracao') {
+                for (let i = 0; i < G.players[ctx.currentPlayer].admZone.length; i++) {
+                    moves.push({ move: 'playCard', args: [i] });
+
+                }
+                for (let i = 0; i < G.players[ctx.currentPlayer].admZone.length; i++) {
+                    moves.push({ move: 'discardCard', args: [i] });
+                }
+                for (let i = 0; i < G.offer.offerZone.length; i++) {
+                    if (G.players[ctx.currentPlayer].money >= G.offer.offerZone[i].cost) {
+                        moves.push({ move: 'buyCard', args: [i] });
+                    }
+                }
+                console.log(moves.length)
+                console.log(ctx.phase)
+            }
+            if (ctx.phase === 'inicio') {
+                for (let i = 0; i < G.players[ctx.currentPlayer].hand.length; i++) {
+                    moves.push({ move: 'selectCard', args: [i] });
+                }
+                console.log(moves.length)
+                console.log(ctx.phase)
+            }
+
+
+            return moves;
+        }
+        const bot = new RandomBot({ 'seed': 'test', game: FootRealms, enumerate, playerID: '0', iterations: 200 });
         expect(typeof Simulate).toBe('function');
-        const state = InitializeGame({ game: FootRealms });
-        const { state: endState } =  await Simulate({game: FootRealms, bots: rnd, state, depth: 1000 });
-        expect(endState.ctx.gameover).not.toBeUndefined();
+        const state = InitializeGame({ game: FootRealms, numPlayers : 1 });
+        const { state: endState } =  await Simulate({game: FootRealms, bots: bot, state, depth: 10 });
+        expect(endState.G.offer.turn).toBe(8);
+        //expect(endState.ctx.gameover).not.toBeUndefined();
 
         // var data = JSON.stringify(endState);
         // fs.writeFile("../dblab/src/results/testedaspartidas.txt", data, (err) => {

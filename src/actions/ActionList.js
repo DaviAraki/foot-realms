@@ -6,7 +6,7 @@ export default function ActionList(G, ctx) {
             moves.push({ move: 'playCard', args: [i] });
         
     }
-    for (let i = 0; i > G.players[ctx.currentPlayer].offerZone.length; i++) {       
+    for (let i = 0; i < G.players[ctx.currentPlayer].offerZone.length; i++) {       
         if (G.players[ctx.currentPlayer].money >= G.offerZone[i].cost) {
                 moves.push({ move: 'buyCard', args: [i] });
             }
