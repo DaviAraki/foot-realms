@@ -4,12 +4,17 @@ import GamePlayerBoard from "../GamePlayerBoard";
 import "./styles.css";
 
 export default class GameBoard extends React.Component {
+  buyCardHandler(card) {
+    console.log(`buycardHandler`, card);
+    
+    this.props.moves.buyCard(card);
+  }
   render() {
     let cards = this.props.G.offer.offerZone.map((card) => (
-      <GameCard card={card} key={card.id}/>
+      <GameCard card={card} key={card.id} onClickBuyCard={()=>{this.buyCardHandler(card)}} />
     ));
-    let players = this.props.G.players.map((player,k) => (
-      <GamePlayerBoard player={player} key={`player${k}`}/>
+    let players = this.props.G.players.map((player, k) => (
+      <GamePlayerBoard player={player} key={`player${k}`} />
     ));
     return (
       <div className="game-board">

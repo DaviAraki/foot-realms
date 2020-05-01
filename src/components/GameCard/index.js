@@ -2,9 +2,14 @@ import React from "react";
 import "./styles.css";
 
 export default class GameCard extends React.Component {
+  clickCardHandler() {
+    if (this.props.onClickBuyCard) {
+      this.props.onClickBuyCard();
+    }
+  }
   render() {
     return (
-      <div className="game-card">
+      <div className="game-card" onClick={this.clickCardHandler.bind(this)}>
         <div className="name">{this.props.card.name}</div>
         <div className="coin">
           <span role="img" aria-label="Money">

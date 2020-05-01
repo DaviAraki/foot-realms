@@ -7,7 +7,7 @@ it ("the socre number should be equal the added value of all chuteiras in cards 
         players:[
             {
                name: "Player A",
-               hand:[new commonFoward(),new superStar],
+               hand:[new commonFoward(),new superStar()],
                deck:[],
                admZone:[],
                discardZone:[],
