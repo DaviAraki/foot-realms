@@ -6,6 +6,9 @@ export default class GameCard extends React.Component {
     if (this.props.onClickBuyCard) {
       this.props.onClickBuyCard();
     }
+    if (this.props.onClickSelectCard) {
+      this.props.onClickSelectCard();
+    }
   }
   render() {
     return (

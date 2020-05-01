@@ -3,12 +3,15 @@ import GameCard from "../GameCard";
 import "./styles.css";
 
 export default class GameBoard extends React.Component {
+  selectCardHandler(k){
+    this.props.selectCardHandler(k);
+  }
   render() {
     let cardsInPlay = this.props.player.playZone.map((card) => (
         <GameCard card={card} key={card.id}/>
       ));  
-    let cardsHand = this.props.player.hand.map((card) => (
-       <GameCard card={card} key={card.id}/>
+    let cardsHand = this.props.player.hand.map((card, k) => (
+       <GameCard card={card} key={card.id} onClickSelectCard={()=>{this.selectCardHandler(k)}}  />
     ));
     // let cardsDeck = this.props.player.deck.map((card) => (
     //   <GameCard card={card} key={card.id}/>
