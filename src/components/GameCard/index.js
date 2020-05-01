@@ -10,7 +10,15 @@ export default class GameCard extends React.Component {
       this.props.onClickSelectCard();
     }
   }
+  clickDiscardCard () {
+    console.log('DISCARD');
+    
+    if(this.props.onClickDiscardCard){
+      this.props.onClickDiscardCard();
+    }
+  }
   render() {
+    const discardAction = this.props.onClickDiscardCard?(<div className="discard" onClick={this.clickDiscardCard.bind(this)}>discard</div>):'';
     return (
       <div className="game-card" onClick={this.clickCardHandler.bind(this)}>
         <div className="name">{this.props.card.name}</div>
@@ -36,6 +44,7 @@ export default class GameCard extends React.Component {
           <label>Power:</label>
           {this.props.card.power}
         </div>
+        {discardAction}
       </div>
     );
   }

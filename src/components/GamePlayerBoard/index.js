@@ -17,7 +17,7 @@ export default class GameBoard extends React.Component {
     //   <GameCard card={card} key={card.id}/>
     // ));
     let cardsAdm = this.props.player.admZone.map((card) => (
-       <GameCard card={card} key={card.id}/>
+       <GameCard card={card} key={card.id} onClickDiscardCard={()=>{}}/>
     ));
     let cardsDiscard = this.props.player.discardZone.map((card)=>(
        <GameCard card={card} key={card.id}/>
