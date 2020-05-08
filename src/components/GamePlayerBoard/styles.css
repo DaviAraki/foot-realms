@@ -7,7 +7,11 @@
   display: flex;
   flex-wrap: wrap;
 }
-
+.player-board .passButton{
+  right: 1.5mm;
+  bottom: 1.5mm;
+  background-color: lightblue;
+}
 .player-board h1 {
   font-size: 5mm;
   font-size: 5mm;

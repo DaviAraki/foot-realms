@@ -21,6 +21,10 @@ export default class GameBoard extends React.Component {
     console.log(`discardCardHandler`, k);
     this.props.moves.discardCard(k);
   }
+  clickPassPhase(){
+    console.log(`passPhase`);
+    this.props.moves.pass();
+  }
 
 
   
@@ -30,6 +34,7 @@ export default class GameBoard extends React.Component {
     ));
     let players = this.props.G.players.map((player, k) => (
       <GamePlayerBoard player={player} key={`player${k}`}
+        clickPassPhase={this.clickPassPhase.bind(this)}
         selectCardHandler={this.selectCardHandler.bind(this)} 
         discardCardHandler={this.discardCardHandler.bind(this)}
         playCardHandler={this.playCardHandler.bind(this)}
