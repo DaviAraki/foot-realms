@@ -9,6 +9,9 @@ export default class GameCard extends React.Component {
     if (this.props.onClickSelectCard) {
       this.props.onClickSelectCard();
     }
+    if(this.props.onClickPlayCard){
+      this.props.onClickPlayCard()
+    }
   }
   clickDiscardCard () {
     console.log('DISCARD');

@@ -6,7 +6,14 @@ export default class GameBoard extends React.Component {
   selectCardHandler(k){
     this.props.selectCardHandler(k);
   }
+  discardCardHandler(k){
+    this.props.discardCardHandler(k);
+  }
+  playCardHandler(k){
+    this.props.playCardHandler(k);
+  }
   render() {
+    const passButton = this.props.onClickPassButton?(<div className="passButton" onClick={this.pass.bind(this)}>Pass</div>):''
     let cardsInPlay = this.props.player.playZone.map((card) => (
         <GameCard card={card} key={card.id}/>
       ));  
@@ -16,9 +23,10 @@ export default class GameBoard extends React.Component {
     // let cardsDeck = this.props.player.deck.map((card) => (
     //   <GameCard card={card} key={card.id}/>
     // ));
-    let cardsAdm = this.props.player.admZone.map((card) => (
-       <GameCard card={card} key={card.id} onClickDiscardCard={()=>{}}/>
+    let cardsAdm = this.props.player.admZone.map((card, k) => (
+       <GameCard card={card} key={card.id} onClickDiscardCard={()=>{this.discardCardHandler(k)}} onClickPlayCard={()=>{this.playCardHandler(k)}}/>
     ));
+    
     let cardsDiscard = this.props.player.discardZone.map((card)=>(
        <GameCard card={card} key={card.id}/>
     ))
@@ -26,6 +34,7 @@ export default class GameBoard extends React.Component {
     return (
       <div className="player-board">
         <h1>{this.props.player.name}</h1>
+        <h2>{passButton}</h2>
         <div className="player-hand">
           <h1>In play</h1>
           <div>{cardsInPlay}</div>
