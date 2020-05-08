@@ -54,10 +54,10 @@ const FootRealms = {
         shuffle(G,ctx);      
         pass(G,ctx);
       },
-      next:"inicio",
+      next:"begin",
       start : true,    
     },
-    inicio: {
+    begin: {
       moves: { selectCard, pass },
       onBegin: (G, ctx) => {
         drawHand(G, ctx);
@@ -65,47 +65,29 @@ const FootRealms = {
         setDesafio(G, ctx);
       }, 
       onEnd: (G, ctx) => {
-        console.log("disputa")
-      },
-      next: "disputa",
-    },
-    disputa: {
-      moves: { pass },
-      onBegin: (G, ctx) => {
         setChuteira(G, ctx);
         defineWinner(G, ctx);
+        console.log("admnistration")
       },
-      onEnd: (G, ctx) => {
-        console.log("administracao")
-      },
-      next: "administracao",
+      next: "admnistration",
     },
-    administracao: {
+    admnistration: {
       moves: { playCard, pass, buyCard, discardCard },
-      next: "classificacao",
+      next: "begin",
       onEnd: (G,ctx) =>{
-        console.log("classificação")
-      }
-    },
-    classificacao: {
-      moves: { pass },
-      // onBegin: (G,ctx) =>{
-      //   pass(G,ctx)
-      // },
-      onEnd: (G, ctx) => {
         G.offer.turn++;
         cleanUp (G,ctx);
-        console.log("inicio")
-      },
-      next: "inicio",
+        console.log("begin")
+      }
     },
+    
   },
 
   ai: {
     enumerate:(G,ctx)=>{
       let moves = [{ move: 'pass', args: null }];
 
-      if(ctx.phase === 'administracao'){
+      if(ctx.phase === 'admnistration'){
         for (let i = 0; i < G.players[ctx.currentPlayer].admZone.length; i++) {
           moves.push({ move: 'playCard', args: [i] });
 
@@ -121,7 +103,7 @@ const FootRealms = {
         console.log(moves.length)
         console.log(ctx.phase)
       }
-      if(ctx.phase === 'inicio'){
+      if(ctx.phase === 'begin'){
         for (let i = 0; i < G.players[ctx.currentPlayer].hand.length; i++) {
           moves.push({ move: 'selectCard', args: [i] });
         }
@@ -170,15 +152,15 @@ export function setDesafio(G, ctx) {
       for (let i = 0; i < 2; i++) {
         G.offer.desafio = G.offer.desafio + G.offer.offerZone[i].chuteira;
       }
-    } else if (G.offer.turn < 5 ) {
+    } else if (G.offer.turn < 3 ) {
       for (let i = 0; i < 3; i++) {
         G.offer.desafio = G.offer.desafio + G.offer.offerZone[i].chuteira;
       }
-    } else if (G.offer.turn < 7) {
+    } else if (G.offer.turn < 5) {
       for (let i = 0; i < 4; i++) {
         G.offer.desafio = G.offer.desafio + G.offer.offerZone[i].chuteira;
       }
-    } else if (G.offer.turn < 9) {
+    } else if (G.offer.turn < 7) {
       for (let i = 0; i < 5; i++) {
         G.offer.desafio = G.offer.desafio + G.offer.offerZone[i].chuteira;
       }
