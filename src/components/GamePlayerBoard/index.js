@@ -16,6 +16,10 @@ export default class GameBoard extends React.Component {
     console.log('Pass');
     this.props.clickPassPhase();
   }
+
+  setChallenge(){
+
+  }
   render() {
     let cardsInPlay = this.props.player.playZone.map((card) => (
         <GameCard card={card} key={card.id}/>
@@ -37,7 +41,8 @@ export default class GameBoard extends React.Component {
     return (
       <div className="player-board">
         
-        <h1>{this.props.player.name}</h1>
+        <h1>{this.props.player.name} </h1>
+    <h1>Money: {this.props.player.money} Score: {this.props.player.score} Points: {this.props.player.points}</h1>
         <div className="passButton" onClick={this.clickPassPhase.bind(this)}>Pass</div>
         
         <div className="player-hand">

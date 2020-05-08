@@ -46,7 +46,9 @@ export default class GameBoard extends React.Component {
     return (
       <div className="game-board">
         <div className="card-offer">
+        <h1>Phase:{this.props.ctx.phase} Turn:{this.props.G.offer.turn + 1}</h1>
           <h1>Offer:</h1>
+          <h1>Challenge: {this.props.G.offer.desafio}</h1>
           <div className="card-offer-cards">{cards}</div>
         </div>
         <div className="player-boards">
