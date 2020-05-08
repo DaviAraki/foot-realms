@@ -3,8 +3,8 @@ import GameCard from "../GameCard";
 import "./styles.css";
 
 export default class GameBoard extends React.Component {
-  selectCardHandler(k){
-    this.props.selectCardHandler(k);
+  callPlayerHandler(k){
+    this.props.callPlayerHandler(k);
   }
   discardCardHandler(k){
     this.props.discardCardHandler(k);
@@ -25,7 +25,7 @@ export default class GameBoard extends React.Component {
         <GameCard card={card} key={card.id}/>
       ));  
     let cardsHand = this.props.player.hand.map((card, k) => (
-       <GameCard card={card} key={card.id} onClickSelectCard={()=>{this.selectCardHandler(k)}}  />
+       <GameCard card={card} key={card.id} onClickCallPlayer={()=>{this.callPlayerHandler(k)}}  />
     ));
     // let cardsDeck = this.props.player.deck.map((card) => (
     //   <GameCard card={card} key={card.id}/>

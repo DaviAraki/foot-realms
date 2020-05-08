@@ -37,7 +37,7 @@ const FootRealms = {
   //   playCard,
   //   buyCard,
   //   pass,
-  //   selectCard,
+  //   callPlayer,
   //   discardCard,
   // },
 
@@ -58,15 +58,16 @@ const FootRealms = {
       start : true,    
     },
     begin: {
-      moves: { selectCard, pass },
+      moves: { callPlayer, pass },
       onBegin: (G, ctx) => {
         drawHand(G, ctx);
         giveOffer(G, ctx);
         setDesafio(G, ctx);
       }, 
       onEnd: (G, ctx) => {
-        setChuteira(G, ctx);
+        endMatch(G, ctx);
         defineWinner(G, ctx);
+        cleanUp (G,ctx);
         console.log("admnistration")
       },
       next: "admnistration",
@@ -105,7 +106,7 @@ const FootRealms = {
       }
       if(ctx.phase === 'begin'){
         for (let i = 0; i < G.players[ctx.currentPlayer].hand.length; i++) {
-          moves.push({ move: 'selectCard', args: [i] });
+          moves.push({ move: 'callPlayer', args: [i] });
         }
         console.log(moves.length)
         console.log(ctx.phase)
@@ -135,12 +136,9 @@ export function draw(G, ctx, destiny) {
       );
   }
 }
-export function setChuteira(G, ctx) {
+export function endMatch(G, ctx) {
   while (G.players[ctx.currentPlayer].hand.length > 0) {
-    G.players[ctx.currentPlayer].score =
-      G.players[ctx.currentPlayer].score +
-      G.players[ctx.currentPlayer].hand[0].chuteira;
-    G.players[ctx.currentPlayer].discardZone.push(
+    G.players[ctx.currentPlayer].admZone.push(
       G.players[ctx.currentPlayer].hand[0]
     );
     G.players[ctx.currentPlayer].hand.splice(0, 1);
@@ -207,10 +205,11 @@ export function playCard(G, ctx, cardIndex) {
   );
   G.players[ctx.currentPlayer].admZone.splice(cardIndex, 1);
 }
-export function selectCard(G, ctx, cardIndex) {
+export function callPlayer(G, ctx, cardIndex) {
   if(cardIndex<G.players[ctx.currentPlayer].hand.length){
-    G.players[ctx.currentPlayer].admZone.push(
-      G.players[ctx.currentPlayer].hand[cardIndex]
+    G.players[ctx.currentPlayer].score = G.players[ctx.currentPlayer].score + G.players[ctx.currentPlayer].hand[cardIndex].chuteira;
+    G.players[ctx.currentPlayer].playZone.push(      
+      G.players[ctx.currentPlayer].hand[cardIndex]      
     );
     G.players[ctx.currentPlayer].hand.splice(cardIndex, 1);
   }
@@ -245,6 +244,7 @@ export function drawHand(G, ctx) {
     }
 }
 export function giveOffer(G, ctx) {
+  G.offer.offerZone.splice(0,2)
   while (G.offer.offerZone.length < 5) {
     if (G.offer.deck.length > 0) {
       G.offer.offerZone.push(
