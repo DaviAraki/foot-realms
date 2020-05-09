@@ -146,19 +146,19 @@ export function endMatch(G, ctx) {
 }
 export function setDesafio(G, ctx) {
   if(G.offer.offerZone.length > 0){
-    if (G.offer.turn < 3 ) {
+    if (G.offer.turn < 2 ) {
       for (let i = 0; i < 2; i++) {
         G.offer.desafio = G.offer.desafio + G.offer.offerZone[i].chuteira;
       }
-    } else if (G.offer.turn < 3 ) {
+    } else if (G.offer.turn < 4 ) {
       for (let i = 0; i < 3; i++) {
         G.offer.desafio = G.offer.desafio + G.offer.offerZone[i].chuteira;
       }
-    } else if (G.offer.turn < 5) {
+    } else if (G.offer.turn < 6) {
       for (let i = 0; i < 4; i++) {
         G.offer.desafio = G.offer.desafio + G.offer.offerZone[i].chuteira;
       }
-    } else if (G.offer.turn < 7) {
+    } else if (G.offer.turn > 6) {
       for (let i = 0; i < 5; i++) {
         G.offer.desafio = G.offer.desafio + G.offer.offerZone[i].chuteira;
       }
