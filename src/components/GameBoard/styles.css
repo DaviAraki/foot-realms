@@ -11,6 +11,7 @@
   border: 3mm solid hsla(120, 100%, 10%, 100%);
   background-color: hsl(120, 100%, 25%);
   border-radius: 3mm;
+  zoom: 0.6;
 }
 
 .card-offer,
