@@ -157,7 +157,7 @@ it('should run', async () => {
         expect(endState.ctx.gameover).not.toBeUndefined();
 
         var data = await JSON.stringify(endState);
-        fs.writeFile("./teste.js", data, (err) => {
+        fs.writeFile("./teste.json", data, (err) => {
             if (err) throw err;
         });
         expect(data).not.toBeUndefined
