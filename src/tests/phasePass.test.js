@@ -1,7 +1,7 @@
-import { pass } from "../App";
-import selectCard from "../App";
-import playCard from "../App";
-import buyCard from "../App"
+import { pass } from "../Game";
+import selectCard from "../Game";
+import playCard from "../Game";
+import buyCard from "../Game"
 it ("when i pass phase, another should begin", ()=>{
     const G = {
         offer:{

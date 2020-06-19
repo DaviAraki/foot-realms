@@ -1,5 +1,5 @@
 import { Game } from 'boardgame.io/core';
-import { playCard, pass, drawHand,buyCard,shuffleOffer, cleanUp, draw, callPlayer, endMatch ,setDesafio,shuffle, defineWinner, giveOffer, discardCard  } from '../../App';
+import { playCard, pass, drawHand,buyCard,shuffleOffer, cleanUp, draw, callPlayer, endMatch ,setDesafio,shuffle, defineWinner, giveOffer, discardCard  } from '../../Game';
 import { RandomBot, MCTSBot } from 'boardgame.io/ai';
 import { InitializeGame, CreateGameReducer } from 'boardgame.io/dist/cjs/internal';
 import commonFoward from "../../components/Cards/commonFoward";

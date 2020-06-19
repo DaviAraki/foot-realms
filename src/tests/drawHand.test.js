@@ -1,5 +1,5 @@
 import commonFoward from "../components/Cards/commonFoward";
-import { draw, drawHand } from "../App";
+import { draw, drawHand } from "../Game";
 
 it ("When the turn begins i draw until i have 5 cards", ()=>{
     const G = {

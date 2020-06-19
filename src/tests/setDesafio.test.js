@@ -1,5 +1,5 @@
 import commonFoward from "../components/Cards/commonFoward";
-import {setDesafio} from "../App";
+import {setDesafio} from "../Game";
 import superStar from "../components/Cards/superStar";
 
 it("When i buy a card, the card goes to my playzone and i spent money equals the bought card cost",()=>{

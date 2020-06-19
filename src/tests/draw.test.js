@@ -1,5 +1,5 @@
 import commonFoward from "../components/Cards/commonFoward";
-import { draw } from "../App";
+import { draw } from "../Game";
 import FootRealms from "../FootRealms";
 
 

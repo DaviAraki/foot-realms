@@ -1,5 +1,5 @@
 import commonFoward from "../components/Cards/commonFoward";
-import { playCard } from "../App";
+import { playCard } from "../Game";
 import manager2 from "../components/Cards/manager2"
 
 it("When i play a card, i receive the money indicated, i draw the cards indicated and it goes to the playzone", () => {

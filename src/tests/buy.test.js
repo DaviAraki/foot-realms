@@ -1,5 +1,5 @@
 import commonFoward from "../components/Cards/commonFoward";
-import { buyCard } from "../App";
+import { buyCard } from "../Game";
 
 it("When i buy a card, the card goes to my playzone and i spent money equals the bought card cost",()=>{
     const mockId = "abcdef";
