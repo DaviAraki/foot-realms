@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "boardgame.io": "^0.39.9",
+    "esm": "^3.2.25",
     "inherits": "^2.0.4",
     "neo4j-driver": "^4.0.2",
     "node-persist": "^3.1.0",
@@ -15,7 +16,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "serve": "node -r esm src/server.js"
   },
   "eslintConfig": {
     "extends": "react-app"
