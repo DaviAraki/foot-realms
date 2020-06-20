@@ -3,59 +3,65 @@ import GameCard from "../GameCard";
 import GamePlayerBoard from "../GamePlayerBoard";
 import "./styles.css";
 
-export default class GameBoard extends React.Component {
-  buyCardHandler(k) {
+export default function GameBoard({G, ctx, moves, events}) {
+  function buyCardHandler(k) {
     console.log(`buyCardHandler`, k);
-    this.props.moves.buyCard(k);
+    moves.buyCard(k);
   }
 
-  callPlayerHandler(k) {
+  function callPlayerHandler(k) {
     console.log(`callPlayerHandler`, k);
-    this.props.moves.callPlayer(k);
+    moves.callPlayer(k);
   }
-  playCardHandler(k){
-    console.log(`playCardHandler`, k)
-    this.props.moves.playCard(k);
+  function playCardHandler(k) {
+    console.log(`playCardHandler`, k);
+    moves.playCard(k);
   }
-  discardCardHandler(k){
+  function discardCardHandler(k) {
     console.log(`discardCardHandler`, k);
-    this.props.moves.discardCard(k);
+    moves.discardCard(k);
   }
-  clickPassPhase(){
+  function clickPassPhase() {
     console.log(`passPhase`);
-    this.props.moves.pass();
+    moves.pass();
   }
 
-
-  
-  render() {
-    let cards = this.props.G.offer.offerZone.map((card, k) => (
-      <GameCard card={card} key={card.id} onClickBuyCard={()=>{this.buyCardHandler(k)}} />
-    ));
-    let players = this.props.G.players.map((player, k) => (
-      <GamePlayerBoard player={player} key={`player${k}`}
-        clickPassPhase={this.clickPassPhase.bind(this)}
-        callPlayerHandler={this.callPlayerHandler.bind(this)} 
-        discardCardHandler={this.discardCardHandler.bind(this)}
-        playCardHandler={this.playCardHandler.bind(this)}
-       />
-    ));
-    // let playersAdm = this.props.G.players.map((player,k) =>(
-    //   <GamePlayerBoard player={player} key={`player${k}`} />
-    // ));
-    return (
-      <div className="game-board">
-        <div className="card-offer">
-        <h1>Phase:{this.props.ctx.phase} Turn:{this.props.G.offer.turn + 1}</h1>
-          <h1>Offer:</h1>
-          <h1>Challenge: {this.props.G.offer.desafio}</h1>
-          <div className="card-offer-cards">{cards}</div>
-        </div>
-        <div className="player-boards">
-          <h1>Players:</h1>
-          <div className="player-areas">{players}</div>
-        </div>
+  let cards = G.offer.offerZone.map((card, k) => (
+    <GameCard
+      card={card}
+      key={card.id}
+      onClickBuyCard={() => {
+        buyCardHandler(k);
+      }}
+    />
+  ));
+  let players = G.players.map((player, k) => (
+    <GamePlayerBoard
+      player={player}
+      key={`player${k}`}
+      clickPassPhase={clickPassPhase.bind(this)}
+      callPlayerHandler={callPlayerHandler.bind(this)}
+      discardCardHandler={discardCardHandler.bind(this)}
+      playCardHandler={playCardHandler.bind(this)}
+    />
+  ));
+  // let playersAdm = G.players.map((player,k) =>(
+  //   <GamePlayerBoard player={player} key={`player${k}`} />
+  // ));
+  return (
+    <div className="game-board">
+      <div className="card-offer">
+        <h1>
+          Phase:{ctx.phase} Turn:{G.offer.turn + 1}
+        </h1>
+        <h1>Offer:</h1>
+        <h1>Challenge: {G.offer.desafio}</h1>
+        <div className="card-offer-cards">{cards}</div>
       </div>
-    );
-  }
+      <div className="player-boards">
+        <h1>Players:</h1>
+        <div className="player-areas">{players}</div>
+      </div>
+    </div>
+  );
 }
