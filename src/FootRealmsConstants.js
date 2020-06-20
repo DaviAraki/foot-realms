@@ -1,4 +1,4 @@
-export default class FootRealms {
+export default class FootRealmsConstants {
   static get TO_ADM() {
     return 0;
   }
