@@ -3,21 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "boardgame.io": "^0.39.9",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "boardgame.io": "^0.39.11",
     "esm": "^3.2.25",
-    "inherits": "^2.0.4",
-    "neo4j-driver": "^4.0.2",
     "node-persist": "^3.1.0",
+    "nodemon": "^2.0.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "^3.4.1"
+    "react-scripts": "3.4.1",
+    "redux-logger": "^3.0.6"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "serve": "node -r esm src/server.js"
+    "serve": "node --harmony -r esm src/server.js"
   },
   "eslintConfig": {
     "extends": "react-app"
