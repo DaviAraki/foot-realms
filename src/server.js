@@ -1,11 +1,11 @@
-const {Server, FlatFile } = require('boardgame.io/server')
-const {FootRealms} =  require('./App')
+import { Server, FlatFile } from 'boardgame.io/server'
+import { FootRealms } from './Game'
 
 const server = Server({
   games: [FootRealms],
 
   db: new FlatFile({
-    dir:'./public/logs',
+    dir:'./database',
     logging:(true)
   })
 })
