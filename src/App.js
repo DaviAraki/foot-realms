@@ -1,4 +1,3 @@
-import { Game } from "boardgame.io/core";
 import { Client } from "boardgame.io/react";
 import {FootRealms} from './Game';
 import "./App.css";
