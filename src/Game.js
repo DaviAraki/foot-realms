@@ -5,6 +5,9 @@ import commonManager from "./components/Cards/commonManager";
 import manager2 from "./components/Cards/manager2";
 import superStar from "./components/Cards/superStar";
 import generateUniqueId from "./utils/generateUniqueId";
+const fs = require('browserify-fs');
+
+var matchData = String;
 
 const FootRealms = {
   name: "FootRealms",
@@ -47,6 +50,13 @@ const FootRealms = {
 
   endIf: (G, ctx) => {
     if (G.offer.turn === 8) {
+      fs.mkdir('/home', function () {
+        fs.writeFile('/home/hello-world.txt', matchData, function () {
+          fs.readFile('/home/hello-world.txt', 'utf-8', function (err, data) {
+            console.log(data);
+          });
+        });
+      });
       return G.players[ctx.currentPlayer].points;
     }
   },
@@ -54,6 +64,7 @@ const FootRealms = {
   phases: {
     setUpPhase: {
       onBegin: (G, ctx) => {
+        writeCypherSetup();
         shuffleOffer(G);
         shuffle(G, ctx);
         pass(G, ctx);
@@ -89,9 +100,10 @@ const FootRealms = {
 
   ai: {
     enumerate: (G, ctx) => {
-      let moves = [{ move: "pass", args: null }];
+      let moves = [];
 
       if (ctx.phase === "admnistration") {
+        moves.push({ move: "pass", args: null })
         for (let i = 0; i < G.players[ctx.currentPlayer].admZone.length; i++) {
           moves.push({ move: "playCard", args: [i] });
         }
@@ -107,6 +119,7 @@ const FootRealms = {
         console.log(ctx.phase);
       }
       if (ctx.phase === "begin") {
+        moves.push({ move: "pass", args: null })
         for (let i = 0; i < G.players[ctx.currentPlayer].hand.length; i++) {
           moves.push({ move: "callPlayer", args: [i] });
         }
@@ -118,6 +131,23 @@ const FootRealms = {
     },
   },
 };
+function writeCypherSetup(){
+  matchData = "CREATE" +
+    "(`0` : Turn { Number: '1' })," +
+    "(`1` : Turn { Number: '4' }),"+
+    "(`2` : Turn { Number: '2' }),"+
+    "(`3` : Turn { Number: '3' }),"+
+    "(`4` : Turn { Number: '8' }),"+
+    "(`5` : Turn { Number: '7' }),"+
+    "(`6` : Turn { Number: '6' }),"+
+    "(`7` : Turn { Number: '5' }),"+
+    "(`10` : Card { Name: 'superStar' }),"+
+    "(`11` : Card { Name: 'manager2' }),"+
+    "(`12` : Card { Name: 'commonManager' }),"+
+    "(`13` : Card { Name: 'commonFoward' }),"+
+    "(`14` : Card { Name: 'commonCaptain' }),"+
+    "(`15` : Card { Name: 'bigManager' }),"
+  }
 
 function draw(G, ctx, destiny) {
   if (G.players[ctx.currentPlayer].deck.length === 0) {
