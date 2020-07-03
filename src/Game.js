@@ -133,20 +133,20 @@ const FootRealms = {
 };
 function writeCypherSetup(){
   matchData = "CREATE" +
-    "(`0` : Turn { Number: '1' })," +
-    "(`1` : Turn { Number: '4' }),"+
-    "(`2` : Turn { Number: '2' }),"+
-    "(`3` : Turn { Number: '3' }),"+
-    "(`4` : Turn { Number: '8' }),"+
-    "(`5` : Turn { Number: '7' }),"+
-    "(`6` : Turn { Number: '6' }),"+
-    "(`7` : Turn { Number: '5' }),"+
-    "(`10` : Card { Name: 'superStar' }),"+
-    "(`11` : Card { Name: 'manager2' }),"+
-    "(`12` : Card { Name: 'commonManager' }),"+
-    "(`13` : Card { Name: 'commonFoward' }),"+
-    "(`14` : Card { Name: 'commonCaptain' }),"+
-    "(`15` : Card { Name: 'bigManager' }),"
+    "(`T1` : Turn { Number: '1' })," +
+    "(`T2` : Turn { Number: '4' }),"+
+    "(`T3` : Turn { Number: '2' }),"+
+    "(`T4` : Turn { Number: '3' }),"+
+    "(`T5` : Turn { Number: '8' }),"+
+    "(`T6` : Turn { Number: '7' }),"+
+    "(`T7` : Turn { Number: '6' }),"+
+    "(`T8` : Turn { Number: '5' }),"+
+    "(`C1` : Card { Name: 'superStar' }),"+
+    "(`C2` : Card { Name: 'manager2' }),"+
+    "(`C3` : Card { Name: 'commonManager' }),"+
+    "(`C4` : Card { Name: 'commonFoward' }),"+
+    "(`C5` : Card { Name: 'commonCaptain' }),"+
+    "(`C6` : Card { Name: 'bigManager' });"
   }
 
 function draw(G, ctx, destiny) {
@@ -160,11 +160,11 @@ function draw(G, ctx, destiny) {
     let destino = destiny;
     if (destino === 1) {
       G.players[ctx.currentPlayer].hand.push(
-        G.players[ctx.currentPlayer].deck.pop()
+        G.players[ctx.currentPlayer].deck.shift()
       );
     } else
       G.players[ctx.currentPlayer].admZone.push(
-        G.players[ctx.currentPlayer].deck.pop()
+        G.players[ctx.currentPlayer].deck.shift()
       );
   }
 }
