@@ -159,6 +159,11 @@ function draw(G, ctx, destiny) {
   if (G.players[ctx.currentPlayer].deck.length > 0) {
     let destino = destiny;
     if (destino === 1) {
+      matchData= matchData + `MATCH (c:Card)
+      WHERE c.Name = '${G.players[ctx.currentPlayer].deck[0].name}'
+      MATCH (t:Turn)
+      WHERE t.Number = '${G.offer.turn}'
+      CREATE (c)-[:In_Hand]->(t);`
       G.players[ctx.currentPlayer].hand.push(
         G.players[ctx.currentPlayer].deck.shift()
       );
@@ -221,6 +226,11 @@ function pass(G, ctx) {
   ctx.events.endPhase();
 }
 function playCard(G, ctx, cardIndex) {
+  matchData= matchData + `MATCH (c:Card)
+  WHERE c.Name = '${G.players[ctx.currentPlayer].admZone[cardIndex].name}'
+  MATCH (t:Turn)
+  WHERE t.Number = '${G.offer.turn}'
+  CREATE (c)-[:Was_Played]->(t);`
   G.players[ctx.currentPlayer].money =
     G.players[ctx.currentPlayer].money +
     G.players[ctx.currentPlayer].admZone[cardIndex].coin;
@@ -237,7 +247,12 @@ function playCard(G, ctx, cardIndex) {
   G.players[ctx.currentPlayer].admZone.splice(cardIndex, 1);
 }
 function callPlayer(G, ctx, cardIndex) {
-  if (cardIndex < G.players[ctx.currentPlayer].hand.length) {
+  if (cardIndex < G.players[ctx.currentPlayer].hand.length) {  
+    matchData= matchData + `MATCH (c:Card)
+    WHERE c.Name = '${G.players[ctx.currentPlayer].hand[cardIndex].name}'
+    MATCH (t:Turn)
+    WHERE t.Number = '${G.offer.turn}'
+    CREATE (c)-[:Was_Selected]->(t);`
     G.players[ctx.currentPlayer].score =
       G.players[ctx.currentPlayer].score +
       G.players[ctx.currentPlayer].hand[cardIndex].chuteira;
