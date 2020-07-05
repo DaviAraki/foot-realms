@@ -50,6 +50,7 @@ const FootRealms = {
 
   endIf: (G, ctx) => {
     if (G.offer.turn === 8) {
+      matchData = matchData + `CREATE(:Points { Total: '${G.players[ctx.currentPlayer].points}' });`
       fs.mkdir('/home', function () {
         fs.writeFile('/home/hello-world.txt', matchData, function () {
           fs.readFile('/home/hello-world.txt', 'utf-8', function (err, data) {
@@ -132,21 +133,21 @@ const FootRealms = {
   },
 };
 function writeCypherSetup(){
-  matchData = "CREATE" +
-    "(`T1` : Turn { Number: '1' })," +
-    "(`T2` : Turn { Number: '4' }),"+
-    "(`T3` : Turn { Number: '2' }),"+
-    "(`T4` : Turn { Number: '3' }),"+
-    "(`T5` : Turn { Number: '8' }),"+
-    "(`T6` : Turn { Number: '7' }),"+
-    "(`T7` : Turn { Number: '6' }),"+
-    "(`T8` : Turn { Number: '5' }),"+
-    "(`C1` : Card { Name: 'superStar' }),"+
-    "(`C2` : Card { Name: 'manager2' }),"+
-    "(`C3` : Card { Name: 'commonManager' }),"+
-    "(`C4` : Card { Name: 'commonFoward' }),"+
-    "(`C5` : Card { Name: 'commonCaptain' }),"+
-    "(`C6` : Card { Name: 'bigManager' });"
+  matchData = `CREATE
+    (:Turn { Number: '1' }),
+    (:Turn { Number: '4' }),
+    (:Turn { Number: '2' }),
+    (:Turn { Number: '3' }),
+    (:Turn { Number: '8' }),
+    (:Turn { Number: '7' }),
+    (:Turn { Number: '6' }),
+    (:Turn { Number: '5' }),
+    (:Card { Name: 'superStar' }),
+    (:Card { Name: 'manager2' }),
+    (:Card { Name: 'commonManager' }),
+    (:Card { Name: 'commonFoward' }),
+    (:Card { Name: 'commonCaptain' }),
+    (:Card { Name: 'bigManager' });`
   }
 
 function draw(G, ctx, destiny) {
@@ -162,7 +163,7 @@ function draw(G, ctx, destiny) {
       matchData= matchData + `MATCH (c:Card)
       WHERE c.Name = '${G.players[ctx.currentPlayer].deck[0].name}'
       MATCH (t:Turn)
-      WHERE t.Number = '${G.offer.turn}'
+      WHERE t.Number = '${G.offer.turn + 1}'
       CREATE (c)-[:In_Hand]->(t);`
       G.players[ctx.currentPlayer].hand.push(
         G.players[ctx.currentPlayer].deck.shift()
@@ -229,7 +230,7 @@ function playCard(G, ctx, cardIndex) {
   matchData= matchData + `MATCH (c:Card)
   WHERE c.Name = '${G.players[ctx.currentPlayer].admZone[cardIndex].name}'
   MATCH (t:Turn)
-  WHERE t.Number = '${G.offer.turn}'
+  WHERE t.Number = '${G.offer.turn + 1}'
   CREATE (c)-[:Was_Played]->(t);`
   G.players[ctx.currentPlayer].money =
     G.players[ctx.currentPlayer].money +
@@ -251,7 +252,7 @@ function callPlayer(G, ctx, cardIndex) {
     matchData= matchData + `MATCH (c:Card)
     WHERE c.Name = '${G.players[ctx.currentPlayer].hand[cardIndex].name}'
     MATCH (t:Turn)
-    WHERE t.Number = '${G.offer.turn}'
+    WHERE t.Number = '${G.offer.turn + 1}'
     CREATE (c)-[:Was_Selected]->(t);`
     G.players[ctx.currentPlayer].score =
       G.players[ctx.currentPlayer].score +
@@ -278,10 +279,14 @@ function discardCard(G, ctx, cardIndex) {
 }
 function buyCard(G, ctx, cardIndex) {
   if (G.players[ctx.currentPlayer].money >= G.offer.offerZone[cardIndex].cost) {
-    var cost = G.offer.offerZone[cardIndex].cost;
     G.players[ctx.currentPlayer].playZone.push(G.offer.offerZone[cardIndex]);
     G.players[ctx.currentPlayer].money =
-      G.players[ctx.currentPlayer].money - cost;
+      G.players[ctx.currentPlayer].money - G.offer.offerZone[cardIndex].cost;
+    matchData= matchData + `MATCH (c:Card)
+    WHERE c.Name = '${ G.offer.offerZone[cardIndex].name}'
+    MATCH (t:Turn)
+    WHERE t.Number = '${G.offer.turn + 1}'
+    CREATE (c)-[:Was_Bought]->(t);`  
     G.offer.offerZone.splice(cardIndex, 1);
   }
 }
