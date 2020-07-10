@@ -133,15 +133,16 @@ const FootRealms = {
   },
 };
 function writeCypherSetup(){
+  const idk = new Date().getTime()
   matchData = `CREATE
-    (:Turn { Number: '1' }),
-    (:Turn { Number: '4' }),
-    (:Turn { Number: '2' }),
-    (:Turn { Number: '3' }),
+    (:Game {id:${idk}})-[:FIRST_TURN]->(:Turn { Number: '1' })-[:NEXT_TURN]->
+    (:Turn { Number: '2' })-[:NEXT_TURN]->
+    (:Turn { Number: '3' })-[:NEXT_TURN]->
+    (:Turn { Number: '4' })-[:NEXT_TURN]->
+    (:Turn { Number: '5' })-[:NEXT_TURN]->
+    (:Turn { Number: '6' })-[:NEXT_TURN]->
+    (:Turn { Number: '7' })-[:NEXT_TURN]->
     (:Turn { Number: '8' }),
-    (:Turn { Number: '7' }),
-    (:Turn { Number: '6' }),
-    (:Turn { Number: '5' }),
     (:Card { Name: 'superStar' }),
     (:Card { Name: 'manager2' }),
     (:Card { Name: 'commonManager' }),
