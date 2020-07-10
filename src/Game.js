@@ -196,7 +196,7 @@ function setDesafio(G, ctx) {
       for (let i = 0; i < 4; i++) {
         G.offer.desafio = G.offer.desafio + G.offer.offerZone[i].chuteira;
       }
-    } else if (G.offer.turn > 6) {
+    } else if (G.offer.turn >= 6) {
       for (let i = 0; i < 5; i++) {
         G.offer.desafio = G.offer.desafio + G.offer.offerZone[i].chuteira;
       }
