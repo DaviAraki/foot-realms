@@ -7,7 +7,8 @@ export default class bigManager extends basicCard{
             cards: 2,
             coin: 2,
             cost: 5,
-            chuteira : 4
+            chuteira : 4,
+            position :'MF'
         })
     }
 

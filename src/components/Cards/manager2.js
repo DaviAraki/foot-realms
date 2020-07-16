@@ -7,7 +7,8 @@ export default class manager2 extends basicCard{
             cards: 1,
             coin: 1,
             cost: 3,
-            chuteira : 1
+            chuteira : 1,
+            position: 'GK'
         })
     }
 
