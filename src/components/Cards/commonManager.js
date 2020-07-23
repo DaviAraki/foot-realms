@@ -7,7 +7,8 @@ export default class commonManager extends basicCard{
             cards: 0,
             coin: 2,
             cost: 1,
-            chuteira : 1
+            chuteira : 1,
+            position: "DF"
         })
     }
 

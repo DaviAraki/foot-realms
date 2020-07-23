@@ -307,6 +307,7 @@ function giveOffer(G, ctx) {
   }
 }
 
+
 export {
   FootRealms,
   draw,

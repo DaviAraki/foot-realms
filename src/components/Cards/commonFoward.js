@@ -7,7 +7,8 @@ export default class commonFoward extends basicCard{
             cards: 0,
             coin: 1,
             cost: 1,
-            chuteira : 2
+            chuteira : 2,
+            position: "FW"
         })
     }
 

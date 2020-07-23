@@ -7,7 +7,8 @@ export default class commonCaptain extends basicCard{
             cards: 0,
             coin: 3,
             cost: 3,
-            chuteira : 3
+            chuteira : 3,
+            position: "MF"
         })
     }
 
