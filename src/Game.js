@@ -1,7 +1,31 @@
-import commonFoward from "./components/Cards/commonFoward";
 import bigManager from "./components/Cards/bigManager";
-import commonCaptain from "./components/Cards/commonCaptain0";
-import commonManager from "./components/Cards/commonManager0";
+import commonCaptain0 from "./components/Cards/commonCaptain0";
+import commonCaptain1 from "./components/Cards/commonCaptain1";
+import commonCaptain2 from "./components/Cards/commonCaptain2";
+import commonCaptain3 from "./components/Cards/commonCaptain3";
+import commonManager0 from "./components/Cards/commonManager0";
+import commonManager1 from "./components/Cards/commonManager1";
+import commonManager2 from "./components/Cards/commonManager2";
+import commonManager3 from "./components/Cards/commonManager3";
+import goodManager0 from "./components/Cards/goodManager0";
+import goodManager1 from "./components/Cards/goodManager1";
+import goodManager2 from "./components/Cards/goodManager2";
+import goodManager3 from "./components/Cards/goodManager3";
+import starManager0 from "./components/Cards/starManager0";
+import starManager1 from "./components/Cards/starManager1";
+import starManager2 from "./components/Cards/starManager2";
+import starManager3 from "./components/Cards/starManager3";
+import goodCaptain0 from "./components/Cards/goodCaptain0";
+import goodCaptain1 from "./components/Cards/goodCaptain1";
+import goodCaptain2 from "./components/Cards/goodCaptain2";
+import goodCaptain3 from "./components/Cards/goodCaptain3";
+import starCaptain0 from "./components/Cards/starCaptain0";
+import starCaptain1 from "./components/Cards/starCaptain1";
+import starCaptain2 from "./components/Cards/starCaptain2";
+import starCaptain3 from "./components/Cards/starCaptain3";
+
+
+
 import manager2 from "./components/Cards/manager2";
 import superStar from "./components/Cards/superStar";
 import generateUniqueId from "./utils/generateUniqueId";
@@ -17,7 +41,7 @@ const FootRealms = {
         id: generateUniqueId(),
         name: "Player A",
         hand: [],
-        deck: [].concat(commonFoward.create(7), commonManager.create(3)),
+        deck: [].concat(commonCaptain0.create(2), commonCaptain1.create(2), commonCaptain2.create(2), commonCaptain3.create(2), commonManager0.create(2), commonManager1.create(2), commonManager2.create(2), commonManager3.create(2)),
         admZone: [],
         playZone: [],
         discardZone: [],
@@ -29,10 +53,32 @@ const FootRealms = {
     offer: {
       offerZone: [],
       deck: [].concat(
-        commonFoward.create(5),
         bigManager.create(5),
-        commonManager.create(5),
-        commonCaptain.create(5),
+        commonManager0.create(3),
+        commonManager1.create(3),
+        commonManager2.create(3),
+        commonManager3.create(3),
+        goodManager0.create(2),
+        goodManager1.create(2),
+        goodManager2.create(2),
+        goodManager3.create(2),
+        starManager0.create(1),
+        starManager1.create(1),
+        starManager2.create(1),
+        starManager3.create(1),
+        commonCaptain0.create(3),
+        commonCaptain1.create(3),
+        commonCaptain2.create(3),
+        commonCaptain3.create(3),
+        goodCaptain0.create(2),
+        goodCaptain1.create(2),
+        goodCaptain2.create(2),
+        goodCaptain3.create(2),
+        starCaptain0.create(1),
+        starCaptain1.create(1),
+        starCaptain2.create(1),
+        starCaptain3.create(1),
+        
         manager2.create(5),
         superStar.create(5)
       ),
@@ -194,6 +240,27 @@ function setDesafio(G, ctx) {
     }
   }
 }
+// function setDesafio(G, ctx) {
+//   if (G.offer.offerZone.length > 0) {
+//     if (G.offer.turn < 2) {
+//       for (let i = 0; i < 2; i++) {
+//         G.offer.desafio = G.offer.desafio + G.offer.offerZone[i].chuteira;
+//       }
+//     } else if (G.offer.turn < 4) {
+//       for (let i = 0; i < 3; i++) {
+//         G.offer.desafio = G.offer.desafio + G.offer.offerZone[i].chuteira;
+//       }
+//     } else if (G.offer.turn < 6) {
+//       for (let i = 0; i < 4; i++) {
+//         G.offer.desafio = G.offer.desafio + G.offer.offerZone[i].chuteira;
+//       }
+//     } else if (G.offer.turn >= 6) {
+//       for (let i = 0; i < 5; i++) {
+//         G.offer.desafio = G.offer.desafio + G.offer.offerZone[i].chuteira;
+//       }
+//     }
+//   }
+// }
 function defineWinner(G, ctx) {
   if (G.players[ctx.currentPlayer].score > G.offer.desafio) {
     G.players[ctx.currentPlayer].points =
