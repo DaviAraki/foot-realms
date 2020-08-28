@@ -120,7 +120,8 @@ const FootRealms = ProcessGameConfig({
         return moves;
       }
     }
-  });
+  }
+);
     const enumerate = (G, ctx, playerID) => {
             let moves = [{ move: 'pass', args: null }];
       

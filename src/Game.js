@@ -1,7 +1,7 @@
 import commonFoward from "./components/Cards/commonFoward";
 import bigManager from "./components/Cards/bigManager";
-import commonCaptain from "./components/Cards/commonCaptain";
-import commonManager from "./components/Cards/commonManager";
+import commonCaptain from "./components/Cards/commonCaptain0";
+import commonManager from "./components/Cards/commonManager0";
 import manager2 from "./components/Cards/manager2";
 import superStar from "./components/Cards/superStar";
 import generateUniqueId from "./utils/generateUniqueId";
@@ -77,7 +77,7 @@ const FootRealms = {
       start: true,
     },
     begin: {
-      moves: { callPlayer, pass },
+      moves: { callPlayer, pass, playCard, discardCard },
       onBegin: (G, ctx) => {
         drawHand(G, ctx);
         giveOffer(G, ctx);
@@ -87,15 +87,7 @@ const FootRealms = {
         endMatch(G, ctx);
         defineWinner(G, ctx);
         cleanUp(G, ctx);
-      },
-      next: "admnistration",
-    },
-    admnistration: {
-      moves: { playCard, pass, buyCard, discardCard },
-      next: "begin",
-      onEnd: (G, ctx) => {
         G.offer.turn++;
-        cleanUp(G, ctx);
       },
     },
   },
@@ -226,40 +218,44 @@ function pass(G, ctx) {
   ctx.events.endPhase();
 }
 function playCard(G, ctx, cardIndex) {
-  matchData= matchData + `MATCH (c:Card)
-  WHERE c.Name = '${G.players[ctx.currentPlayer].admZone[cardIndex].name}'
-  MATCH (t:Turn)
-  WHERE t.Number = '${G.offer.turn + 1}'
-  CREATE (c)-[:Was_Played]->(t);`
-  G.players[ctx.currentPlayer].money =
-    G.players[ctx.currentPlayer].money +
-    G.players[ctx.currentPlayer].admZone[cardIndex].coin;
-  for (
-    var i = 0;
-    i < G.players[ctx.currentPlayer].admZone[cardIndex].cards;
-    i++
-  ) {
-    draw(G, ctx);
-  }
-  G.players[ctx.currentPlayer].playZone.push(
-    G.players[ctx.currentPlayer].admZone[cardIndex]
-  );
-  G.players[ctx.currentPlayer].admZone.splice(cardIndex, 1);
-}
-function callPlayer(G, ctx, cardIndex) {
-  if (cardIndex < G.players[ctx.currentPlayer].hand.length) {  
+  if (G.players[ctx.currentPlayer].hand[cardIndex].role === "Staff") {
     matchData= matchData + `MATCH (c:Card)
-    WHERE c.Name = '${G.players[ctx.currentPlayer].hand[cardIndex].name}'
+    WHERE c.Name = '${G.players[ctx.currentPlayer].admZone[cardIndex].name}'
     MATCH (t:Turn)
     WHERE t.Number = '${G.offer.turn + 1}'
-    CREATE (c)-[:Was_Selected]->(t);`
-    G.players[ctx.currentPlayer].score =
-      G.players[ctx.currentPlayer].score +
-      G.players[ctx.currentPlayer].hand[cardIndex].chuteira;
+    CREATE (c)-[:Was_Played]->(t);`
+    G.players[ctx.currentPlayer].money =
+      G.players[ctx.currentPlayer].money +
+      G.players[ctx.currentPlayer].admZone[cardIndex].coin;
+    for (
+      var i = 0;
+      i < G.players[ctx.currentPlayer].admZone[cardIndex].cards;
+      i++
+    ) {
+      draw(G, ctx);
+    }
     G.players[ctx.currentPlayer].playZone.push(
-      G.players[ctx.currentPlayer].hand[cardIndex]
+      G.players[ctx.currentPlayer].admZone[cardIndex]
     );
-    G.players[ctx.currentPlayer].hand.splice(cardIndex, 1);
+    G.players[ctx.currentPlayer].admZone.splice(cardIndex, 1);
+  }
+}
+function callPlayer(G, ctx, cardIndex) {
+  if(G.players[ctx.currentPlayer].hand[cardIndex].role==="Player"){
+    if (cardIndex < G.players[ctx.currentPlayer].hand.length) {  
+      matchData= matchData + `MATCH (c:Card)
+      WHERE c.Name = '${G.players[ctx.currentPlayer].hand[cardIndex].name}'
+      MATCH (t:Turn)
+      WHERE t.Number = '${G.offer.turn + 1}'
+      CREATE (c)-[:Was_Selected]->(t);`
+      G.players[ctx.currentPlayer].score =
+        G.players[ctx.currentPlayer].score +
+        G.players[ctx.currentPlayer].hand[cardIndex].chuteira;
+      G.players[ctx.currentPlayer].playZone.push(
+        G.players[ctx.currentPlayer].hand[cardIndex]
+      );
+      G.players[ctx.currentPlayer].hand.splice(cardIndex, 1);
+    }
   }
 }
 function cleanUp(G, ctx) {
