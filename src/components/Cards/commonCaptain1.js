@@ -7,7 +7,7 @@ export default class commonCaptain1 extends basicCard {
             cost: 3,
             chuteira: 3,
             position: "DF",
-            role: "Player"
+            role:"Player"
 
         })
     }
