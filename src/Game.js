@@ -50,6 +50,9 @@ const FootRealms = {
 
   endIf: (G, ctx) => {
     if (G.offer.turn === 8) {
+      if(ctx.currentPlayer.points >= 15){
+        return {winner: ctx.currentPlayer}
+      }
       matchData = matchData + `CREATE(:Points { Total: '${G.players[ctx.currentPlayer].points}' });`
       fs.mkdir('/home', function () {
         fs.writeFile('/home/hello-world.txt', matchData, function () {
@@ -114,6 +117,7 @@ const FootRealms = {
             moves.push({ move: "buyCard", args: [i] });
           }
         }
+
       }
       if (ctx.phase === "begin") {
         moves.push({ move: "pass", args: null })
@@ -302,6 +306,7 @@ function giveOffer(G, ctx) {
     }
   }
 }
+
 
 export {
   FootRealms,
