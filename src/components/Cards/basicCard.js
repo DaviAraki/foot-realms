@@ -9,6 +9,6 @@ export default class BasicCard {
         this.coin = data.coin || 0;
         this.cost = data.cost || 0;
         this.chuteira = data.chuteira || 0;
-        this.position = data.position || "MF"
+        this.position = data.position || 'MF';
     }    
 }

@@ -8,8 +8,7 @@ export default class superStar extends basicCard{
             coin: 3,
             cost: 5,
             chuteira : 5,
-            position: "FW"
-
+            position: 'FW'
         })
     }
 
