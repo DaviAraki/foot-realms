@@ -23,11 +23,6 @@ import starCaptain0 from "./components/Cards/starCaptain0";
 import starCaptain1 from "./components/Cards/starCaptain1";
 import starCaptain2 from "./components/Cards/starCaptain2";
 import starCaptain3 from "./components/Cards/starCaptain3";
-
-
-
-import manager2 from "./components/Cards/manager2";
-import superStar from "./components/Cards/superStar";
 import generateUniqueId from "./utils/generateUniqueId";
 const fs = require('browserify-fs');
 
@@ -42,12 +37,12 @@ const FootRealms = {
         name: "Player A",
         hand: [],
         deck: [].concat(commonCaptain0.create(2), commonCaptain1.create(2), commonCaptain2.create(2), commonCaptain3.create(2), commonManager0.create(2), commonManager1.create(2), commonManager2.create(2), commonManager3.create(2)),
-        admZone: [],
         playZone: [],
         discardZone: [],
         money: 0,
         score: 0,
         points: 0,
+        positions:[false,false,false,false]
       },
     ],
     offer: {
@@ -78,9 +73,6 @@ const FootRealms = {
         starCaptain1.create(1),
         starCaptain2.create(1),
         starCaptain3.create(1),
-        
-        manager2.create(5),
-        superStar.create(5)
       ),
       turn: 0,
       desafio: 0,
@@ -119,51 +111,39 @@ const FootRealms = {
         shuffle(G, ctx);
         pass(G, ctx);
       },
-      next: "begin",
+      next: "playPhase",
       start: true,
     },
-    begin: {
-      moves: { callPlayer, pass, playCard, discardCard },
+    playPhase: {
+      moves: {pass, playCard, buyCard},
       onBegin: (G, ctx) => {
         drawHand(G, ctx);
         giveOffer(G, ctx);
         setDesafio(G, ctx);
       },
       onEnd: (G, ctx) => {
-        endMatch(G, ctx);
         defineWinner(G, ctx);
         cleanUp(G, ctx);
         G.offer.turn++;
       },
+      next: "playPhase",
     },
   },
 
   ai: {
     enumerate: (G, ctx) => {
       let moves = [];
-
-      if (ctx.phase === "admnistration") {
+      if (ctx.phase === "playPhase") {
         moves.push({ move: "pass", args: null })
-        for (let i = 0; i < G.players[ctx.currentPlayer].admZone.length; i++) {
-          moves.push({ move: "playCard", args: [i] });
-        }
-        for (let i = 0; i < G.players[ctx.currentPlayer].admZone.length; i++) {
-          moves.push({ move: "discardCard", args: [i] });
-        }
         for (let i = 0; i < G.offer.offerZone.length; i++) {
           if (G.players[ctx.currentPlayer].money >= G.offer.offerZone[i].cost) {
             moves.push({ move: "buyCard", args: [i] });
           }
         }
-
-      }
-      if (ctx.phase === "begin") {
-        moves.push({ move: "pass", args: null })
         for (let i = 0; i < G.players[ctx.currentPlayer].hand.length; i++) {
           moves.push({ move: "callPlayer", args: [i] });
         }
       }
-
       return moves;
     },
   },
@@ -179,15 +159,33 @@ function writeCypherSetup(){
     (:Turn { Number: '6' })-[:NEXT_TURN]->
     (:Turn { Number: '7' })-[:NEXT_TURN]->
     (:Turn { Number: '8' }),
-    (:Card { Name: 'superStar' }),
-    (:Card { Name: 'manager2' }),
-    (:Card { Name: 'commonManager' }),
-    (:Card { Name: 'commonFoward' }),
-    (:Card { Name: 'commonCaptain' }),
-    (:Card { Name: 'bigManager' });`
+    (:Card { Name: 'commonManager0' }),
+    (:Card { Name: 'commonManager1' }),
+    (:Card { Name: 'commonManager2' }),
+    (:Card { Name: 'commonManager3' }),
+    (:Card { Name: 'goodManager0' }),
+    (:Card { Name: 'goodManager1' }),
+    (:Card { Name: 'goodManager2' }),
+    (:Card { Name: 'goodManager3' }),
+    (:Card { Name: 'starManager0' }),
+    (:Card { Name: 'starManager1' }),
+    (:Card { Name: 'starManager2' }),
+    (:Card { Name: 'starManager3' }),
+    (:Card { Name: 'commonCaptain0' }),
+    (:Card { Name: 'commonCaptain1' }),
+    (:Card { Name: 'commonCaptain2' }),
+    (:Card { Name: 'commonCaptain3' }),
+    (:Card { Name: 'goodCaptain0' }),
+    (:Card { Name: 'goodCaptain1' }),
+    (:Card { Name: 'goodCaptain2' }),
+    (:Card { Name: 'goodCaptain3' }),
+    (:Card { Name: 'starCaptain0' }),
+    (:Card { Name: 'starCaptain1' }),
+    (:Card { Name: 'starCaptain2' }),
+    (:Card { Name: 'starCaptain3' }),;`
   }
 
-function draw(G, ctx, destiny) {
+function draw(G, ctx) {
   if (G.players[ctx.currentPlayer].deck.length === 0) {
     G.players[ctx.currentPlayer].deck =
       G.players[ctx.currentPlayer].discardZone;
@@ -195,8 +193,6 @@ function draw(G, ctx, destiny) {
     shuffle(G, ctx);
   }
   if (G.players[ctx.currentPlayer].deck.length > 0) {
-    let destino = destiny;
-    if (destino === 1) {
       matchData= matchData + `MATCH (c:Card)
       WHERE c.Name = '${G.players[ctx.currentPlayer].deck[0].name}'
       MATCH (t:Turn)
@@ -205,40 +201,10 @@ function draw(G, ctx, destiny) {
       G.players[ctx.currentPlayer].hand.push(
         G.players[ctx.currentPlayer].deck.shift()
       );
-    } else
-      G.players[ctx.currentPlayer].admZone.push(
-        G.players[ctx.currentPlayer].deck.shift()
-      );
-  }
-}
-function endMatch(G, ctx) {
-  while (G.players[ctx.currentPlayer].hand.length > 0) {
-    G.players[ctx.currentPlayer].admZone.push(
-      G.players[ctx.currentPlayer].hand[0]
-    );
-    G.players[ctx.currentPlayer].hand.splice(0, 1);
   }
 }
 function setDesafio(G, ctx) {
-  if (G.offer.offerZone.length > 0) {
-    if (G.offer.turn < 2) {
-      for (let i = 0; i < 2; i++) {
-        G.offer.desafio = G.offer.desafio + G.offer.offerZone[i].chuteira;
-      }
-    } else if (G.offer.turn < 4) {
-      for (let i = 0; i < 3; i++) {
-        G.offer.desafio = G.offer.desafio + G.offer.offerZone[i].chuteira;
-      }
-    } else if (G.offer.turn < 6) {
-      for (let i = 0; i < 4; i++) {
-        G.offer.desafio = G.offer.desafio + G.offer.offerZone[i].chuteira;
-      }
-    } else if (G.offer.turn >= 6) {
-      for (let i = 0; i < 5; i++) {
-        G.offer.desafio = G.offer.desafio + G.offer.offerZone[i].chuteira;
-      }
-    }
-  }
+  G.offer.desafio = G.offer.turn *2;
 }
 // function setDesafio(G, ctx) {
 //   if (G.offer.offerZone.length > 0) {
@@ -284,30 +250,29 @@ function shuffleOffer(G) {
 function pass(G, ctx) {
   ctx.events.endPhase();
 }
+
 function playCard(G, ctx, cardIndex) {
-  if (G.players[ctx.currentPlayer].hand[cardIndex].role === "Staff") {
-    matchData= matchData + `MATCH (c:Card)
-    WHERE c.Name = '${G.players[ctx.currentPlayer].admZone[cardIndex].name}'
-    MATCH (t:Turn)
-    WHERE t.Number = '${G.offer.turn + 1}'
-    CREATE (c)-[:Was_Played]->(t);`
-    G.players[ctx.currentPlayer].money =
-      G.players[ctx.currentPlayer].money +
-      G.players[ctx.currentPlayer].admZone[cardIndex].coin;
-    for (
-      var i = 0;
-      i < G.players[ctx.currentPlayer].admZone[cardIndex].cards;
-      i++
-    ) {
-      draw(G, ctx);
+  if(G.players[ctx.currentPlayer].positions[G.players[ctx.currentPlayer].hand[cardIndex].position]===true){
+    if(G.players[ctx.currentPlayer].hand[cardIndex].role==="Player"){
+      G.players[ctx.currentPlayer].score =
+        G.players[ctx.currentPlayer].score + 2
+    } else {
+      G.players[ctx.currentPlayer].money =
+      G.players[ctx.currentPlayer].money + 2 
     }
-    G.players[ctx.currentPlayer].playZone.push(
-      G.players[ctx.currentPlayer].admZone[cardIndex]
-    );
-    G.players[ctx.currentPlayer].admZone.splice(cardIndex, 1);
+  } else{
+    G.players[ctx.currentPlayer].positions[G.players[ctx.currentPlayer].hand[cardIndex].position] = true
+    for(let i = 0; i<G.players[ctx.currentPlayer].playZone.length - 1; i++){
+      if(G.players[ctx.currentPlayer].playZone[i].position === G.players[ctx.currentPlayer].positions[G.players[ctx.currentPlayer].hand[cardIndex].position]||G.players[ctx.currentPlayer].playZone[i].role==="Player"){
+        G.players[ctx.currentPlayer].score =
+          G.players[ctx.currentPlayer].score + 2
+      }
+      if(G.players[ctx.currentPlayer].playZone[i].position === G.players[ctx.currentPlayer].positions[G.players[ctx.currentPlayer].hand[cardIndex].position]||G.players[ctx.currentPlayer].playZone[i].role==="Staff"){
+        G.players[ctx.currentPlayer].money =
+          G.players[ctx.currentPlayer].money + 2
+      }   
+    } 
   }
-}
-function callPlayer(G, ctx, cardIndex) {
   if(G.players[ctx.currentPlayer].hand[cardIndex].role==="Player"){
     if (cardIndex < G.players[ctx.currentPlayer].hand.length) {  
       matchData= matchData + `MATCH (c:Card)
@@ -323,6 +288,26 @@ function callPlayer(G, ctx, cardIndex) {
       );
       G.players[ctx.currentPlayer].hand.splice(cardIndex, 1);
     }
+  }else  if (G.players[ctx.currentPlayer].hand[cardIndex].role === "Staff") {
+    matchData= matchData + `MATCH (c:Card)
+    WHERE c.Name = '${G.players[ctx.currentPlayer].hand[cardIndex].name}'
+    MATCH (t:Turn)
+    WHERE t.Number = '${G.offer.turn + 1}'
+    CREATE (c)-[:Was_Played]->(t);`
+    G.players[ctx.currentPlayer].money =
+      G.players[ctx.currentPlayer].money +
+      G.players[ctx.currentPlayer].hand[cardIndex].coin;
+    for (
+      var i = 0;
+      i < G.players[ctx.currentPlayer].hand[cardIndex].cards;
+      i++
+    ) {
+      draw(G, ctx);
+    }
+    G.players[ctx.currentPlayer].playZone.push(
+      G.players[ctx.currentPlayer].hand[cardIndex]
+    );
+    G.players[ctx.currentPlayer].hand.splice(cardIndex, 1);
   }
 }
 function cleanUp(G, ctx) {
@@ -333,12 +318,12 @@ function cleanUp(G, ctx) {
     G.players[ctx.currentPlayer].playZone.splice(0, 1);
   }
 }
-function discardCard(G, ctx, cardIndex) {
-  G.players[ctx.currentPlayer].discardZone.push(
-    G.players[ctx.currentPlayer].admZone[cardIndex]
-  );
-  G.players[ctx.currentPlayer].admZone.splice(cardIndex, 1);
-}
+// function discardCard(G, ctx, cardIndex) {
+//   G.players[ctx.currentPlayer].discardZone.push(
+//     G.players[ctx.currentPlayer].admZone[cardIndex]
+//   );
+//   G.players[ctx.currentPlayer].admZone.splice(cardIndex, 1);
+// }
 function buyCard(G, ctx, cardIndex) {
   if (G.players[ctx.currentPlayer].money >= G.offer.offerZone[cardIndex].cost) {
     G.players[ctx.currentPlayer].playZone.push(G.offer.offerZone[cardIndex]);
@@ -374,16 +359,13 @@ function giveOffer(G, ctx) {
 export {
   FootRealms,
   draw,
-  endMatch,
   setDesafio,
   defineWinner,
   shuffle,
   shuffleOffer,
   pass,
   playCard,
-  callPlayer,
   cleanUp,
-  discardCard,
   buyCard,
   drawHand,
   giveOffer,

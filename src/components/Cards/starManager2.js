@@ -7,7 +7,7 @@ export default class starManager2 extends basicCard {
             cards: 2,
             coin: 5,
             cost: 7,
-            position: "FW",
+            position: "2",
             role: "Staff"
         })
     }

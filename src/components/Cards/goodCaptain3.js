@@ -6,7 +6,7 @@ export default class goodCaptain3 extends basicCard {
             name: "goodCaptain3",
             cost: 5,
             chuteira: 5,
-            position: "FW",
+            position: "3",
             role: "Player"
 
         })

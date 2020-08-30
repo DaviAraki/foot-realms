@@ -7,7 +7,7 @@ export default class commonManager2 extends basicCard{
             cards: 0,
             coin: 2,
             cost: 1,
-            position: "MF",
+            position: "2",
             role: "Staff"
         })
     }

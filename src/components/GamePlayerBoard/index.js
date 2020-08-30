@@ -3,9 +3,9 @@ import GameCard from "../GameCard";
 import "./styles.css";
 
 export default class GameBoard extends React.Component {
-  callPlayerHandler(k){
-    this.props.callPlayerHandler(k);
-  }
+  // callPlayerHandler(k){
+  //   this.props.callPlayerHandler(k);
+  // }
   discardCardHandler(k){
     this.props.discardCardHandler(k);
   }
@@ -25,14 +25,14 @@ export default class GameBoard extends React.Component {
         <GameCard card={card} key={card.id}/>
       ));  
     let cardsHand = this.props.player.hand.map((card, k) => (
-       <GameCard card={card} key={card.id} onClickCallPlayer={()=>{this.callPlayerHandler(k)}}  />
+       <GameCard card={card} key={card.id} onClickPlayCard={()=>{this.playCardHandler(k)}}/>
     ));
     // let cardsDeck = this.props.player.deck.map((card) => (
     //   <GameCard card={card} key={card.id}/>
     // ));
-    let cardsAdm = this.props.player.admZone.map((card, k) => (
-       <GameCard card={card} key={card.id} onClickDiscardCard={()=>{this.discardCardHandler(k)}} onClickPlayCard={()=>{this.playCardHandler(k)}}/>
-    ));
+    // let cardsAdm = this.props.player.admZone.map((card, k) => (
+    //    <GameCard card={card} key={card.id} onClickDiscardCard={()=>{this.discardCardHandler(k)}} onClickPlayCard={()=>{this.playCardHandler(k)}}/>
+    // ));
     
     let cardsDiscard = this.props.player.discardZone.map((card, k)=>(
        <GameCard card={card} key={card.id}/>
@@ -52,10 +52,6 @@ export default class GameBoard extends React.Component {
         <div className="player-hand">
           <h1>Hand</h1>
           <div>{cardsHand}</div>
-        </div>
-        <div className="player-admnistration">
-          <h1>Administration Zone</h1>
-          <div>{cardsAdm}</div>
         </div>
         {/* <div className="player-deck">
           <h1>Deck:</h1>

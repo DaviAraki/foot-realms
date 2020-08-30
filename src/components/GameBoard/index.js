@@ -9,10 +9,10 @@ export default function GameBoard({G, ctx, moves, events}) {
     moves.buyCard(k);
   }
 
-  function callPlayerHandler(k) {
-    console.log(`callPlayerHandler`, k);
-    moves.callPlayer(k);
-  }
+  // function callPlayerHandler(k) {
+  //   console.log(`callPlayerHandler`, k);
+  //   moves.callPlayer(k);
+  // }
   function playCardHandler(k) {
     console.log(`playCardHandler`, k);
     moves.playCard(k);
@@ -40,7 +40,7 @@ export default function GameBoard({G, ctx, moves, events}) {
       player={player}
       key={`player${k}`}
       clickPassPhase={clickPassPhase.bind(this)}
-      callPlayerHandler={callPlayerHandler.bind(this)}
+      // callPlayerHandler={callPlayerHandler.bind(this)}
       discardCardHandler={discardCardHandler.bind(this)}
       playCardHandler={playCardHandler.bind(this)}
     />

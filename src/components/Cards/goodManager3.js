@@ -7,7 +7,7 @@ export default class goodManager3 extends basicCard {
             cards: 1,
             coin: 3,
             cost: 3,
-            position: "FW",
+            position: "3",
             role: "Staff"
         })
     }
