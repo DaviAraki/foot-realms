@@ -11,9 +11,10 @@
     "esm": "^3.2.25",
     "node-persist": "^3.1.0",
     "nodemon": "^2.0.4",
+    "puppeteer": "^5.2.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1",
+    "react-scripts": "^3.4.3",
     "redux-logger": "^3.0.6"
   },
   "scripts": {
@@ -21,7 +22,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "serve": "node --harmony -r esm src/server.js"
+    "serve": "node --harmony -r esm src/server.js",
+    "tabletopia": "rm tabletopia/build/*jpg && node screenshot.js --unhandled-rejections=strict"
   },
   "eslintConfig": {
     "extends": "react-app"
