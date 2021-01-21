@@ -8,7 +8,6 @@ export default function GameBoard({G, ctx, moves, events}) {
     console.log(`buyCardHandler`, k);
     moves.buyCard(k);
   }
-
   // function callPlayerHandler(k) {
   //   console.log(`callPlayerHandler`, k);
   //   moves.callPlayer(k);

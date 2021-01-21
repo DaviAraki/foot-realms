@@ -9,8 +9,8 @@ import { SocketIO } from 'boardgame.io/multiplayer';
 const FootReamlsClient = Client({
    game: FootRealms, 
    board: GameBoard, 
-   numPlayers:2,
-   multiplayer: SocketIO({ server: 'localhost:8000' }),
+   numPlayers:1,
+   //multiplayer: SocketIO({ server: 'localhost:8000' }),
   });
 
 const App = () =>(
