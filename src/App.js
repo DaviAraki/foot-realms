@@ -1,5 +1,5 @@
 import { Client } from "boardgame.io/react";
-import {FootRealms} from './Game2p';
+import {FootRealms} from './Game';
 import "./App.css";
 import React from 'react';
 import GameBoard from "./components/GameBoard";
