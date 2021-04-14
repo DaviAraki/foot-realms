@@ -1,5 +1,8 @@
 import setup from './utils/setup'
-import { defineWinner, setDesafio, shuffle, shuffleOffer, pass, playCard, cleanUp, buyCard, drawHand, giveOffer } from './moves/moves'
+import { defineWinner, setDesafio, shuffle, shuffleOffer, cleanUp, drawHand, giveOffer } from './actions/gameActions'
+import { buyCard } from './moves/buyCard'
+import { pass } from './moves/pass'
+import { playCard } from './moves/playCard'
 
 const FootRealms = {
   name: "FootRealms",

@@ -1,7 +1,6 @@
 import { draw } from '../actions/gameActions'
 
-
-export default function playCard(G, ctx, cardIndex) {
+function playCard(G, ctx, cardIndex) {
     if (G.players[ctx.currentPlayer].positions[G.players[ctx.currentPlayer].hand[cardIndex].position] === true) {
         if (G.players[ctx.currentPlayer].hand[cardIndex].role === "Player") {
             G.players[ctx.currentPlayer].score =
@@ -50,3 +49,5 @@ export default function playCard(G, ctx, cardIndex) {
         G.players[ctx.currentPlayer].hand.splice(cardIndex, 1);
     }
 }
+
+export { playCard }
