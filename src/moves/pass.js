@@ -1,5 +1,4 @@
-function pass(G, ctx) {
+export default function pass(G, ctx) {
     ctx.events.endPhase();
 }
 
-export { pass }

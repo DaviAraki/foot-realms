@@ -1,9 +1,10 @@
 import React from "react";
 import GameCard from "../GameCard";
 import GamePlayerBoard from "../GamePlayerBoard";
+import GameSchedule from '../GameSchedule'
 import "./styles.css";
 
-export default function GameBoard({G, ctx, moves, events}) {
+export default function GameBoard({ G, ctx, moves, events }) {
   function buyCardHandler(k) {
     console.log(`buyCardHandler`, k);
     moves.buyCard(k);
@@ -44,6 +45,11 @@ export default function GameBoard({G, ctx, moves, events}) {
       playCardHandler={playCardHandler.bind(this)}
     />
   ));
+  // let schedule = G.players.map((player, k) =>(
+  //   <GameSchedule 
+  //     player={player}
+  //     turn={}
+  // )
   // let playersAdm = G.players.map((player,k) =>(
   //   <GamePlayerBoard player={player} key={`player${k}`} />
   // ));
@@ -61,6 +67,11 @@ export default function GameBoard({G, ctx, moves, events}) {
         <h1>Players:</h1>
         <div className="player-areas">{players}</div>
       </div>
+      <div>
+        <GameSchedule player={G.players[0]} turn={G.offer.turn} />
+
+      </div>
+
     </div>
   );
 }

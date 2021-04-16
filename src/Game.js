@@ -1,8 +1,8 @@
 import setup from './utils/setup'
 import { defineWinner, setDesafio, shuffle, shuffleOffer, cleanUp, drawHand, giveOffer } from './actions/gameActions'
-import { buyCard } from './moves/buyCard'
-import { pass } from './moves/pass'
-import { playCard } from './moves/playCard'
+import buyCard from './moves/buyCard'
+import pass from './moves/pass'
+import playCard from './moves/playCard'
 
 const FootRealms = {
   name: "FootRealms",
@@ -10,7 +10,7 @@ const FootRealms = {
   moves: {},
 
   endIf: (G, ctx) => {
-    if (G.offer.turn === 8) {
+    if (G.offer.turn === 7) {
       if (ctx.currentPlayer.points >= 15) {
         return { winner: ctx.currentPlayer }
       }

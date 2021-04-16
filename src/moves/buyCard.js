@@ -6,4 +6,3 @@ export default function buyCard(G, ctx, cardIndex) {
         G.offer.offerZone.splice(cardIndex, 1);
     }
 }
-export { buyCard }

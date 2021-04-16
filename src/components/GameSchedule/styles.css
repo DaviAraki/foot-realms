@@ -42,6 +42,6 @@
 .player-deck:hover {
   opacity: 1;
 }
-details {
-  font-size: 6mm;
-} 
+.schedule {
+  font-size: 8mm;
+}
