@@ -45,6 +45,7 @@ export default function GameBoard({ G, ctx, moves, events }) {
       playCardHandler={playCardHandler.bind(this)}
     />
   ));
+
   // let schedule = G.players.map((player, k) =>(
   //   <GameSchedule 
   //     player={player}
@@ -55,6 +56,32 @@ export default function GameBoard({ G, ctx, moves, events }) {
   // ));
   return (
     <div className="game-board">
+      <div className="scoreTrack">
+        {G.offer.pointTracker}
+      </div>
+      {/* <div className="dummies">
+        <li>
+          {G.offer.dummies[0].name + ": Strength " + G.offer.dummies[0].strength}
+        </li>
+        <li>
+          {G.offer.dummies[1].name + ": Strength " + G.offer.dummies[1].strength}
+        </li>
+        <li>
+          {G.offer.dummies[2].name + ": Strength " + G.offer.dummies[2].strength}
+        </li>
+        <li>
+          {G.offer.dummies[3].name + ": Strength " + G.offer.dummies[3].strength}
+        </li>
+        <li>
+          {G.offer.dummies[4].name + ": Strength " + G.offer.dummies[4].strength}
+        </li>
+        <li>
+          {G.offer.dummies[5].name + ": Strength " + G.offer.dummies[5].strength}
+        </li>
+        <li>
+          {G.offer.dummies[6].name + ": Strength " + G.offer.dummies[6].strength}
+        </li>
+      </div> */}
       <div className="card-offer">
         <h1>
           Phase:{ctx.phase} Turn:{G.offer.turn + 1}
@@ -68,7 +95,7 @@ export default function GameBoard({ G, ctx, moves, events }) {
         <div className="player-areas">{players}</div>
       </div>
       <div>
-        <GameSchedule player={G.players[0]} turn={G.offer.turn} />
+        <GameSchedule player={G.players[0]} turn={G.offer.turn} bots={G.offer.dummies} />
 
       </div>
 

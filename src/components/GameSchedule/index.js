@@ -1,99 +1,63 @@
 import React from "react";
+import { giveOffer } from "../../actions/gameActions";
 import "./styles.css";
 
 export default class GameSchedule extends React.Component {
 
     render() {
-        let roundSchedule
-
-        switch (this.props.turn) {
-            case 0:
-                roundSchedule =
-                    <div>
-                        <h1>Round: {this.props.turn + 1} </h1>
-                        {this.props.player.name} Vs Bot 1 <br></br>
-                         Bot 2 vs Bot 3<br></br>
-                        Bot 4 vs Bot 5<br></br>
-                        Bot 6 vs Bot 7<br></br>
-                    </div>
-                break
-            case 1:
-                roundSchedule =
-                    <div>
-                        <h1>Round: {this.props.turn + 1} </h1>
-                        {this.props.player.name} Vs Bot 2 <br></br>
-                             Bot 3 vs Bot 4<br></br>
-                            Bot 5 vs Bot 6<br></br>
-                            Bot 7 vs Bot 1<br></br>
-                    </div>
-                break
-            case 2:
-                roundSchedule =
-                    <div>
-                        <h1>Round: {this.props.turn + 1} </h1>
-                        {this.props.player.name} Vs Bot 3 <br></br>
-                                Bot 1 vs Bot 4<br></br>
-                                Bot 5 vs Bot 7<br></br>
-                                Bot 6 vs Bot 2<br></br>
-                    </div>
-                break
-            case 3:
-                roundSchedule =
-                    <div>
-                        <h1>Round: {this.props.turn + 1} </h1>
-                        {this.props.player.name} Vs Bot 4 <br></br>
-                                    Bot 1 vs Bot 4<br></br>
-                                    Bot 5 vs Bot 7<br></br>
-                                    Bot 6 vs Bot 2<br></br>
-                    </div>
-                break
-            case 4:
-                roundSchedule =
-                    <div>
-                        <h1>Round: {this.props.turn + 1} </h1>
-                        {this.props.player.name} Vs Bot 5 <br></br>
-                                        Bot 1 vs Bot 4<br></br>
-                                        Bot 5 vs Bot 7<br></br>
-                                        Bot 6 vs Bot 2<br></br>
-                    </div>
-                break
-            case 5:
-                roundSchedule =
-                    <div>
-                        <h1>Round: {this.props.turn + 1} </h1>
-                        {this.props.player.name} Vs Bot 6 <br></br>
-                                            Bot 1 vs Bot 4<br></br>
-                                            Bot 5 vs Bot 7<br></br>
-                                            Bot 6 vs Bot 2<br></br>
-                    </div>
-                break
-            case 6:
-                roundSchedule =
-                    <div>
-                        <h1>Round: {this.props.turn + 1} </h1>
-                        {this.props.player.name} Vs Bot 7 <br></br>
-                                                Bot 1 vs Bot 4<br></br>
-                                                Bot 5 vs Bot 7<br></br>
-                                                Bot 6 vs Bot 2<br></br>
-                    </div>
-                break
-
-            case 7:
-                roundSchedule =
-                    <div>
-                        <h1>Championship Finished</h1>
-                    </div>
-                break
-            default:
-                break
-        }
-
-
 
         return (
             <div className="schedule">
+                <div>
+                    <h1>Round: 1 </h1>
+                    {this.props.player.name} 0 x 0 {this.props.bots[0].name} {this.props.bots[0].strength}<br></br>
+                    {this.props.bots[1].strength} {this.props.bots[1].name} 0 x 0 {this.props.bots[2].name}  {this.props.bots[2].strength}<br></br>
+                    {this.props.bots[3].strength} {this.props.bots[3].name} 0 x 0 {this.props.bots[4].name}  {this.props.bots[4].strength}<br></br>
+                    {this.props.bots[5].strength} {this.props.bots[5].name} 0 x 0 {this.props.bots[6].name}  {this.props.bots[6].strength}<br></br>
+                </div>
+                <div>
+                    <h1>Round: 2 </h1>
+                    {this.props.player.name} 0 x 0 {this.props.bots[1].name} {this.props.bots[1].strength}<br></br>
+                    {this.props.bots[2].strength} {this.props.bots[2].name} 0 x 0 {this.props.bots[0].name} {this.props.bots[0].strength}<br></br>
+                    {this.props.bots[3].strength} {this.props.bots[3].name} 0 x 0 {this.props.bots[6].name} {this.props.bots[6].strength}<br></br>
+                    {this.props.bots[4].strength} {this.props.bots[4].name} 0 x 0 {this.props.bots[5].name} {this.props.bots[5].strength}<br></br>
+                </div>
+                <div>
+                    <h1>Round: 3 </h1>
+                    {this.props.player.name} 0 x 0 {this.props.bots[2].name} {this.props.bots[2].strength}<br></br>
+                    {this.props.bots[2].strength} {this.props.bots[4].name} 0 x 0 {this.props.bots[0].name} {this.props.bots[0].strength}<br></br>
+                    {this.props.bots[5].strength} {this.props.bots[5].name} 0 x 0 {this.props.bots[6].name} {this.props.bots[6].strength}<br></br>
+                    {this.props.bots[3].strength} {this.props.bots[3].name} 0 x 0 {this.props.bots[1].name} {this.props.bots[1].strength}<br></br>
+                </div>
+                <div>
+                    <h1>Round: 4 </h1>
+                    {this.props.player.name} 0 x 0 {this.props.bots[3].name} <br></br>
+                    {this.props.bots[5].name} 0 x 0 {this.props.bots[1].name}<br></br>
+                    {this.props.bots[6].name} 0 x 0 {this.props.bots[0].name}<br></br>
+                    {this.props.bots[4].name} 0 x 0 {this.props.bots[2].name}<br></br>
+                </div>
+                <div>
+                    <h1>Round: 5 </h1>
+                    {this.props.player.name} 0 x 0 {this.props.bots[4].name} <br></br>
+                    {this.props.bots[5].name} 0 x 0 {this.props.bots[3].name}<br></br>
+                    {this.props.bots[6].name} 0 x 0 {this.props.bots[2].name}<br></br>
+                    {this.props.bots[0].name} 0 x 0 {this.props.bots[1].name}<br></br>
+                </div>
+                <div>
+                    <h1>Round: 6 </h1>
+                    {this.props.player.name} 0 x 0 {this.props.bots[5].name} <br></br>
+                    {this.props.bots[1].name} 0 x 0 {this.props.bots[2].name}<br></br>
+                    {this.props.bots[6].name} 0 x 0 {this.props.bots[4].name}<br></br>
+                    {this.props.bots[0].name} 0 x 0 {this.props.bots[3].name}<br></br>
+                </div>
+                <div>
+                    <h1>Round: 7 </h1>
+                    {this.props.player.name} 0 x 0 {this.props.bots[6].name} <br></br>
+                    {this.props.bots[2].name} 0 x 0 {this.props.bots[3].name}<br></br>
+                    {this.props.bots[0].name} 0 x 0 {this.props.bots[5].name}<br></br>
+                    {this.props.bots[1].name} 0 x 0 {this.props.bots[4].name}<br></br>
+                </div>
 
-                <div>{roundSchedule}</div>
             </div>
         )
     }

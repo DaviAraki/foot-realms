@@ -1,5 +1,5 @@
 import setup from './utils/setup'
-import { defineWinner, setDesafio, shuffle, shuffleOffer, cleanUp, drawHand, giveOffer } from './actions/gameActions'
+import { defineWinner, setDesafio, shuffle, shuffleOffer, cleanUp, drawHand, giveOffer, dealPower } from './actions/gameActions'
 import buyCard from './moves/buyCard'
 import pass from './moves/pass'
 import playCard from './moves/playCard'
@@ -33,6 +33,7 @@ const FootRealms = {
       onBegin: (G, ctx) => {
         drawHand(G, ctx);
         giveOffer(G, ctx);
+        dealPower(G, ctx);
         setDesafio(G, ctx);
       },
       onEnd: (G, ctx) => {

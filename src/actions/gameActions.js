@@ -12,7 +12,9 @@ function draw(G, ctx) {
     }
 }
 function setDesafio(G, ctx) {
-    G.offer.desafio = G.offer.turn * 2;
+    if (G.offer.turn < 7) {
+        G.offer.desafio = G.offer.dummies[G.offer.turn].strength;
+    }
 }
 
 function defineWinner(G, ctx) {
@@ -63,6 +65,11 @@ function giveOffer(G, ctx) {
         }
     }
 }
+function dealPower(G) {
+    for (let i = 0; i < G.offer.dummies.length; i++) {
+        G.offer.dummies[i].strength = G.offer.dummies[i].strength + Math.floor(Math.random() * 3) + 1
+    }
+}
 
 
 export {
@@ -74,4 +81,5 @@ export {
     cleanUp,
     drawHand,
     giveOffer,
+    dealPower
 }

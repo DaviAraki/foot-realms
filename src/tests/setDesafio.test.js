@@ -5,12 +5,17 @@ import superStar from "../components/Cards/superStar";
 it("When i buy a card, the card goes to my playzone and i spent money equals the bought card cost", () => {
     const G = {
         offer: {
-            offerZone: [new commonCaptain0(), new superStar()],
-            turn: 1,
-            desafio: 0
+            turn: 0,
+            desafio: 0,
+            dummies: [
+                {
+                    name: "Bot 1",
+                    strength: 3
+                }
+            ]
         }
     };
-    setDesafio(G, { currentPlayer: "0" });
-    expect(G.offer.desafio).toEqual(2);
+    setDesafio(G);
+    expect(G.offer.desafio).toEqual(3);
 
 });
