@@ -54,10 +54,23 @@ export default function GameBoard({ G, ctx, moves, events }) {
   // let playersAdm = G.players.map((player,k) =>(
   //   <GamePlayerBoard player={player} key={`player${k}`} />
   // ));
+  const points = []
+  for (let i = 0; i < 22; i++) {
+    points.push(
+      <div className='score-square'>
+        {i + "\n"}
+        <div className='teamPositions'>
+          {G.players[0].points === i ? "P0 " : ""}
+          {G.offer.dummies.map(dummy => dummy.points === i ? dummy.name + " " : "")}
+        </div>
+      </div>
+    );
+
+  }
   return (
     <div className="game-board">
       <div className="scoreTrack">
-        {G.offer.pointTracker}
+        {points}
       </div>
       {/* <div className="dummies">
         <li>
@@ -94,7 +107,7 @@ export default function GameBoard({ G, ctx, moves, events }) {
         <h1>Players:</h1>
         <div className="player-areas">{players}</div>
       </div>
-      <div>
+      <div className="schedule">
         <GameSchedule player={G.players[0]} turn={G.offer.turn} bots={G.offer.dummies} />
 
       </div>

@@ -41,35 +41,42 @@ export default {
         },
     ],
     offer: {
-        pointTracker: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21],
+        pointTracker: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21],
         dummies: [
             {
                 name: "BLA",
-                strength: 0
+                strength: 0,
+                points: 0
             },
             {
                 name: "BLU",
-                strength: 0
+                strength: 0,
+                points: 0
             },
             {
                 name: "ZAS",
-                strength: 0
+                strength: 0,
+                points: 0
             },
             {
                 name: "DOR",
-                strength: 0
+                strength: 0,
+                points: 0
             },
             {
                 name: "FRU",
-                strength: 0
+                strength: 0,
+                points: 0
             },
             {
                 name: "CAN",
-                strength: 0
+                strength: 0,
+                points: 0
             },
             {
                 name: "BAT",
-                strength: 0
+                strength: 0,
+                points: 0
             },
         ],
         offerZone: [],
