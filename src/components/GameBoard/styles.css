@@ -34,16 +34,7 @@
     
 }
 
-.scoreTrack{
-  font-size: 15mm;
-  width: 80mm;
-  height: auto;
-  display: flex;
-  
-}
-.scoreTrack .score-square {
-  border: 3mm solid rgb(67, 231, 67) ;
-}
+
 .teamPositions{
   font-size: 7mm;
 }

@@ -1,0 +1,53 @@
+.scoreTrack {
+  font-size: 1rem;
+  width: 100%;
+  height: auto;
+  display: grid;
+  gap: 0.2rem;
+  grid-template-columns: 2fr repeat(21, 1fr);
+  box-sizing: border-box;
+  background-color: hsl(80, 61%, 50%);
+  padding: 1.5mm;
+  border: 1.5mm solid rgba(0, 0, 0, 0.6);
+  border-radius: 3mm;
+  margin: 0.5mm;
+  color: hsla(200, 100%, 100%, 100%)
+}
+
+.scoreTrack .score-square {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.scoreTrack .score-square div{
+  background-color: hsla(80, 61%, 30%, 100%);
+  box-sizing: border-box;
+  border: 0.5mm solid rgba(0, 0, 0, 0.6);
+  border-radius: 1mm;
+  padding: 1mm;
+  line-height: 4mm;
+  font-size: 4mm;
+  text-transform: uppercase;
+  text-align: center;
+  box-shadow: 0.5mm 0.5mm rgba(0, 0, 0, 0.2);
+  text-shadow: 0.3mm 0.3mm rgba(0, 0, 0, 0.6);
+  font-weight: bold;
+  width: 1fr;
+}
+
+.scoreTrack .score-square .score-value {
+  width: 100%;
+  font-size: 1.2rem;
+}
+
+.scoreTrack .score-square:first-child {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.scoreTrack .score-square:first-child div{
+  width: 50%;
+}
+.scoreTrack .score-square:first-child .score-value {
+  width: 100%;
+}
