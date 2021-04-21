@@ -29,40 +29,41 @@ export default function GameBoard({ G, ctx, moves, events }) {
 
   let cards = G.offer.offerZone.map((card, k) => (
     <GameCard
-      card={card}
-      key={card.id}
-      onClickBuyCard={() => {
-        buyCardHandler(k);
-      }}
+    card={card}
+    key={card.id}
+    onClickBuyCard={() => {
+      buyCardHandler(k);
+    }}
     />
-  ));
-  let players = G.players.map((player, k) => (
-    <GamePlayerBoard
+    ));
+    let players = G.players.map((player, k) => (
+      <GamePlayerBoard
       player={player}
       key={`player${k}`}
       clickPassPhase={clickPassPhase.bind(this)}
       // callPlayerHandler={callPlayerHandler.bind(this)}
       discardCardHandler={discardCardHandler.bind(this)}
       playCardHandler={playCardHandler.bind(this)}
-    />
-  ));
-
-  // let schedule = G.players.map((player, k) =>(
-  //   <GameSchedule 
-  //     player={player}
-  //     turn={}
-  // )
-  // let playersAdm = G.players.map((player,k) =>(
-  //   <GamePlayerBoard player={player} key={`player${k}`} />
-  // ));
-  
-  return (
-    <div className="game-board">
-      <ScoreTrack G={G}/>
+      />
+      ));
+      
+      // let schedule = G.players.map((player, k) =>(
+        //   <GameSchedule 
+        //     player={player}
+        //     turn={}
+        // )
+        // let playersAdm = G.players.map((player,k) =>(
+          //   <GamePlayerBoard player={player} key={`player${k}`} />
+          // ));
+          
+          return (
+            <div className="game-board">
+              <ScoreTrack G={G}/>
+              <GameSchedule G={G}/>
       
       {/* <div className="dummies">
         <li>
-          {G.offer.dummies[0].name + ": Strength " + G.offer.dummies[0].strength}
+        {G.offer.dummies[0].name + ": Strength " + G.offer.dummies[0].strength}
         </li>
         <li>
           {G.offer.dummies[1].name + ": Strength " + G.offer.dummies[1].strength}

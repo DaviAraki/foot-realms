@@ -1,47 +1,61 @@
-.player-board {
-  padding: 2mm;
+.schedule {
+  font-size: 1rem;
+  width: 100%;
+  height: auto;
+  display: grid;
+  gap: 0.2rem;
+  grid-template-columns: repeat(7, 1fr);
+  box-sizing: border-box;
+  background-color: hsl(80, 61%, 50%);
+  padding: 1.5mm;
+  border: 1.5mm solid rgba(0, 0, 0, 0.6);
+  border-radius: 3mm;
   margin: 0.5mm;
-  background-color: hsla(120, 53%, 79%, 50%);
-  border: 2mm solid hsla(0, 0%, 0%, 60%);
-  border-radius: 2mm;
-  display: flex;
-  flex-wrap: wrap;
-}
-.player-board .passButton{
-  right: 1.5mm;
-  bottom: 1.5mm;
-  background-color: lightblue;
-}
-.player-board h1 {
-  font-size: 5mm;
-  font-size: 5mm;
-}
-.player-board > h1,
-.player-board > .player-hand {
-  width: 100%;
-}
-.player-board > .player-admnistration{
-  width: 100%;
-}
-.player-board > .player-discard{
-  width: 100%;
+  color: hsla(200, 100%, 100%, 100%);
+  list-style-type: none;
 }
 
-.player-hand > div,
-.player-admnistration > div,
-.player-deck  > div,
-.player-discard  > div {
+.schedule .round {
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.schedule .round ul{
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0;
+  width: 100%;
+}
+.schedule .round li, .round h1{
+  background-color: hsla(80, 61%, 30%, 100%);
+  box-sizing: border-box;
+  border: 0.5mm solid rgba(0, 0, 0, 0.6);
+  border-radius: 1mm;
+  padding: 1mm;
+  line-height: 4mm;
+  font-size: 4mm;
+  text-transform: uppercase;
+  text-align: center;
+  box-shadow: 0.5mm 0.5mm rgba(0, 0, 0, 0.2);
+  text-shadow: 0.3mm 0.3mm rgba(0, 0, 0, 0.6);
+  font-weight: bold;
+  width: 1fr;
+}
+
+.schedule .round h1 {
+  width: 100%;
+  font-size: 1.2rem;
+}
+
+.schedule .round:first-child {
   flex-direction: row;
   flex-wrap: wrap;
 }
-
-.player-deck {
-  opacity: 0.7;
+.schedule .round:first-child div{
+  width: 50%;
 }
-.player-deck:hover {
-  opacity: 1;
-}
-.schedule {
-  font-size: 8mm;
+.schedule .round:first-child .score-value {
+  width: 100%;
 }
