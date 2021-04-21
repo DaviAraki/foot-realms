@@ -2,6 +2,7 @@ import React from "react";
 import GameCard from "../GameCard";
 import GamePlayerBoard from "../GamePlayerBoard";
 import GameSchedule from '../GameSchedule'
+import ScoreTrack from "../ScoreTrack";
 import "./styles.css";
 
 export default function GameBoard({ G, ctx, moves, events }) {
@@ -54,24 +55,11 @@ export default function GameBoard({ G, ctx, moves, events }) {
   // let playersAdm = G.players.map((player,k) =>(
   //   <GamePlayerBoard player={player} key={`player${k}`} />
   // ));
-  const points = []
-  for (let i = 0; i < 22; i++) {
-    points.push(
-      <div className='score-square'>
-        {i + "\n"}
-        <div className='teamPositions'>
-          {G.players[0].points === i ? "P0 " : ""}
-          {G.offer.dummies.map(dummy => dummy.points === i ? dummy.name + " " : "")}
-        </div>
-      </div>
-    );
-
-  }
+  
   return (
     <div className="game-board">
-      <div className="scoreTrack">
-        {points}
-      </div>
+      <ScoreTrack G={G}/>
+      
       {/* <div className="dummies">
         <li>
           {G.offer.dummies[0].name + ": Strength " + G.offer.dummies[0].strength}
