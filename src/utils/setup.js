@@ -88,6 +88,7 @@ export default {
                 [[3, 4], [7, 0], [1, 6], [2, 5]],
                 [[6, 2], [7, 1], [0, 4], [5, 3]],
             ],
+        results: [],
         offerZone: [],
         deck: [].concat(
             bigManager.create(5),

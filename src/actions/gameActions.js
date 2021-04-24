@@ -72,6 +72,7 @@ function dealPower(G) {
 }
 function setMatchWinners(G, ctx) {
     const teams = [G.players[0], ...G.board.dummies];
+    const gameResults = []
     for (let i = 0; i < G.board.schedule[G.board.turn].length; i++) {
         let match = G.board.schedule[G.board.turn][i]
         if (teams[match[0]].strength > teams[match[1]].strength) {
@@ -84,8 +85,10 @@ function setMatchWinners(G, ctx) {
             teams[match[1]].points = teams[match[1]].points + 1
             teams[match[0]].points = teams[match[0]].points + 1
         }
+        gameResults[i] = { teamA: teams[match[0]].name, strengthA: teams[match[0]].strength, teamB: teams[match[1]].name, strengthB: teams[match[1]].strength }
 
     }
+    G.board.results[G.board.turn] = gameResults
     G.players[ctx.currentPlayer].strength = 0;
 }
 
