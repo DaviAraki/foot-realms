@@ -11,7 +11,7 @@ const FootRealms = {
   moves: {},
 
   endIf: (G, ctx) => {
-    if (ctx.turn  > (27)) {
+    if (ctx.turn  > (28)) {
       console.log("ENDGAME")
       const teams = [...G.players.map(team => ({ name: team.name, points: team.points })), ...G.board.dummies.map(team => ({ name: team.name, points: team.points }))]
       teams.sort((b, a) => (a.points - b.points))

@@ -82,7 +82,7 @@ function dealPowerToDummies(G, ctx) {
 }
 function updateStrenghtSchedule(G, ctx) {
     console.log("UPDATESTRENGHTSCHEDULE",ctx.turn)
-    if (ctx.turn === 0 || ctx.turn>27) {
+    if (ctx.turn === 0 || ctx.turn>28) {
         return
     }
     const teams = [...G.players, ...G.board.dummies];
