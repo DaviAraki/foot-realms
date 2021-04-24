@@ -35,13 +35,12 @@ export default {
             playZone: [],
             discardZone: [],
             money: 0,
-            score: 0,
+            strength: 0,
             points: 0,
             positions: [false, false, false, false]
         },
     ],
-    offer: {
-        pointTracker: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21],
+    board: {
         dummies: [
             {
                 name: "BLA",
@@ -79,6 +78,16 @@ export default {
                 points: 0
             },
         ],
+        schedule:
+            [
+                [[1, 0], [2, 7], [3, 6], [4, 5]],
+                [[2, 3], [0, 6], [7, 5], [1, 4]],
+                [[5, 1], [6, 7], [3, 0], [4, 2]],
+                [[6, 4], [7, 3], [1, 2], [5, 0]],
+                [[0, 2], [3, 1], [4, 7], [5, 6]],
+                [[3, 4], [7, 0], [1, 6], [2, 5]],
+                [[6, 2], [7, 1], [0, 4], [5, 3]],
+            ],
         offerZone: [],
         deck: [].concat(
             bigManager.create(5),

@@ -11,29 +11,29 @@ function draw(G, ctx) {
         );
     }
 }
-function setDesafio(G, ctx) {
-    if (G.offer.turn < 7) {
-        G.offer.desafio = G.offer.dummies[G.offer.turn].strength;
-    }
-}
+// function setDesafio(G, ctx) {
+//     if (G.board.turn < 7) {
+//         G.board.desafio = G.board.dummies[G.board.turn].strength;
+//     }
+// }
 
 function defineWinner(G, ctx) {
-    if (G.players[ctx.currentPlayer].score > G.offer.desafio) {
+    if (G.players[ctx.currentPlayer].strength > G.board.desafio) {
         G.players[ctx.currentPlayer].points =
             G.players[ctx.currentPlayer].points + 3;
-    } else if (G.players[ctx.currentPlayer].score === G.offer.desafio) {
+    } else if (G.players[ctx.currentPlayer].strength === G.board.desafio) {
         G.players[ctx.currentPlayer].points =
             G.players[ctx.currentPlayer].points + 1;
     }
-    G.players[ctx.currentPlayer].score = 0;
-    G.offer.desafio = 0;
+    G.players[ctx.currentPlayer].strength = 0;
+    G.board.desafio = 0;
 }
 
 function shuffle(G, ctx) {
     G.players[ctx.currentPlayer].deck.sort(() => Math.random() - 0.5);
 }
 function shuffleOffer(G) {
-    G.offer.deck.sort(() => Math.random() - 0.5);
+    G.board.deck.sort(() => Math.random() - 0.5);
 }
 
 
@@ -58,28 +58,46 @@ function drawHand(G, ctx) {
     }
 }
 function giveOffer(G, ctx) {
-    G.offer.offerZone.splice(0, 2);
-    while (G.offer.offerZone.length < 5) {
-        if (G.offer.deck.length > 0) {
-            G.offer.offerZone.push(G.offer.deck.pop());
+    G.board.offerZone.splice(0, 2);
+    while (G.board.offerZone.length < 5) {
+        if (G.board.deck.length > 0) {
+            G.board.offerZone.push(G.board.deck.pop());
         }
     }
 }
 function dealPower(G) {
-    for (let i = 0; i < G.offer.dummies.length; i++) {
-        G.offer.dummies[i].strength = G.offer.dummies[i].strength + Math.floor(Math.random() * 3) + 1
+    for (let i = 0; i < G.board.dummies.length; i++) {
+        G.board.dummies[i].strength = G.board.dummies[i].strength + Math.floor(Math.random() * 3) + 1
     }
+}
+function setMatchWinners(G, ctx) {
+    const teams = [G.players[0], ...G.board.dummies];
+    for (let i = 0; i < G.board.schedule[G.board.turn].length; i++) {
+        let match = G.board.schedule[G.board.turn][i]
+        if (teams[match[0]].strength > teams[match[1]].strength) {
+            teams[match[0]].points = teams[match[0]].points + 3
+        }
+        else if (teams[match[0]].strength < teams[match[1]].strength) {
+            teams[match[1]].points = teams[match[1]].points + 3
+        }
+        else {
+            teams[match[1]].points = teams[match[1]].points + 1
+            teams[match[0]].points = teams[match[0]].points + 1
+        }
+
+    }
+    G.players[ctx.currentPlayer].strength = 0;
 }
 
 
 export {
     draw,
-    setDesafio,
     defineWinner,
     shuffle,
     shuffleOffer,
     cleanUp,
     drawHand,
     giveOffer,
-    dealPower
+    dealPower,
+    setMatchWinners
 }
