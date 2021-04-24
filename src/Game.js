@@ -23,6 +23,7 @@ const FootRealms = {
   },
 
   phases: {
+    
     playPhase: {
       moves: { pass, playCard, buyCard },
       onBegin: (G, ctx) => {
@@ -31,15 +32,6 @@ const FootRealms = {
         giveOffer(G, ctx);
         updateStrenghtSchedule(G, {turn:ctx.turn+1})
 
-      },
-      onEnd: (G, ctx) => {
-        addQuarterGoals(G, ctx);
-        if (Math.floor(ctx.turn % 4) === 0) {
-          console.log(ctx.turn % 4)
-          setRoundWinners(G,ctx)   
-          dealPowerToDummies(G, ctx);
-        }
-        cleanUp(G, ctx);
       },
       start: true,
       next: "playPhase",
