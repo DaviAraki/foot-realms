@@ -8,20 +8,20 @@ export default function generateSchedule(G) {
     }
     const teams = [G.players[0], ...G.board.dummies];
     const schedule = []
-    for (let z = 0; z < teams.length; z++) {
-        const rodadaOriginal = round(8, z + 1);
+    for (let z = 0; z < teams.length - 1; z++) {
+        const rodadaOriginal = round(teams.length, z + 1);
         const rodada = [];
         const jasaiu = new Set();
         for (let i = 0; i < rodadaOriginal.length; i++) {
             if (!jasaiu.has(rodadaOriginal[i]) && !jasaiu.has(i)) {
                 jasaiu.add(rodadaOriginal[i]);
                 jasaiu.add(i);
-                rodada.push({ a: { id: i }, b: { id: rodadaOriginal[i] } });
+                rodada.push({ a: { id: i, goals: "-", strength: "-" }, b: { id: rodadaOriginal[i], goals: "-", strength: "-" } });
             }
         }
         console.log(z)
         console.log(rodada);
-        schedule[z] = rodada
+        schedule.push(rodada)
 
     }
     console.log(schedule)

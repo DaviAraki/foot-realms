@@ -24,8 +24,9 @@ import starCaptain1 from "../components/Cards/starCaptain1";
 import starCaptain2 from "../components/Cards/starCaptain2";
 import starCaptain3 from "../components/Cards/starCaptain3";
 import generateUniqueId from "../utils/generateUniqueId";
+import generateSchedule from "./generateSchedule";
 
-export default {
+const game = {
     players: [
         {
             id: generateUniqueId(),
@@ -78,16 +79,8 @@ export default {
                 points: 0
             },
         ],
-        schedule:
-            [
-                [[1, 0], [2, 7], [3, 6], [4, 5]],
-                [[2, 3], [0, 6], [7, 5], [1, 4]],
-                [[5, 1], [6, 7], [3, 0], [4, 2]],
-                [[6, 4], [7, 3], [1, 2], [5, 0]],
-                [[0, 2], [3, 1], [4, 7], [5, 6]],
-                [[3, 4], [7, 0], [1, 6], [2, 5]],
-                [[6, 2], [7, 1], [0, 4], [5, 3]],
-            ],
+        schedule: [],
+        results: [],
         offerZone: [],
         deck: [].concat(
             bigManager.create(5),
@@ -120,3 +113,5 @@ export default {
         desafio: 0,
     },
 }
+game.board.schedule = generateSchedule(game)
+export default game;

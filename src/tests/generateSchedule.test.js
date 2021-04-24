@@ -56,6 +56,7 @@ it("When i buy a card, the card goes to my playzone and i spent money equals the
         }
     };
     const schedule = generateSchedule(G);
+    expect(schedule.length).toBe(7)
     expect(schedule).not.toBe(null)
 
 

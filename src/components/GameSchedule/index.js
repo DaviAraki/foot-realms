@@ -18,7 +18,7 @@ export default function GameSchedule({ G, ctx, moves, events }) {
   // ];
 
   const rounds = schedule.map((round, r) => {
-    const matches = round.map((match, m) => <li key={`match${r}${m}`}>{teams[match[0]].strength} {teams[match[0]].name}  x {teams[match[1]].name} {teams[match[1]].strength}</li>);
+    const matches = round.map((match, m) => <li key={`match${r}${m}`}>{match.a.strength} {teams[match.a.id].name} {match.a.goals} x {match.b.goals} {teams[match.b.id].name} {match.b.strength}</li>);
     return (
       <li key={`round${r}`} className="round">
         <h1>Round {r + 1}</h1>

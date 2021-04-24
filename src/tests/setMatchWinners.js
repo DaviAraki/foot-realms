@@ -10,7 +10,8 @@ it("In the end of a round the teams play each other and in they score acording t
                     name: "Bot 1",
                     strength: 3
                 }
-            ]
+            ],
+            results: []
         }
     };
     setMatchWinners(G);

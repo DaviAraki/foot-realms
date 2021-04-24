@@ -3,6 +3,7 @@ import { shuffle, shuffleOffer, cleanUp, drawHand, giveOffer, dealPower, setMatc
 import buyCard from './moves/buyCard'
 import pass from './moves/pass'
 import playCard from './moves/playCard'
+import generateSchedule from './utils/generateSchedule'
 
 const FootRealms = {
   name: "FootRealms",
@@ -21,6 +22,7 @@ const FootRealms = {
   phases: {
     setUpPhase: {
       onBegin: (G, ctx) => {
+
         shuffleOffer(G);
         shuffle(G, ctx);
         pass(G, ctx);
