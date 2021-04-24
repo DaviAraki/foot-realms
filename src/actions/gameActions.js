@@ -12,8 +12,8 @@ function draw(G, ctx) {
     }
 }
 // function setDesafio(G, ctx) {
-//     if (G.board.turn < 7) {
-//         G.board.desafio = G.board.dummies[G.board.turn].strength;
+//     if (ctx.turn < 7) {
+//         G.board.desafio = G.board.dummies[ctx.turn].strength;
 //     }
 // }
 
@@ -39,6 +39,7 @@ function shuffleOffer(G) {
 
 
 function cleanUp(G, ctx) {
+    G.players[ctx.currentPlayer].strength = 0;
     while (G.players[ctx.currentPlayer].playZone.length > 0) {
         G.players[ctx.currentPlayer].discardZone.push(
             G.players[ctx.currentPlayer].playZone[0]
@@ -65,36 +66,65 @@ function giveOffer(G, ctx) {
         }
     }
 }
-function dealPower(G) {
-    const teams = [G.players[0], ...G.board.dummies];
+function dealPowerToDummies(G, ctx) {
+    if (ctx.turn === 0) {
+        return
+    }
+    const round = Math.floor((ctx.turn - 1) / 4)
     for (let i = 0; i < G.board.dummies.length; i++) {
         G.board.dummies[i].strength = G.board.dummies[i].strength + Math.floor(Math.random() * 3) + 1
     }
-    for (let j = 0; j < G.board.schedule[G.board.turn].length; j++) {
-        let match = G.board.schedule[G.board.turn][j];
+    console.log("TESTE", round, ctx.turn)
+    updateStrenghtSchedule(G, ctx)
+}
+function updateStrenghtSchedule(G, ctx) {
+    if (ctx.turn === 0) {
+        return
+    }
+    const teams = [...G.players, ...G.board.dummies];
+    const round = Math.floor((ctx.turn - 1) / 4)
+    console.log("TESTE", round, ctx.turn)
+    for (let j = 0; j < G.board.schedule[round].length; j++) {
+        let match = G.board.schedule[round][j];
         match.a.strength = teams[match.a.id].strength
         match.b.strength = teams[match.b.id].strength
     }
 }
-function setMatchWinners(G, ctx) {
-    const teams = [G.players[0], ...G.board.dummies];
-    for (let i = 0; i < G.board.schedule[G.board.turn].length; i++) {
-        let match = G.board.schedule[G.board.turn][i];
+function addQuarterGoals(G, ctx) {
+    const teams = [...G.players, ...G.board.dummies];
+    const round = Math.floor((ctx.turn - 1) / 4)
+    console.log("TESTE", round, ctx.turn)
+    for (let i = 0; i < G.board.schedule[round].length; i++) {
+        let match = G.board.schedule[round][i];
+        match.a.goals = (match.a.goals === '-') ? 0 : match.a.goals;
+        match.b.goals = (match.b.goals === '-') ? 0 : match.b.goals;
+        if (teams[match.a.id].strength > teams[match.b.id].strength) {
+            match.a.goals = match.a.goals + 1
+        }
+        else if (teams[match.a.id].strength < teams[match.b.id].strength) {
+            match.b.goals = match.b.goals + 1
+        }
+    };
+}
+function setRoundWinners(G, ctx) {
+    const teams = [...G.players, ...G.board.dummies];
+    const round = Math.floor((ctx.turn - 1) / 4)
+    console.log("TESTE", round, ctx.turn)
+    for (let i = 0; i < G.board.schedule[round].length; i++) {
+        let match = G.board.schedule[round][i];
+        match.a.goals = (match.a.goals === '-') ? 0 : match.a.goals;
+        match.b.goals = (match.b.goals === '-') ? 0 : match.b.goals;
         if (teams[match.a.id].strength > teams[match.b.id].strength) {
             teams[match.a.id].points = teams[match.a.id].points + 3
-            match.a.goals = 1
-            match.b.goals = 0
+            match.a.goals = match.a.goals + 1
         }
         else if (teams[match.a.id].strength < teams[match.b.id].strength) {
             teams[match.b.id].points = teams[match.b.id].points + 3
-            match.a.goals = 0
-            match.b.goals = 1
+            match.b.goals = match.b.goals + 1
         }
         else {
             teams[match.b.id].points = teams[match.b.id].points + 1
             teams[match.a.id].points = teams[match.a.id].points + 1
-            match.a.goals = 0
-            match.b.goals = 0
         }
     }
     G.players[ctx.currentPlayer].strength = 0;
@@ -109,6 +139,7 @@ export {
     cleanUp,
     drawHand,
     giveOffer,
-    dealPower,
-    setMatchWinners
+    dealPowerToDummies ,
+    addQuarterGoals ,
+    setRoundWinners
 }

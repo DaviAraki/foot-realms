@@ -1,4 +1,4 @@
-import { setMatchWinners } from '../actions/gameActions'
+import { addQuarterGoals } from '../actions/gameActions'
 
 it("In the end of a round the teams play each other and in they score acording to the result", () => {
     const G = {
@@ -14,7 +14,7 @@ it("In the end of a round the teams play each other and in they score acording t
             results: []
         }
     };
-    setMatchWinners(G);
+    addQuarterGoals(G);
     expect(G.offer.desafio).toEqual(3);
 
 });

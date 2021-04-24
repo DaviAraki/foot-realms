@@ -6,7 +6,7 @@ export default function generateSchedule(G) {
         round[round[m] = j * (n >> 1) % m] = m; // swapping self-match
         return round;
     }
-    const teams = [G.players[0], ...G.board.dummies];
+    const teams = [...G.players, ...G.board.dummies];
     const schedule = []
     for (let z = 0; z < teams.length - 1; z++) {
         const rodadaOriginal = round(teams.length, z + 1);

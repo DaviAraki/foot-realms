@@ -4,7 +4,7 @@ import "./styles.css";
 export default function GameSchedule({ G, ctx, moves, events }) {
   if (!G) return <div></div>;
   const schedule = G.board.schedule;
-  const teams = [G.players[0], ...G.board.dummies];
+  const teams = [...G.players, ...G.board.dummies];
 
   // const schedule = [
   //   [[1, 0], [2, 7], [3, 6], [4, 5]],

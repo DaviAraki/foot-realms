@@ -25,6 +25,7 @@ import starCaptain2 from "../components/Cards/starCaptain2";
 import starCaptain3 from "../components/Cards/starCaptain3";
 import generateUniqueId from "../utils/generateUniqueId";
 import generateSchedule from "./generateSchedule";
+import { dealPowerToDummies, shuffle, shuffleOffer } from "../actions/gameActions";
 
 const game = {
     players: [
@@ -108,9 +109,10 @@ const game = {
             starCaptain2.create(1),
             starCaptain3.create(1),
         ),
-        turn: 0,
         desafio: 0,
     },
 }
 game.board.schedule = generateSchedule(game)
+shuffleOffer(game)
+dealPowerToDummies(game, { turn: 1 })
 export default game;

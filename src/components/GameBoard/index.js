@@ -86,7 +86,7 @@ export default function GameBoard({ G, ctx, moves, events }) {
       </div> */}
       <div className="card-offer">
         <h1>
-          Phase:{ctx.phase} Turn:{G.board.turn + 1}
+          Phase:{ctx.phase} Round:{~~((ctx.turn - 1) / 4) + 1} Quarter:{(ctx.turn - 1) % 4 + 1}
         </h1>
         <h1>Offer:</h1>
         <h1>Challenge: {G.board.desafio}</h1>
@@ -97,7 +97,7 @@ export default function GameBoard({ G, ctx, moves, events }) {
         <div className="player-areas">{players}</div>
       </div>
       <div className="schedule">
-        <GameSchedule player={G.players[0]} turn={G.board.turn} bots={G.board.dummies} />
+        <GameSchedule player={G.players[0]} turn={ctx.turn} bots={G.board.dummies} />
 
       </div>
 
