@@ -1,5 +1,5 @@
 import setup from './utils/setup'
-import { shuffle, cleanUp, drawHand, giveOffer, dealPowerToDummies, addQuarterGoals, updateStrenghtSchedule } from './actions/gameActions'
+import { shuffle, cleanUp, drawHand, giveOffer, dealPowerToDummies, addQuarterGoals, updateStrenghtSchedule, setRoundWinners } from './actions/gameActions'
 import buyCard from './moves/buyCard'
 import pass from './moves/pass'
 import playCard from './moves/playCard'
@@ -36,7 +36,8 @@ const FootRealms = {
         addQuarterGoals(G, ctx);
         if (Math.floor(ctx.turn % 4) === 0) {
           console.log(ctx.turn % 4)
-          dealPowerToDummies(G, ctx);          
+          setRoundWinners(G,ctx)   
+          dealPowerToDummies(G, ctx);
         }
         cleanUp(G, ctx);
       },
