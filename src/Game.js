@@ -1,5 +1,5 @@
 import setup from './utils/setup'
-import { shuffle, cleanUp, drawHand, giveOffer, dealPowerToDummies, addQuarterGoals } from './actions/gameActions'
+import { shuffle, cleanUp, drawHand, giveOffer, dealPowerToDummies, addQuarterGoals, updateStrenghtSchedule } from './actions/gameActions'
 import buyCard from './moves/buyCard'
 import pass from './moves/pass'
 import playCard from './moves/playCard'
@@ -11,7 +11,7 @@ const FootRealms = {
   moves: {},
 
   endIf: (G, ctx) => {
-    if (ctx.turn + 2 === (G.players.length + G.board.dummies.length - 1) * 4) {
+    if (ctx.turn  > (27)) {
       console.log("ENDGAME")
       const teams = [G.players.map(team => ({ name: team.name, points: team.points })), ...G.board.dummies.map(team => ({ name: team.name, points: team.points }))]
       teams.sort((b, a) => (a.points - b.points))
@@ -29,14 +29,16 @@ const FootRealms = {
         shuffle(G, ctx);
         drawHand(G, ctx);
         giveOffer(G, ctx);
+        updateStrenghtSchedule(G, {turn:ctx.turn+1})
 
       },
       onEnd: (G, ctx) => {
-        cleanUp(G, ctx);
         addQuarterGoals(G, ctx);
         if (Math.floor(ctx.turn % 4) === 0) {
-          dealPowerToDummies(G, ctx);
+          console.log(ctx.turn % 4)
+          dealPowerToDummies(G, ctx);          
         }
+        cleanUp(G, ctx);
       },
       start: true,
       next: "playPhase",

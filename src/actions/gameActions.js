@@ -39,17 +39,21 @@ function shuffleOffer(G) {
 
 
 function cleanUp(G, ctx) {
+    console.log("CLEAN UP")
     G.players[ctx.currentPlayer].strength = 0;
     while (G.players[ctx.currentPlayer].playZone.length > 0) {
+        console.log("CLEAN UP", G.players[ctx.currentPlayer].playZone.length)
         G.players[ctx.currentPlayer].discardZone.push(
             G.players[ctx.currentPlayer].playZone[0]
         );
         G.players[ctx.currentPlayer].playZone.splice(0, 1);
     }
+    console.log("CLEAN UP END")
 }
 
 
 function drawHand(G, ctx) {
+    console.log("DRAW ")
     while (
         G.players[ctx.currentPlayer].hand.length < 5 &&
         (G.players[ctx.currentPlayer].deck.length > 0 ||
@@ -57,17 +61,17 @@ function drawHand(G, ctx) {
     ) {
         draw(G, ctx, 1);
     }
+    console.log("DRAW END")
 }
 function giveOffer(G, ctx) {
     G.board.offerZone.splice(0, 2);
-    while (G.board.offerZone.length < 5) {
-        if (G.board.deck.length > 0) {
-            G.board.offerZone.push(G.board.deck.pop());
-        }
+    while (G.board.offerZone.length < 5 && G.board.deck.length > 0 ) { 
+            G.board.offerZone.push(G.board.deck.pop());          
     }
 }
 function dealPowerToDummies(G, ctx) {
-    if (ctx.turn === 0) {
+    console.log("DEALPOWERTO DUMMIES",ctx.turn)
+    if (ctx.turn === 0 ) {
         return
     }
     const round = Math.floor((ctx.turn - 1) / 4)
@@ -75,10 +79,10 @@ function dealPowerToDummies(G, ctx) {
         G.board.dummies[i].strength = G.board.dummies[i].strength + Math.floor(Math.random() * 3) + 1
     }
     console.log("TESTE", round, ctx.turn)
-    updateStrenghtSchedule(G, ctx)
 }
 function updateStrenghtSchedule(G, ctx) {
-    if (ctx.turn === 0) {
+    console.log("UPDATESTRENGHTSCHEDULE",ctx.turn)
+    if (ctx.turn === 0 || ctx.turn>27) {
         return
     }
     const teams = [...G.players, ...G.board.dummies];
@@ -91,6 +95,7 @@ function updateStrenghtSchedule(G, ctx) {
     }
 }
 function addQuarterGoals(G, ctx) {
+    console.log("ADGOAL",ctx.turn)
     const teams = [...G.players, ...G.board.dummies];
     const round = Math.floor((ctx.turn - 1) / 4)
     console.log("TESTE", round, ctx.turn)
@@ -105,22 +110,20 @@ function addQuarterGoals(G, ctx) {
             match.b.goals = match.b.goals + 1
         }
     };
+    console.log("FINAL GOAL", round, ctx.turn)
 }
 function setRoundWinners(G, ctx) {
+    console.log("SetROUNDWINNERS",ctx.turn)
     const teams = [...G.players, ...G.board.dummies];
     const round = Math.floor((ctx.turn - 1) / 4)
     console.log("TESTE", round, ctx.turn)
     for (let i = 0; i < G.board.schedule[round].length; i++) {
         let match = G.board.schedule[round][i];
-        match.a.goals = (match.a.goals === '-') ? 0 : match.a.goals;
-        match.b.goals = (match.b.goals === '-') ? 0 : match.b.goals;
         if (teams[match.a.id].strength > teams[match.b.id].strength) {
             teams[match.a.id].points = teams[match.a.id].points + 3
-            match.a.goals = match.a.goals + 1
         }
         else if (teams[match.a.id].strength < teams[match.b.id].strength) {
             teams[match.b.id].points = teams[match.b.id].points + 3
-            match.b.goals = match.b.goals + 1
         }
         else {
             teams[match.b.id].points = teams[match.b.id].points + 1
@@ -140,6 +143,7 @@ export {
     drawHand,
     giveOffer,
     dealPowerToDummies ,
+    updateStrenghtSchedule,
     addQuarterGoals ,
     setRoundWinners
 }

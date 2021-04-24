@@ -43,7 +43,10 @@ export default class GameBoard extends React.Component {
 
         <h1>{this.props.player.name} </h1>
         <h1>Money: {this.props.player.money} Strength: {this.props.player.strength} Points: {this.props.player.points}</h1>
-        <div className="passButton" onClick={this.clickPassPhase.bind(this)}>Pass</div>
+        {(!this.props.ctx.gameover)?(<div className="passButton" onClick={this.clickPassPhase.bind(this)}>Pass</div>):''}
+          
+        
+  
 
         <div className="player-hand">
           <h1>In play</h1>

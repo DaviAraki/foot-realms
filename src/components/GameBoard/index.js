@@ -38,6 +38,7 @@ export default function GameBoard({ G, ctx, moves, events }) {
   ));
   let players = G.players.map((player, k) => (
     <GamePlayerBoard
+      ctx={ctx}
       player={player}
       key={`player${k}`}
       clickPassPhase={clickPassPhase.bind(this)}
@@ -60,30 +61,6 @@ export default function GameBoard({ G, ctx, moves, events }) {
     <div className="game-board">
       <ScoreTrack G={G} />
       <GameSchedule G={G} />
-
-      {/* <div className="dummies">
-        <li>
-        {G.board.dummies[0].name + ": Strength " + G.board.dummies[0].strength}
-        </li>
-        <li>
-          {G.board.dummies[1].name + ": Strength " + G.board.dummies[1].strength}
-        </li>
-        <li>
-          {G.board.dummies[2].name + ": Strength " + G.board.dummies[2].strength}
-        </li>
-        <li>
-          {G.board.dummies[3].name + ": Strength " + G.board.dummies[3].strength}
-        </li>
-        <li>
-          {G.board.dummies[4].name + ": Strength " + G.board.dummies[4].strength}
-        </li>
-        <li>
-          {G.board.dummies[5].name + ": Strength " + G.board.dummies[5].strength}
-        </li>
-        <li>
-          {G.board.dummies[6].name + ": Strength " + G.board.dummies[6].strength}
-        </li>
-      </div> */}
       <div className="card-offer">
         <h1>
           Phase:{ctx.phase} Round:{~~((ctx.turn - 1) / 4) + 1} Quarter:{(ctx.turn - 1) % 4 + 1}
