@@ -19,12 +19,11 @@ export default function generateSchedule(G) {
                 rodada.push({ a: { id: i, goals: "-", strength: "-" }, b: { id: rodadaOriginal[i], goals: "-", strength: "-" } });
             }
         }
-        console.log(z)
-        console.log(rodada);
+
         schedule.push(rodada)
 
     }
-    console.log(schedule)
+
     return schedule
 }
 

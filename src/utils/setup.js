@@ -80,7 +80,6 @@ const game = {
             },
         ],
         schedule: [],
-        results: [],
         offerZone: [],
         deck: [].concat(
             bigManager.create(5),

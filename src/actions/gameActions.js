@@ -66,28 +66,37 @@ function giveOffer(G, ctx) {
     }
 }
 function dealPower(G) {
+    const teams = [G.players[0], ...G.board.dummies];
     for (let i = 0; i < G.board.dummies.length; i++) {
         G.board.dummies[i].strength = G.board.dummies[i].strength + Math.floor(Math.random() * 3) + 1
+    }
+    for (let j = 0; j < G.board.schedule[G.board.turn].length; j++) {
+        let match = G.board.schedule[G.board.turn][j];
+        match.a.strength = teams[match.a.id].strength
+        match.b.strength = teams[match.b.id].strength
     }
 }
 function setMatchWinners(G, ctx) {
     const teams = [G.players[0], ...G.board.dummies];
-    const roundResults = []
     for (let i = 0; i < G.board.schedule[G.board.turn].length; i++) {
         let match = G.board.schedule[G.board.turn][i];
-        roundResults[i] = [teams[match[0]].strength, teams[match[1]].strength]
-        if (teams[match[0]].strength > teams[match[1]].strength) {
-            teams[match[0]].points = teams[match[0]].points + 3
+        if (teams[match.a.id].strength > teams[match.b.id].strength) {
+            teams[match.a.id].points = teams[match.a.id].points + 3
+            match.a.goals = 1
+            match.b.goals = 0
         }
-        else if (teams[match[0]].strength < teams[match[1]].strength) {
-            teams[match[1]].points = teams[match[1]].points + 3
+        else if (teams[match.a.id].strength < teams[match.b.id].strength) {
+            teams[match.b.id].points = teams[match.b.id].points + 3
+            match.a.goals = 0
+            match.b.goals = 1
         }
         else {
-            teams[match[1]].points = teams[match[1]].points + 1
-            teams[match[0]].points = teams[match[0]].points + 1
+            teams[match.b.id].points = teams[match.b.id].points + 1
+            teams[match.a.id].points = teams[match.a.id].points + 1
+            match.a.goals = 0
+            match.b.goals = 0
         }
     }
-    G.board.results[G.board.turn] = roundResults
     G.players[ctx.currentPlayer].strength = 0;
 }
 
