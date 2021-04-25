@@ -1,7 +1,7 @@
 import  draw  from '../actions/draw'
 
 export default function playCard(G, ctx, cardIndex) {
-     if (cardIndex < G.players[ctx.currentPlayer].hand.length) {
+    if (cardIndex < G.players[ctx.currentPlayer].hand.length) {
         G.players[ctx.currentPlayer].strength =
             G.players[ctx.currentPlayer].strength +
             G.players[ctx.currentPlayer].hand[cardIndex].chuteira;  
@@ -15,9 +15,14 @@ export default function playCard(G, ctx, cardIndex) {
         ) {
             draw(G, ctx);
         }
+        if(G.players[ctx.currentPlayer].hand[cardIndex].power !== ""){
+            G.players[ctx.currentPlayer].hand[cardIndex].power(G,ctx);
+        }
+
         G.players[ctx.currentPlayer].playZone.push(
             G.players[ctx.currentPlayer].hand[cardIndex]
         );
         G.players[ctx.currentPlayer].hand.splice(cardIndex, 1);
+
     }
  }

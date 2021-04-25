@@ -9,7 +9,7 @@ export default class littleBunny0 extends basicCard{
             chuteira : 1,
             position: "0",
             role: "Player",
-            power: "Draw a Card"
+            powerText: "Draw a Card"
         })
     }
 

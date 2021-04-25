@@ -11,7 +11,7 @@ export default class BasicCard {
         this.chuteira = data.chuteira || 0;
         this.position = data.position || 0;
         this.role = data.role;
-        this.power = data.power;
+        this.power = data.power || '';
         this.powerText = data.powerText
     }    
 }

@@ -9,7 +9,6 @@ export default class eights1 extends basicCard{
             coin: 1,
             position: "1",
             role: "Player",
-            power:""
         })
     }
 

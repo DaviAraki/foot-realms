@@ -8,7 +8,6 @@ export default class playerKid0 extends basicCard{
             chuteira : 2,
             position: "0",
             role: "Player",
-            power:""
         })
     }
 

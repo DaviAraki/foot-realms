@@ -9,7 +9,7 @@ export default class jacks0 extends basicCard{
             cost: 0,
             position: "0",
             role: "Staff",
-            power: "Draw a Card"
+            powerText: "Draw a Card"
         })
     }
 

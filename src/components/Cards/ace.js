@@ -8,7 +8,10 @@ export default class ace extends basicCard{
             coin: 5,
             cost: 8,
             chuteira : 5,
-            position: '0'
+            position: '0',
+            power(G,ctx){
+                G.players[ctx.currentPlayer].goals = G.players[ctx.currentPlayer].goals + 1
+            }
         })
     }
 
@@ -20,3 +23,4 @@ export default class ace extends basicCard{
         return cards;
     }
 }
+

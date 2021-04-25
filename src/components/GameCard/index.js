@@ -45,7 +45,7 @@ export default class GameCard extends React.Component {
         </div>
         <div className="power">
           <label>Power:</label>
-          {this.props.card.power}
+          {this.props.card.powerText}
         </div>
         {discardAction}
       </div>

@@ -1,3 +1,4 @@
+import ace from "../components/Cards/ace";
 import playerKid0 from "../components/Cards/playerKid0";
 import playerKid1 from "../components/Cards/playerKid1";
 import playerKid2 from "../components/Cards/playerKid2";
@@ -34,7 +35,7 @@ const game = {
             id: generateUniqueId(),
             name: "PLA",
             hand: [],
-            deck: [].concat(playerKid0.create(2), playerKid1.create(2), playerKid2.create(2), playerKid3.create(2), smallCaterpillar0.create(2), smallCaterpillar1.create(2), smallCaterpillar2.create(2), smallCaterpillar3.create(2)),
+            deck: [].concat(ace.create(2), playerKid0.create(2), playerKid1.create(2), playerKid2.create(2), playerKid3.create(2), smallCaterpillar0.create(2), smallCaterpillar1.create(2), smallCaterpillar2.create(2), smallCaterpillar3.create(2)),
             playZone: [],
             discardZone: [],
             money: 0,
