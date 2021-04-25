@@ -1,6 +1,7 @@
 import addQuarterGoals from "../actions/addQuarterGoals";
 import cleanUp from "../actions/cleanUp";
 import dealPowerToDummies from "../actions/dealPowerToDummies";
+import setGoalsDiference from "../actions/setGoalsDiference";
 import setRoundWinners from "../actions/setRoundWinners";
 
 export default function pass(G, ctx) {
@@ -9,6 +10,7 @@ export default function pass(G, ctx) {
       console.log(ctx.turn % 4)
       setRoundWinners(G,ctx)   
       dealPowerToDummies(G, ctx);
+      setGoalsDiference(G,ctx)
     }
     cleanUp(G, ctx);
     ctx.events.endPhase();

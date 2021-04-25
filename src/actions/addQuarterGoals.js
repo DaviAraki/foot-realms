@@ -9,12 +9,14 @@ export default function addQuarterGoals(G, ctx) {
             if (teams[match.a.id].strength >= teams[match.b.id].strength) {
                 match.a.goals = match.a.goals + 1
                 teams[match.a.id].goals = teams[match.a.id].goals +1
+                teams[match.b.id].goalsAgainst = teams[match.b.id].goalsAgainst +1
             }
         }
         else {
             if (teams[match.a.id].strength <= teams[match.b.id].strength) {
                 match.b.goals = match.b.goals + 1
                 teams[match.b.id].goals = teams[match.b.id].goals +1
+                teams[match.a.id].goalsAgainst = teams[match.a.id].goalsAgainst +1
         }
         };
     }

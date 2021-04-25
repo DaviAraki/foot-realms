@@ -41,6 +41,7 @@ const game = {
             strength: 0,
             points: 0,
             goals: 0,
+            goalsAgainst: 0,
             goalsDiference: 0,
             positions: [false, false, false, false]
         },
@@ -52,6 +53,7 @@ const game = {
                 strength: 0,
                 points: 0,
                 goals: 0,
+                goalsAgainst: 0,
                 goalsDiference: 0,
             },
             {
@@ -59,6 +61,7 @@ const game = {
                 strength: 0,
                 points: 0,
                 goals: 0,
+                goalsAgainst: 0,
                 goalsDiference: 0,
             },
             {
@@ -66,6 +69,7 @@ const game = {
                 strength: 0,
                 points: 0,
                 goals: 0,
+                goalsAgainst: 0,
                 goalsDiference: 0,
             },
             {
@@ -73,6 +77,7 @@ const game = {
                 strength: 0,
                 points: 0,
                 goals: 0,
+                goalsAgainst: 0,
                 goalsDiference: 0,
             },
             {
@@ -80,6 +85,7 @@ const game = {
                 strength: 0,
                 points: 0,
                 goals: 0,
+                goalsAgainst: 0,
                 goalsDiference: 0,
             },
             {
@@ -87,6 +93,7 @@ const game = {
                 strength: 0,
                 points: 0,
                 goals: 0,
+                goalsAgainst: 0,
                 goalsDiference: 0,
             },
             {
@@ -94,6 +101,7 @@ const game = {
                 strength: 0,
                 points: 0,
                 goals: 0,
+                goalsAgainst: 0,
                 goalsDiference: 0,
             },
         ],
