@@ -10,6 +10,8 @@ export default class BasicCard {
         this.cost = data.cost || 0;
         this.chuteira = data.chuteira || 0;
         this.position = data.position || 0;
-        this.role = data.role
+        this.role = data.role;
+        this.power = data.power;
+        this.powerText = data.powerText
     }    
 }

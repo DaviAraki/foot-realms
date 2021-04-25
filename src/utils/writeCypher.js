@@ -14,6 +14,6 @@ function writeCypher() {
         "(`C2` : Card { Name: 'manager2' })," +
         "(`C3` : Card { Name: 'commonManager' })," +
         "(`C4` : Card { Name: 'commonFoward' })," +
-        "(`C5` : Card { Name: 'commonCaptain' })," +
+        "(`C5` : Card { Name: 'playerKid' })," +
         "(`C6` : Card { Name: 'bigManager' });"
 }

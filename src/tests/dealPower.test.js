@@ -1,4 +1,4 @@
-import { dealPowerToDummies } from "../actions/gameActions"
+import dealPowerToDummies  from "../actions/dealPowerToDummies"
 
 it("In the beggining of a turn the dummies get stronger", () => {
     const G = {
@@ -11,7 +11,7 @@ it("In the beggining of a turn the dummies get stronger", () => {
             ],
         }
     };
-    dealPowerToDummies(G);
+    dealPowerToDummies(G,{turn: 2});
     console.log(G.board.dummies[0].strength)
     expect(G.board.dummies[0].strength).not.toEqual(0);
     expect(G.board.dummies[0].strength).not.toEqual(4)

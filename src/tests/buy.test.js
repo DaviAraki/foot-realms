@@ -1,11 +1,11 @@
-import commonCaptain0 from "../components/Cards/commonCaptain0";
+import playerKid0 from "../components/Cards/playerKid0";
 import { buyCard } from "../moves/moves";
 
 it("When i buy a card, the card goes to my playzone and i spent money equals the bought card cost", () => {
     const mockId = "abcdef";
-    const f1 = new commonCaptain0();
+    const f1 = new playerKid0();
     f1.id = mockId;
-    const f2 = new commonCaptain0();
+    const f2 = new playerKid0();
     f2.id = mockId;
     const G = {
         players: [

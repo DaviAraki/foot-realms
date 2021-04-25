@@ -1,8 +1,8 @@
 import bigManager from "../components/Cards/bigManager";
-import commonCaptain0 from "../components/Cards/commonCaptain0";
-import commonCaptain1 from "../components/Cards/commonCaptain1";
-import commonCaptain2 from "../components/Cards/commonCaptain2";
-import commonCaptain3 from "../components/Cards/commonCaptain3";
+import playerKid0 from "../components/Cards/playerKid0";
+import playerKid1 from "../components/Cards/playerKid1";
+import playerKid2 from "../components/Cards/playerKid2";
+import playerKid3 from "../components/Cards/playerKid3";
 import commonManager0 from "../components/Cards/commonManager0";
 import commonManager1 from "../components/Cards/commonManager1";
 import commonManager2 from "../components/Cards/commonManager2";
@@ -25,7 +25,9 @@ import starCaptain2 from "../components/Cards/starCaptain2";
 import starCaptain3 from "../components/Cards/starCaptain3";
 import generateUniqueId from "../utils/generateUniqueId";
 import generateSchedule from "./generateSchedule";
-import { dealPowerToDummies, shuffle, shuffleOffer, updateStrenghtSchedule } from "../actions/gameActions";
+import shuffleOffer from "../actions/shuffleOffer";
+import dealPowerToDummies from "../actions/dealPowerToDummies";
+import updateStrenghtSchedule from "../actions/updateStrengthSchedule";
 
 const game = {
     players: [
@@ -33,7 +35,7 @@ const game = {
             id: generateUniqueId(),
             name: "PLA",
             hand: [],
-            deck: [].concat(commonCaptain0.create(2), commonCaptain1.create(2), commonCaptain2.create(2), commonCaptain3.create(2), commonManager0.create(2), commonManager1.create(2), commonManager2.create(2), commonManager3.create(2)),
+            deck: [].concat(playerKid0.create(2), playerKid1.create(2), playerKid2.create(2), playerKid3.create(2), commonManager0.create(2), commonManager1.create(2), commonManager2.create(2), commonManager3.create(2)),
             playZone: [],
             discardZone: [],
             money: 0,
@@ -96,10 +98,10 @@ const game = {
             starManager1.create(1),
             starManager2.create(1),
             starManager3.create(1),
-            commonCaptain0.create(3),
-            commonCaptain1.create(3),
-            commonCaptain2.create(3),
-            commonCaptain3.create(3),
+            playerKid0.create(3),
+            playerKid1.create(3),
+            playerKid2.create(3),
+            playerKid3.create(3),
             goodCaptain0.create(2),
             goodCaptain1.create(2),
             goodCaptain2.create(2),

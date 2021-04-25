@@ -1,6 +1,6 @@
 import basicCard from "./basicCard";
 
-export default class commonCaptain extends basicCard {
+export default class playerKid extends basicCard {
     constructor() {
         super({
             name: "starCaptain3",
@@ -15,7 +15,7 @@ export default class commonCaptain extends basicCard {
     static create(qty) {
         let cards = [];
         for (let i = 0; i < qty; i++) {
-            cards.push(new commonCaptain());
+            cards.push(new playerKid());
         }
         return cards;
     }

@@ -1,10 +1,10 @@
-import commonCaptain0 from "../components/Cards/commonCaptain0";
-import { draw } from "../actions/gameActions";
+import playerKid0 from "../components/Cards/playerKid0";
+import  draw  from "../actions/draw";
 import FootRealms from "../Game";
 
 
 it("When i draw, the top card of my deck goes to my hand", () => {
-  const f = new commonCaptain0();
+  const f = new playerKid0();
   const G = {
     players: [
       {
@@ -25,7 +25,7 @@ it("When i draw, the top card of my deck goes to my hand", () => {
   expect(G.players[0].hand[0]).toBe(f);
 });
 it("When i draw, if my deck is empty, the discardZone is shuffled into the deck", () => {
-  const f = new commonCaptain0();
+  const f = new playerKid0();
   const G = {
     players: [
       {

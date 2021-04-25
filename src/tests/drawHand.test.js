@@ -1,5 +1,6 @@
-import commonCaptain0 from "../components/Cards/commonCaptain0";
-import { draw, drawHand } from "../actions/gameActions";
+import playerKid0 from "../components/Cards/playerKid0";
+import  draw  from "../actions/draw";
+import drawHand from '../actions/drawHand'
 
 it("When the turn begins i draw until i have 5 cards", () => {
     const G = {
@@ -7,7 +8,7 @@ it("When the turn begins i draw until i have 5 cards", () => {
             {
                 name: "Player A",
                 hand: [],
-                deck: [new commonCaptain0(), new commonCaptain0(), new commonCaptain0(), new commonCaptain0(), new commonCaptain0()],
+                deck: [new playerKid0(), new playerKid0(), new playerKid0(), new playerKid0(), new playerKid0()],
                 admZone: [],
                 playZone: [],
                 discardZone: [],
@@ -27,9 +28,9 @@ it("When the turn begins i draw until i have 5 cards, if my deck run out of card
             {
                 name: "Player A",
                 hand: [],
-                deck: [new commonCaptain0(), new commonCaptain0(), new commonCaptain0()],
+                deck: [new playerKid0(), new playerKid0(), new playerKid0()],
                 admZone: [],
-                discardZone: [new commonCaptain0(), new commonCaptain0()],
+                discardZone: [new playerKid0(), new playerKid0()],
                 playZone: [],
                 money: 1,
                 score: 0,
@@ -48,9 +49,9 @@ it("When the turn begins i draw until i have 5 cards, if my deck run out of card
             {
                 name: "Player A",
                 hand: [],
-                deck: [new commonCaptain0()],
+                deck: [new playerKid0()],
                 admZone: [],
-                discardZone: [new commonCaptain0(), new commonCaptain0()],
+                discardZone: [new playerKid0(), new playerKid0()],
                 playZone: [],
                 money: 1,
                 score: 0,

@@ -1,4 +1,7 @@
-import { addQuarterGoals, cleanUp, dealPowerToDummies, setRoundWinners } from "../actions/gameActions";
+import addQuarterGoals from "../actions/addQuarterGoals";
+import cleanUp from "../actions/cleanUp";
+import dealPowerToDummies from "../actions/dealPowerToDummies";
+import setRoundWinners from "../actions/setRoundWinners";
 
 export default function pass(G, ctx) {
     addQuarterGoals(G, ctx);

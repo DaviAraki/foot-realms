@@ -1,9 +1,12 @@
 import setup from './utils/setup'
-import { shuffle, cleanUp, drawHand, giveOffer, dealPowerToDummies, addQuarterGoals, updateStrenghtSchedule, setRoundWinners } from './actions/gameActions'
 import buyCard from './moves/buyCard'
 import pass from './moves/pass'
 import playCard from './moves/playCard'
-import generateSchedule from './utils/generateSchedule'
+import shuffle from './actions/shuffle';
+import drawHand from './actions/drawHand';
+import giveOffer from './actions/giveOffer'
+import updateStrenghtSchedule from './actions/updateStrengthSchedule';
+
 
 const FootRealms = {
   name: "FootRealms",
