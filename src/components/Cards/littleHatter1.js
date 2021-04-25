@@ -9,7 +9,7 @@ export default class littleHatter1 extends basicCard{
             chuteira : 0,
             position: "1",
             role: "Player",
-            power:""
+            power: "Draw 2 Cards"
         })
     }
 

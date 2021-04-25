@@ -8,7 +8,8 @@ export default class jacks0 extends basicCard{
             coin: 1,
             cost: 0,
             position: "0",
-            role: "Staff"
+            role: "Staff",
+            power: "Draw a Card"
         })
     }
 
