@@ -40,6 +40,8 @@ const game = {
             money: 0,
             strength: 0,
             points: 0,
+            goals: 0,
+            goalsDiference: 0,
             positions: [false, false, false, false]
         },
     ],
@@ -48,37 +50,51 @@ const game = {
             {
                 name: "BLA",
                 strength: 0,
-                points: 0
+                points: 0,
+                goals: 0,
+                goalsDiference: 0,
             },
             {
                 name: "BLU",
                 strength: 0,
-                points: 0
+                points: 0,
+                goals: 0,
+                goalsDiference: 0,
             },
             {
                 name: "ZAS",
                 strength: 0,
-                points: 0
+                points: 0,
+                goals: 0,
+                goalsDiference: 0,
             },
             {
                 name: "DOR",
                 strength: 0,
-                points: 0
+                points: 0,
+                goals: 0,
+                goalsDiference: 0,
             },
             {
                 name: "FRU",
                 strength: 0,
-                points: 0
+                points: 0,
+                goals: 0,
+                goalsDiference: 0,
             },
             {
                 name: "CAN",
                 strength: 0,
-                points: 0
+                points: 0,
+                goals: 0,
+                goalsDiference: 0,
             },
             {
                 name: "BAT",
                 strength: 0,
-                points: 0
+                points: 0,
+                goals: 0,
+                goalsDiference: 0,
             },
         ],
         schedule: [],
