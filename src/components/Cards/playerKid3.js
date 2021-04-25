@@ -5,7 +5,7 @@ export default class playerKid3 extends basicCard{
         super({
             name: "playerKid3",
             cost: 0,
-            chuteira : 1,
+            chuteira : 2,
             position: "3",
             role: "Player"
 

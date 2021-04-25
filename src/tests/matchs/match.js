@@ -6,7 +6,7 @@ import { InitializeGame, CreateGameReducer } from 'boardgame.io/dist/cjs/interna
 import playerKid0 from "../../components/Cards/playerKid0";
 import bigManager from "../../components/Cards/bigManager";
 import playerKid1 from "../../components/Cards/playerKid1"
-import commonManager0 from "../../components/Cards/commonManager0"
+import smallCaterpillar0 from "../../components/Cards/smallCaterpillar0"
 import manager2 from "../../components/Cards/manager2"
 import superStar from "../../components/Cards/superStar"
 import GameBoard from "../../components/GameBoard";
@@ -22,7 +22,7 @@ const FootRealms = ProcessGameConfig({
         id: generateUniqueId(),
         name: "Player A",
         hand: [],
-        deck: [].concat(playerKid0.create(7), commonManager0.create(3)),
+        deck: [].concat(playerKid0.create(7), smallCaterpillar0.create(3)),
         admZone: [],
         playZone: [],
         discardZone: [],
@@ -33,7 +33,7 @@ const FootRealms = ProcessGameConfig({
     ],
     offer: {
       offerZone: [],
-      deck: [].concat(playerKid0.create(5), bigManager.create(5), commonManager0.create(5), playerKid1.create(5), manager2.create(5), superStar.create(5)),
+      deck: [].concat(playerKid0.create(5), bigManager.create(5), smallCaterpillar0.create(5), playerKid1.create(5), manager2.create(5), superStar.create(5)),
       turn: 0,
       desafio: 0,
     },

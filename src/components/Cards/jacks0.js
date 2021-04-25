@@ -1,12 +1,12 @@
 import basicCard from "./basicCard";
 
-export default class starManager1 extends basicCard {
-    constructor() {
+export default class jacks1 extends basicCard{
+    constructor(){
         super({
-            name: "starManager1",
-            cards: 2,
-            coin: 5,
-            cost: 7,
+            name: "jacks1",
+            cards: 1,
+            coin: 1,
+            cost: 0,
             position: "1",
             role: "Staff"
         })
@@ -15,7 +15,7 @@ export default class starManager1 extends basicCard {
     static create(qty) {
         let cards = [];
         for (let i = 0; i < qty; i++) {
-            cards.push(new starManager1());
+            cards.push(new jacks1());
         }
         return cards;
     }

@@ -3,10 +3,10 @@ import commonCaptain0 from "./components/Cards/commonCaptain0";
 import commonCaptain1 from "./components/Cards/commonCaptain1";
 import commonCaptain2 from "./components/Cards/commonCaptain2";
 import commonCaptain3 from "./components/Cards/commonCaptain3";
-import commonManager0 from "./components/Cards/commonManager0";
-import commonManager1 from "./components/Cards/commonManager1";
-import commonManager2 from "./components/Cards/commonManager2";
-import commonManager3 from "./components/Cards/commonManager3";
+import smallCaterpillar0 from "./components/Cards/smallCaterpillar0";
+import smallCaterpillar1 from "./components/Cards/smallCaterpillar1";
+import smallCaterpillar2 from "./components/Cards/smallCaterpillar2";
+import smallCaterpillar3 from "./components/Cards/smallCaterpillar3";
 import goodManager0 from "./components/Cards/goodManager0";
 import goodManager1 from "./components/Cards/goodManager1";
 import goodManager2 from "./components/Cards/goodManager2";
@@ -36,7 +36,7 @@ const FootRealms = {
         id: generateUniqueId(),
         name: "Player A",
         hand: [],
-        deck: [].concat(commonCaptain0.create(2), commonCaptain1.create(2), commonCaptain2.create(2), commonCaptain3.create(2), commonManager0.create(2), commonManager1.create(2), commonManager2.create(2), commonManager3.create(2)),
+        deck: [].concat(commonCaptain0.create(2), commonCaptain1.create(2), commonCaptain2.create(2), commonCaptain3.create(2), smallCaterpillar0.create(2), smallCaterpillar1.create(2), smallCaterpillar2.create(2), smallCaterpillar3.create(2)),
         playZone: [],
         discardZone: [],
         money: 0,
@@ -48,7 +48,7 @@ const FootRealms = {
         id: generateUniqueId(),
         name: "Player B",
         hand: [],
-        deck: [].concat(commonCaptain0.create(2), commonCaptain1.create(2), commonCaptain2.create(2), commonCaptain3.create(2), commonManager0.create(2), commonManager1.create(2), commonManager2.create(2), commonManager3.create(2)),
+        deck: [].concat(commonCaptain0.create(2), commonCaptain1.create(2), commonCaptain2.create(2), commonCaptain3.create(2), smallCaterpillar0.create(2), smallCaterpillar1.create(2), smallCaterpillar2.create(2), smallCaterpillar3.create(2)),
         playZone: [],
         discardZone: [],
         money: 0,
@@ -61,10 +61,10 @@ const FootRealms = {
       offerZone: [],
       deck: [].concat(
         bigManager.create(5),
-        commonManager0.create(3),
-        commonManager1.create(3),
-        commonManager2.create(3),
-        commonManager3.create(3),
+        smallCaterpillar0.create(3),
+        smallCaterpillar1.create(3),
+        smallCaterpillar2.create(3),
+        smallCaterpillar3.create(3),
         goodManager0.create(2),
         goodManager1.create(2),
         goodManager2.create(2),
@@ -171,10 +171,10 @@ function writeCypherSetup(){
     (:Turn { Number: '6' })-[:NEXT_TURN]->
     (:Turn { Number: '7' })-[:NEXT_TURN]->
     (:Turn { Number: '8' }),
-    (:Card { Name: 'commonManager0' }),
-    (:Card { Name: 'commonManager1' }),
-    (:Card { Name: 'commonManager2' }),
-    (:Card { Name: 'commonManager3' }),
+    (:Card { Name: 'smallCaterpillar0' }),
+    (:Card { Name: 'smallCaterpillar1' }),
+    (:Card { Name: 'smallCaterpillar2' }),
+    (:Card { Name: 'smallCaterpillar3' }),
     (:Card { Name: 'goodManager0' }),
     (:Card { Name: 'goodManager1' }),
     (:Card { Name: 'goodManager2' }),

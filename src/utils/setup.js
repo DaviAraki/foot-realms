@@ -1,28 +1,27 @@
-import bigManager from "../components/Cards/bigManager";
 import playerKid0 from "../components/Cards/playerKid0";
 import playerKid1 from "../components/Cards/playerKid1";
 import playerKid2 from "../components/Cards/playerKid2";
 import playerKid3 from "../components/Cards/playerKid3";
-import commonManager0 from "../components/Cards/commonManager0";
-import commonManager1 from "../components/Cards/commonManager1";
-import commonManager2 from "../components/Cards/commonManager2";
-import commonManager3 from "../components/Cards/commonManager3";
-import goodManager0 from "../components/Cards/goodManager0";
-import goodManager1 from "../components/Cards/goodManager1";
-import goodManager2 from "../components/Cards/goodManager2";
-import goodManager3 from "../components/Cards/goodManager3";
-import starManager0 from "../components/Cards/starManager0";
-import starManager1 from "../components/Cards/starManager1";
-import starManager2 from "../components/Cards/starManager2";
-import starManager3 from "../components/Cards/starManager3";
-import goodCaptain0 from "../components/Cards/goodCaptain0";
-import goodCaptain1 from "../components/Cards/goodCaptain1";
-import goodCaptain2 from "../components/Cards/goodCaptain2";
-import goodCaptain3 from "../components/Cards/goodCaptain3";
-import starCaptain0 from "../components/Cards/starCaptain0";
-import starCaptain1 from "../components/Cards/starCaptain1";
-import starCaptain2 from "../components/Cards/starCaptain2";
-import starCaptain3 from "../components/Cards/starCaptain3";
+import smallCaterpillar0 from "../components/Cards/smallCaterpillar0";
+import smallCaterpillar1 from "../components/Cards/smallCaterpillar1";
+import smallCaterpillar2 from "../components/Cards/smallCaterpillar2";
+import smallCaterpillar3 from "../components/Cards/smallCaterpillar3";
+import eights0 from "../components/Cards/eights0";
+import eights1 from "../components/Cards/eights1";
+import eights2 from "../components/Cards/eights2";
+import eights3 from "../components/Cards/eights3";
+import jacks0 from "../components/Cards/jacks0";
+import jacks1 from "../components/Cards/jacks1";
+import jacks2 from "../components/Cards/jacks2";
+import jacks3 from "../components/Cards/jacks3";
+import littleBunny0 from "../components/Cards/littleBunny0";
+import littleBunny1 from "../components/Cards/littleBunny1";
+import littleBunny2 from "../components/Cards/littleBunny2";
+import littleBunny3 from "../components/Cards/littleBunny3";
+import littleHatter0 from "../components/Cards/littleHatter0";
+import littleHatter1 from "../components/Cards/littleHatter1";
+import littleHatter2 from "../components/Cards/littleHatter2";
+import littleHatter3 from "../components/Cards/littleHatter3";
 import generateUniqueId from "../utils/generateUniqueId";
 import generateSchedule from "./generateSchedule";
 import shuffleOffer from "../actions/shuffleOffer";
@@ -35,7 +34,7 @@ const game = {
             id: generateUniqueId(),
             name: "PLA",
             hand: [],
-            deck: [].concat(playerKid0.create(2), playerKid1.create(2), playerKid2.create(2), playerKid3.create(2), commonManager0.create(2), commonManager1.create(2), commonManager2.create(2), commonManager3.create(2)),
+            deck: [].concat(playerKid0.create(2), playerKid1.create(2), playerKid2.create(2), playerKid3.create(2), smallCaterpillar0.create(2), smallCaterpillar1.create(2), smallCaterpillar2.create(2), smallCaterpillar3.create(2)),
             playZone: [],
             discardZone: [],
             money: 0,
@@ -85,31 +84,30 @@ const game = {
         schedule: [],
         offerZone: [],
         deck: [].concat(
-            bigManager.create(5),
-            commonManager0.create(3),
-            commonManager1.create(3),
-            commonManager2.create(3),
-            commonManager3.create(3),
-            goodManager0.create(2),
-            goodManager1.create(2),
-            goodManager2.create(2),
-            goodManager3.create(2),
-            starManager0.create(1),
-            starManager1.create(1),
-            starManager2.create(1),
-            starManager3.create(1),
+            smallCaterpillar0.create(3),
+            smallCaterpillar1.create(3),
+            smallCaterpillar2.create(3),
+            smallCaterpillar3.create(3),
+            eights0.create(2),
+            eights1.create(2),
+            eights2.create(2),
+            eights3.create(2),
+            jacks0.create(2),
+            jacks1.create(2),
+            jacks2.create(2),
+            jacks3.create(2),
             playerKid0.create(3),
             playerKid1.create(3),
             playerKid2.create(3),
             playerKid3.create(3),
-            goodCaptain0.create(2),
-            goodCaptain1.create(2),
-            goodCaptain2.create(2),
-            goodCaptain3.create(2),
-            starCaptain0.create(2),
-            starCaptain1.create(2),
-            starCaptain2.create(2),
-            starCaptain3.create(2),
+            littleBunny0.create(2),
+            littleBunny1.create(2),
+            littleBunny2.create(2),
+            littleBunny3.create(2),
+            littleHatter0.create(2),
+            littleHatter1.create(2),
+            littleHatter2.create(2),
+            littleHatter3.create(2),
         ),
     },
 }

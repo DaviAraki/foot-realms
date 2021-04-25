@@ -12,7 +12,7 @@ function writeCypher() {
         "(`T8` : Turn { Number: '5' })," +
         "(`C1` : Card { Name: 'superStar' })," +
         "(`C2` : Card { Name: 'manager2' })," +
-        "(`C3` : Card { Name: 'commonManager' })," +
+        "(`C3` : Card { Name: 'smallCaterpillar' })," +
         "(`C4` : Card { Name: 'commonFoward' })," +
         "(`C5` : Card { Name: 'playerKid' })," +
         "(`C6` : Card { Name: 'bigManager' });"
