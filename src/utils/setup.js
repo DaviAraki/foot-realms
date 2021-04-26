@@ -40,6 +40,11 @@ import attacker3 from "../components/Cards/attacker3";
 import defender1 from "../components/Cards/defender1";
 import defender2 from "../components/Cards/defender2";
 import defender3 from "../components/Cards/defender3";
+import queen0 from "../components/Cards/queen0";
+import queen1 from "../components/Cards/queen1";
+import queen2 from "../components/Cards/queen2";
+import queen3 from "../components/Cards/queen3";
+import shuffle from "../actions/shuffle";
 
 const game = {
   players: [
@@ -57,7 +62,11 @@ const game = {
         smallCaterpillar2.create(1),
         smallCaterpillar3.create(1),
         defender0.create(1),
-        attacker0.create(1)
+        attacker0.create(1),
+        queen0.create(1),
+        queen1.create(1),
+        queen2.create(1),
+        queen3.create(1)
       ),
       playZone: [],
       discardZone: [],
@@ -176,4 +185,5 @@ game.board.schedule = generateSchedule(game);
 shuffleOffer(game);
 dealPowerToDummies(game, { turn: 1 });
 updateStrenghtSchedule(game, { turn: 1 });
+shuffle(game, { currentPlayer: "0" });
 export default game;

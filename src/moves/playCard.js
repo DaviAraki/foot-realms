@@ -1,28 +1,20 @@
-import  draw  from '../actions/draw'
+import draw from "../actions/draw";
 
 export default function playCard(G, ctx, cardIndex) {
-    if (cardIndex < G.players[ctx.currentPlayer].hand.length) {
-        G.players[ctx.currentPlayer].strength =
-            G.players[ctx.currentPlayer].strength +
-            G.players[ctx.currentPlayer].hand[cardIndex].chuteira;  
-        G.players[ctx.currentPlayer].money =
-            G.players[ctx.currentPlayer].money +
-            G.players[ctx.currentPlayer].hand[cardIndex].coin;
-        for (
-            var i = 0;
-            i < G.players[ctx.currentPlayer].hand[cardIndex].cards;
-            i++
-        ) {
-            draw(G, ctx);
-        }
-        if(G.players[ctx.currentPlayer].hand[cardIndex].power){
-            G.players[ctx.currentPlayer].hand[cardIndex].power(G,ctx);
-        }
+  if (cardIndex < G.players[ctx.currentPlayer].hand.length) {
+    const card = G.players[ctx.currentPlayer].hand[cardIndex];
 
-        G.players[ctx.currentPlayer].playZone.push(
-            G.players[ctx.currentPlayer].hand[cardIndex]
-        );
-        G.players[ctx.currentPlayer].hand.splice(cardIndex, 1);
+    G.players[ctx.currentPlayer].playZone.push(card);
+    G.players[ctx.currentPlayer].hand.splice(cardIndex, 1);
 
+    G.players[ctx.currentPlayer].strength += card.chuteira;
+    G.players[ctx.currentPlayer].money += card.coin;
+
+    for (var i = 0; i < card.cards; i++) {
+      draw(G, ctx);
     }
- }
+    if (card.power) {
+      card.power(G, ctx);
+    }
+  }
+}
