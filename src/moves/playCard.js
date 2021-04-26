@@ -15,7 +15,7 @@ export default function playCard(G, ctx, cardIndex) {
         ) {
             draw(G, ctx);
         }
-        if(G.players[ctx.currentPlayer].hand[cardIndex].power !== ""){
+        if(G.players[ctx.currentPlayer].hand[cardIndex].power){
             G.players[ctx.currentPlayer].hand[cardIndex].power(G,ctx);
         }
 

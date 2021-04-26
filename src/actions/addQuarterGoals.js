@@ -1,25 +1,32 @@
 export default function addQuarterGoals(G, ctx) {
-    const teams = [...G.players, ...G.board.dummies];
-    const round = Math.floor((ctx.turn - 1) / 4)
-    for (let i = 0; i < G.board.schedule[round].length; i++) {
-        let match = G.board.schedule[round][i];
-        match.a.goals = (match.a.goals === '-') ? 0 : match.a.goals;
-        match.b.goals = (match.b.goals === '-') ? 0 : match.b.goals;
-        if(ctx.turn % 2 === 0){
-            if (teams[match.a.id].strength >= teams[match.b.id].strength) {
-                teams[match.a.id].goals = teams[match.a.id].goals +1
-                teams[match.b.id].goalsAgainst = teams[match.b.id].goalsAgainst + 1
-            }
-        }
-        else {
-            if (teams[match.a.id].strength <= teams[match.b.id].strength) {
-                match.b.goals = match.b.goals + 1
-                teams[match.b.id].goals = teams[match.b.id].goals +1
-
-                teams[match.a.id].goalsAgainst = teams[match.a.id].goalsAgainst +1
-        }
-        };
-        match.a.goals = teams[match.a.id].goals
-        match.b.goals = teams[match.b.id].goals
+  const teams = [...G.players, ...G.board.dummies];
+  const round = Math.floor((ctx.turn - 1) / 4);
+  for (let i = 0; i < G.board.schedule[round].length; i++) {
+    let match = G.board.schedule[round][i];
+    match.a.goals = match.a.goals === "-" ? 0 : match.a.goals;
+    match.b.goals = match.b.goals === "-" ? 0 : match.b.goals;
+    if (ctx.turn % 2 !== 0) {
+      if (teams[match.a.id].strength >= teams[match.b.id].strength) {
+        scoreGoalteamA(teams[match.a.id], teams[match.b.id], match);
+      }
+    } else {
+      if (teams[match.a.id].strength <= teams[match.b.id].strength) {
+        scoreGoalteamB(teams[match.b.id], teams[match.a.id], match);
+      }
     }
+  }
 }
+function scoreGoalteamA(teamA, teamB, match) {
+  teamA.goals++;
+  teamB.goalsAgainst++;
+  match.a.goals = teamA.goals;
+  match.b.goals = teamB.goals;
+}
+function scoreGoalteamB(teamA, teamB, match) {
+  teamB.goals++;
+  teamA.goalsAgainst++;
+  match.a.goals = teamA.goals;
+  match.b.goals = teamB.goals;
+}
+
+export { scoreGoalteamA, scoreGoalteamB };

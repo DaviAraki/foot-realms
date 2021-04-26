@@ -28,6 +28,7 @@ import generateSchedule from "./generateSchedule";
 import shuffleOffer from "../actions/shuffleOffer";
 import dealPowerToDummies from "../actions/dealPowerToDummies";
 import updateStrenghtSchedule from "../actions/updateStrengthSchedule";
+import king from "../components/Cards/king";
 
 const game = {
     players: [
@@ -35,7 +36,7 @@ const game = {
             id: generateUniqueId(),
             name: "PLA",
             hand: [],
-            deck: [].concat(ace.create(2), playerKid0.create(2), playerKid1.create(2), playerKid2.create(2), playerKid3.create(2), smallCaterpillar0.create(2), smallCaterpillar1.create(2), smallCaterpillar2.create(2), smallCaterpillar3.create(2)),
+            deck: [].concat(ace.create(2), king.create(2), playerKid1.create(2), playerKid2.create(2), playerKid3.create(2), smallCaterpillar0.create(2), smallCaterpillar1.create(2), smallCaterpillar2.create(2), smallCaterpillar3.create(2)),
             playZone: [],
             discardZone: [],
             money: 0,
