@@ -5,17 +5,15 @@ export default function addQuarterGoals(G, ctx) {
     let match = G.board.schedule[round][i];
     match.a.goals = match.a.goals === "-" ? 0 : match.a.goals;
     match.b.goals = match.b.goals === "-" ? 0 : match.b.goals;
-    if (ctx.turn % 2 !== 0) {
-      if (teams[match.a.id].strength >= teams[match.b.id].strength) {
-        scoreGoalteamA(teams[match.a.id], teams[match.b.id], match);
-      }
-    } else {
-      if (teams[match.a.id].strength <= teams[match.b.id].strength) {
-        scoreGoalteamB(teams[match.b.id], teams[match.a.id], match);
-      }
+    if (teams[match.a.id].strength > teams[match.b.id].strength) {
+      scoreGoalteamA(teams[match.a.id], teams[match.b.id], match);
+    }
+    if (teams[match.a.id].strength < teams[match.b.id].strength) {
+      scoreGoalteamB(teams[match.a.id], teams[match.b.id], match);
     }
   }
 }
+
 function scoreGoalteamA(teamA, teamB, match) {
   teamA.goals++;
   teamB.goalsAgainst++;

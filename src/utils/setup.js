@@ -1,4 +1,4 @@
-import ace from "../components/Cards/ace";
+import ace0 from "../components/Cards/ace0";
 import playerKid0 from "../components/Cards/playerKid0";
 import playerKid1 from "../components/Cards/playerKid1";
 import playerKid2 from "../components/Cards/playerKid2";
@@ -28,7 +28,9 @@ import generateSchedule from "./generateSchedule";
 import shuffleOffer from "../actions/shuffleOffer";
 import dealPowerToDummies from "../actions/dealPowerToDummies";
 import updateStrenghtSchedule from "../actions/updateStrengthSchedule";
-import king from "../components/Cards/king";
+import joker0 from "../components/Cards/joker0";
+import defender0 from "../components/Cards/defender0";
+import attacker0 from "../components/Cards/attacker0";
 
 const game = {
   players: [
@@ -37,15 +39,17 @@ const game = {
       name: "PLA",
       hand: [],
       deck: [].concat(
-        ace.create(2),
-        king.create(2),
-        playerKid1.create(2),
-        playerKid2.create(2),
-        playerKid3.create(2),
-        smallCaterpillar0.create(2),
-        smallCaterpillar1.create(2),
-        smallCaterpillar2.create(2),
-        smallCaterpillar3.create(2)
+        ace0.create(2),
+        joker0.create(2),
+        playerKid1.create(1),
+        playerKid2.create(1),
+        playerKid3.create(1),
+        smallCaterpillar0.create(1),
+        smallCaterpillar1.create(1),
+        smallCaterpillar2.create(1),
+        smallCaterpillar3.create(1),
+        defender0.create(1),
+        attacker0.create(1)
       ),
       playZone: [],
       discardZone: [],

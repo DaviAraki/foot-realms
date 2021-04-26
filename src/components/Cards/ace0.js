@@ -1,26 +1,26 @@
-import scoreOpponentGoal from "../../actions/scoreOpponentGoal";
+import scorePlayerGoal from "../../actions/scorePlayerGoal";
 import basicCard from "./basicCard";
 
-export default class king extends basicCard {
+export default class ace0 extends basicCard {
   constructor() {
     super({
-      name: "king",
+      name: "Ace0",
       cards: 0,
       coin: 5,
       cost: 8,
       chuteira: 5,
       position: "0",
-      onDraw(G, ctx) {
-        scoreOpponentGoal(G, ctx);
+      power(G, ctx) {
+        scorePlayerGoal(G, ctx);
       },
-      powerText: "When Draw, score a goal",
+      powerText: "Score a Goal",
     });
   }
 
   static create(qty) {
     let cards = [];
     for (let i = 0; i < qty; i++) {
-      cards.push(new king());
+      cards.push(new ace0());
     }
     return cards;
   }
