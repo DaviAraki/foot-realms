@@ -1,4 +1,3 @@
-import { scoreGoalteamA } from "../../actions/addQuarterGoals";
 import scorePlayerGoal from "../../actions/scorePlayerGoal";
 import basicCard from "./basicCard";
 

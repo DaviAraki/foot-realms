@@ -1,7 +1,7 @@
 import React from "react";
 import GameCard from "../GameCard";
 import GamePlayerBoard from "../GamePlayerBoard";
-import GameSchedule from '../GameSchedule'
+import GameSchedule from "../GameSchedule";
 import ScoreTrack from "../ScoreTrack";
 import "./styles.css";
 
@@ -49,7 +49,7 @@ export default function GameBoard({ G, ctx, moves, events }) {
   ));
 
   // let schedule = G.players.map((player, k) =>(
-  //   <GameSchedule 
+  //   <GameSchedule
   //     player={player}
   //     turn={}
   // )
@@ -63,7 +63,8 @@ export default function GameBoard({ G, ctx, moves, events }) {
       <GameSchedule G={G} />
       <div className="card-offer">
         <h1>
-          Phase:{ctx.phase} Round:{~~((ctx.turn - 1) / 4) + 1} Quarter:{(ctx.turn - 1) % 4 + 1}
+          Phase:{ctx.phase} Round:{~~((ctx.turn - 1) / 4) + 1} Quarter:
+          {((ctx.turn - 1) % 4) + 1} Is Attacking: {G.board.attacking}
         </h1>
         <h1>Offer:</h1>
         <h1>Challenge: {G.board.desafio}</h1>
@@ -74,10 +75,12 @@ export default function GameBoard({ G, ctx, moves, events }) {
         <div className="player-areas">{players}</div>
       </div>
       <div className="schedule">
-        <GameSchedule player={G.players[0]} turn={ctx.turn} bots={G.board.dummies} />
-
+        <GameSchedule
+          player={G.players[0]}
+          turn={ctx.turn}
+          bots={G.board.dummies}
+        />
       </div>
-
     </div>
   );
 }
