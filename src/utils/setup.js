@@ -31,6 +31,15 @@ import updateStrenghtSchedule from "../actions/updateStrengthSchedule";
 import joker0 from "../components/Cards/joker0";
 import defender0 from "../components/Cards/defender0";
 import attacker0 from "../components/Cards/attacker0";
+import ace1 from "../components/Cards/ace1";
+import ace2 from "../components/Cards/ace2";
+import ace3 from "../components/Cards/ace3";
+import attacker1 from "../components/Cards/attacker1";
+import attacker2 from "../components/Cards/attacker2";
+import attacker3 from "../components/Cards/attacker3";
+import defender1 from "../components/Cards/defender1";
+import defender2 from "../components/Cards/defender2";
+import defender3 from "../components/Cards/defender3";
 
 const game = {
   players: [
@@ -39,8 +48,7 @@ const game = {
       name: "PLA",
       hand: [],
       deck: [].concat(
-        ace0.create(2),
-        joker0.create(2),
+        joker0.create(1),
         playerKid1.create(1),
         playerKid2.create(1),
         playerKid3.create(1),
@@ -148,7 +156,19 @@ const game = {
       littleHatter0.create(2),
       littleHatter1.create(2),
       littleHatter2.create(2),
-      littleHatter3.create(2)
+      littleHatter3.create(2),
+      ace0.create(2),
+      ace1.create(2),
+      ace2.create(2),
+      ace3.create(2),
+      attacker0.create(2),
+      attacker1.create(2),
+      attacker2.create(2),
+      attacker3.create(2),
+      defender0.create(2),
+      defender1.create(2),
+      defender2.create(2),
+      defender3.create(2)
     ),
   },
 };

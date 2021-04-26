@@ -8,7 +8,7 @@
   border-radius: 3mm;
   position: relative;
   margin: 0.5mm;
-  color: hsla(200, 100%, 100%, 100%)
+  color: hsla(200, 100%, 100%, 100%);
 }
 
 .game-card > div {
@@ -51,7 +51,6 @@
   font-size: 6mm;
   height: 10mm;
   width: 40%;
-  
 }
 .game-card .boots {
   left: 1.5mm;
@@ -76,4 +75,17 @@
   right: 1.5mm;
   bottom: 1.5mm;
   background-color: red;
+}
+
+.position0 {
+  background-color: blue;
+}
+.position1 {
+  background-color: red;
+}
+.position2 {
+  background-color: yellow;
+}
+.position3 {
+  background-color: black;
 }

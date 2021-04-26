@@ -9,21 +9,33 @@ export default class GameCard extends React.Component {
     if (this.props.onClickCallPlayer) {
       this.props.onClickCallPlayer();
     }
-    if(this.props.onClickPlayCard){
-      this.props.onClickPlayCard()
+    if (this.props.onClickPlayCard) {
+      this.props.onClickPlayCard();
     }
   }
-  clickDiscardCard () {
-    console.log('DISCARD');
-    
-    if(this.props.onClickDiscardCard){
+  clickDiscardCard() {
+    console.log("DISCARD");
+
+    if (this.props.onClickDiscardCard) {
       this.props.onClickDiscardCard();
     }
   }
+
   render() {
-    const discardAction = this.props.onClickDiscardCard?(<div className="discard" onClick={this.clickDiscardCard.bind(this)}>discard</div>):'';
+    const position = "position" + this.props.card.position;
+
+    const discardAction = this.props.onClickDiscardCard ? (
+      <div className="discard" onClick={this.clickDiscardCard.bind(this)}>
+        discard
+      </div>
+    ) : (
+      ""
+    );
     return (
-      <div className="game-card" onClick={this.clickCardHandler.bind(this)}>
+      <div
+        className={`game-card  ${position}`}
+        onClick={this.clickCardHandler.bind(this)}
+      >
         <div className="name">{this.props.card.name}</div>
         <div className="coin">
           <span role="img" aria-label="Money">
