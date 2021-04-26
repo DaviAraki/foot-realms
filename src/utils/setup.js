@@ -54,19 +54,14 @@ const game = {
       hand: [],
       deck: [].concat(
         joker0.create(1),
+        playerKid0.create(1),
         playerKid1.create(1),
         playerKid2.create(1),
         playerKid3.create(1),
         smallCaterpillar0.create(1),
         smallCaterpillar1.create(1),
         smallCaterpillar2.create(1),
-        smallCaterpillar3.create(1),
-        defender0.create(1),
-        attacker0.create(1),
-        queen0.create(1),
-        queen1.create(1),
-        queen2.create(1),
-        queen3.create(1)
+        smallCaterpillar3.create(1)
       ),
       playZone: [],
       discardZone: [],
