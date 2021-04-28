@@ -2,7 +2,6 @@ import setup from "./utils/setup";
 import buyCard from "./moves/buyCard";
 import pass from "./moves/pass";
 import playCard from "./moves/playCard";
-import shuffle from "./actions/shuffle";
 import drawHand from "./actions/drawHand";
 import giveOffer from "./actions/giveOffer";
 import updateStrenghtSchedule from "./actions/updateStrengthSchedule";
@@ -24,7 +23,7 @@ const FootRealms = {
       ];
       teams.sort((b, a) => a.points - b.points);
       console.log(teams);
-      return { final: teams };
+      return { winner: teams[0], final: teams };
     }
   },
 
@@ -38,6 +37,22 @@ const FootRealms = {
       },
       start: true,
       next: "playPhase",
+    },
+  },
+
+  ai: {
+    enumerate: (G, ctx) => {
+      let moves = [];
+      moves.push({ move: "pass", args: null });
+      for (let i = 0; i < G.board.offerZone.length; i++) {
+        if (G.players[ctx.currentPlayer].money >= G.board.offerZone[i].cost) {
+          moves.push({ move: "buyCard", args: [i] });
+        }
+      }
+      for (let i = 0; i < G.players[ctx.currentPlayer].hand.length; i++) {
+        moves.push({ move: "playCard", args: [i] });
+      }
+      return moves;
     },
   },
 };
