@@ -72,6 +72,7 @@ const game = {
       goalsAgainst: 0,
       goalsDiference: 0,
       positions: [false, false, false, false],
+      strengthPerTurn: [],
     },
   ],
   board: {
@@ -172,7 +173,11 @@ const game = {
       defender0.create(2),
       defender1.create(2),
       defender2.create(2),
-      defender3.create(2)
+      defender3.create(2),
+      queen0.create(2),
+      queen1.create(2),
+      queen2.create(2),
+      queen3.create(2)
     ),
   },
 };
