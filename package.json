@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.1.2",
     "boardgame.io": "^0.42.1",
     "browserify-fs": "^1.0.0",
+    "d3": "^6.7.0",
     "esm": "^3.2.25",
     "express": "^4.17.1",
     "neo4j-driver": "^4.2.2",

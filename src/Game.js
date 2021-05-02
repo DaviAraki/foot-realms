@@ -5,6 +5,7 @@ import playCard from "./moves/playCard";
 import drawHand from "./actions/drawHand";
 import giveOffer from "./actions/giveOffer";
 import updateStrenghtSchedule from "./actions/updateStrengthSchedule";
+import regularBot from "./AI/Bots/regularBot";
 
 const FootRealms = {
   name: "FootRealms",
@@ -41,19 +42,7 @@ const FootRealms = {
   },
 
   ai: {
-    enumerate: (G, ctx) => {
-      let moves = [];
-      moves.push({ move: "pass", args: null });
-      for (let i = 0; i < G.board.offerZone.length; i++) {
-        if (G.players[ctx.currentPlayer].money >= G.board.offerZone[i].cost) {
-          moves.push({ move: "buyCard", args: [i] });
-        }
-      }
-      for (let i = 0; i < G.players[ctx.currentPlayer].hand.length; i++) {
-        moves.push({ move: "playCard", args: [i] });
-      }
-      return moves;
-    },
+    enumerate: regularBot,
   },
 };
 
