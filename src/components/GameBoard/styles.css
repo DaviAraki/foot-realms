@@ -21,20 +21,24 @@
   border-radius: 3mm;
   margin-bottom: 3mm;
 }
-.card-offer .card-offer-cards{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+.card-offer .card-offer-cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .card-offer h1,
 .player-boards h1 {
-    color: hsla(120, 100%, 10%, 100%);
-    margin: 0mm 0mm 3mm 0mm;
-    
+  color: hsla(120, 100%, 10%, 100%);
+  margin: 0mm 0mm 3mm 0mm;
 }
 
-
-.teamPositions{
+.teamPositions {
   font-size: 7mm;
+}
+
+#chart {
+  background: #fff;
+  width: 90%;
+  margin: 1em auto;
 }

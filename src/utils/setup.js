@@ -72,7 +72,8 @@ const game = {
       goalsAgainst: 0,
       goalsDiference: 0,
       positions: [false, false, false, false],
-      strengthPerTurn: [],
+      strengthPerTurn: [{ turn: 0, strength: 0 }],
+      strengthPerTurn2: [],
     },
   ],
   board: {

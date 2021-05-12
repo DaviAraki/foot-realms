@@ -3,7 +3,11 @@ import GameCard from "../GameCard";
 import GamePlayerBoard from "../GamePlayerBoard";
 import GameSchedule from "../GameSchedule";
 import ScoreTrack from "../ScoreTrack";
+import BarChart from "../Charts/BarChart";
 import "./styles.css";
+import IgorChart from "../Charts/IgorChart";
+import ScatterPlot, { Chart } from "../Charts/TrendlineChart";
+import "c3/c3.css";
 
 export default function GameBoard({ G, ctx, moves, events }) {
   function buyCardHandler(k) {
@@ -25,6 +29,7 @@ export default function GameBoard({ G, ctx, moves, events }) {
   function clickPassPhase() {
     console.log(`passPhase`);
     moves.pass();
+    console.log(G.players[ctx.currentPlayer].strengthPerTurn);
   }
 
   let cards = G.board.offerZone.map((card, k) => (
@@ -47,7 +52,6 @@ export default function GameBoard({ G, ctx, moves, events }) {
       playCardHandler={playCardHandler.bind(this)}
     />
   ));
-
   // let schedule = G.players.map((player, k) =>(
   //   <GameSchedule
   //     player={player}
@@ -80,6 +84,15 @@ export default function GameBoard({ G, ctx, moves, events }) {
           turn={ctx.turn}
           bots={G.board.dummies}
         />
+      </div>
+      <div>
+        <BarChart data={G.players[ctx.currentPlayer].strengthPerTurn} />
+      </div>
+      <div>
+        <IgorChart data={G.players[ctx.currentPlayer].strengthPerTurn} />
+      </div>
+      <div>
+        <ScatterPlot data={G.players[ctx.currentPlayer].strengthPerTurn2} />
       </div>
     </div>
   );
