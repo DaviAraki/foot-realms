@@ -1,20 +1,24 @@
 import React from "react";
-import { scaleLinear, max, axisLeft, axisBottom, select } from "d3";
+import { scaleLinear, max, axisLeft, axisBottom, select, line } from "d3";
+import { data } from "node-persist";
 
 function sortNumber(a, b) {
   return a - b;
 }
 
 export default class ScatterPlot extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const margin = { top: 20, right: 15, bottom: 60, left: 60 };
     const width = 800 - margin.left - margin.right;
     const height = 600 - margin.top - margin.bottom;
     const data = this.props.data;
+    const data2 = this.props.data2;
+    const data3 = this.props.data3;
+    const data4 = this.props.data4;
+    const data5 = this.props.data5;
+    const data6 = this.props.data6;
+    const data7 = this.props.data7;
+    const data8 = this.props.data8;
 
     const x = scaleLinear()
       .domain([
@@ -47,8 +51,91 @@ export default class ScatterPlot extends React.Component {
             height={height}
             className="main"
           >
-            <RenderCircles data={data} scale={{ x, y }} />
-            <TrendLine data={data} scale={{ x, y }} />
+            <RenderCircles
+              data={data}
+              scale={{ x, y }}
+              style={{ fill: "red" }}
+            />
+            <TrendLine
+              data={data}
+              scale={{ x, y }}
+              style={{ stroke: "red", strokeWidth: "2" }}
+            />
+            <ConnectedLines
+              data={data}
+              scale={{ x, y }}
+              style={{ stroke: "red", strokeWidth: "2" }}
+            />
+            <RenderCircles
+              data={data2}
+              scale={{ x, y }}
+              style={{ fill: "blue" }}
+            />
+            <TrendLine
+              data={data2}
+              scale={{ x, y }}
+              style={{ stroke: "blue", strokeWidth: "2" }}
+            />
+            <RenderCircles
+              data={data3}
+              scale={{ x, y }}
+              style={{ fill: "black" }}
+            />
+            <TrendLine
+              data={data3}
+              scale={{ x, y }}
+              style={{ stroke: "black", strokeWidth: "2" }}
+            />
+            <RenderCircles
+              data={data4}
+              scale={{ x, y }}
+              style={{ fill: "white" }}
+            />
+            <TrendLine
+              data={data4}
+              scale={{ x, y }}
+              style={{ stroke: "white", strokeWidth: "2" }}
+            />
+            <RenderCircles
+              data={data5}
+              scale={{ x, y }}
+              style={{ fill: "yellow" }}
+            />
+            <TrendLine
+              data={data5}
+              scale={{ x, y }}
+              style={{ stroke: "yellow", strokeWidth: "2" }}
+            />
+            <RenderCircles
+              data={data6}
+              scale={{ x, y }}
+              style={{ fill: "purple" }}
+            />
+            <TrendLine
+              data={data6}
+              scale={{ x, y }}
+              style={{ stroke: "purple", strokeWidth: "2" }}
+            />
+            <RenderCircles
+              data={data7}
+              scale={{ x, y }}
+              style={{ fill: "cian" }}
+            />
+            <TrendLine
+              data={data7}
+              scale={{ x, y }}
+              style={{ stroke: "cian", strokeWidth: "2" }}
+            />
+            <RenderCircles
+              data={data8}
+              scale={{ x, y }}
+              style={{ fill: "grey" }}
+            />
+            <TrendLine
+              data={data8}
+              scale={{ x, y }}
+              style={{ stroke: "grey", strokeWidth: "2" }}
+            />
             <Axis
               axis="x"
               transform={"translate(0," + height + ")"}
@@ -72,12 +159,31 @@ class RenderCircles extends React.Component {
       <circle
         cx={this.props.scale.x(coords[0])}
         cy={this.props.scale.y(coords[1])}
-        r="8"
-        style={{ fill: "rgba(25, 158, 199, .9)" }}
+        r="5"
+        style={this.props.style}
         key={i}
       />
     ));
     return <g>{renderCircles}</g>;
+  }
+}
+
+class ConnectedLines extends React.Component {
+  render() {
+    let x_coords = this.props.data.map((n) => {
+      return n[0];
+    });
+    let y_coords = this.props.data.map((n) => {
+      return n[1];
+    });
+    let lines = line().x(x_coords).y(y_coords);
+    return (
+      <line
+        d={lines(y_coords)}
+        stroke={this.props.style.stroke}
+        style={this.props.style}
+      />
+    );
   }
 }
 
@@ -105,7 +211,7 @@ class TrendLine extends React.Component {
         y1={this.props.scale.y(trendline_points[0][1])}
         x2={this.props.scale.x(trendline_points[1][0])}
         y2={this.props.scale.y(trendline_points[1][1])}
-        style={{ stroke: "black", strokeWidth: "2" }}
+        style={this.props.style}
       />
     );
   }

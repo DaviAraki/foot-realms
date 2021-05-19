@@ -3,9 +3,7 @@ import GameCard from "../GameCard";
 import GamePlayerBoard from "../GamePlayerBoard";
 import GameSchedule from "../GameSchedule";
 import ScoreTrack from "../ScoreTrack";
-import BarChart from "../Charts/BarChart";
 import "./styles.css";
-import IgorChart from "../Charts/IgorChart";
 import ScatterPlot, { Chart } from "../Charts/TrendlineChart";
 import "c3/c3.css";
 
@@ -86,13 +84,16 @@ export default function GameBoard({ G, ctx, moves, events }) {
         />
       </div>
       <div>
-        <BarChart data={G.players[ctx.currentPlayer].strengthPerTurn} />
-      </div>
-      <div>
-        <IgorChart data={G.players[ctx.currentPlayer].strengthPerTurn} />
-      </div>
-      <div>
-        <ScatterPlot data={G.players[ctx.currentPlayer].strengthPerTurn2} />
+        <ScatterPlot
+          data={G.players[ctx.currentPlayer].strengthPerTurn2}
+          data2={G.board.dummies[0].strengthPerTurn}
+          data3={G.board.dummies[1].strengthPerTurn}
+          data4={G.board.dummies[2].strengthPerTurn}
+          data5={G.board.dummies[3].strengthPerTurn}
+          data6={G.board.dummies[4].strengthPerTurn}
+          data7={G.board.dummies[5].strengthPerTurn}
+          data8={G.board.dummies[6].strengthPerTurn}
+        />
       </div>
     </div>
   );

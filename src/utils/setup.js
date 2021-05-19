@@ -81,6 +81,7 @@ const game = {
       {
         name: "BLA",
         strength: 0,
+        strengthPerTurn: [],
         points: 0,
         goals: 0,
         goalsAgainst: 0,
@@ -89,6 +90,7 @@ const game = {
       {
         name: "BLU",
         strength: 0,
+        strengthPerTurn: [],
         points: 0,
         goals: 0,
         goalsAgainst: 0,
@@ -97,6 +99,7 @@ const game = {
       {
         name: "ZAS",
         strength: 0,
+        strengthPerTurn: [],
         points: 0,
         goals: 0,
         goalsAgainst: 0,
@@ -105,6 +108,7 @@ const game = {
       {
         name: "DOR",
         strength: 0,
+        strengthPerTurn: [],
         points: 0,
         goals: 0,
         goalsAgainst: 0,
@@ -113,6 +117,7 @@ const game = {
       {
         name: "FRU",
         strength: 0,
+        strengthPerTurn: [],
         points: 0,
         goals: 0,
         goalsAgainst: 0,
@@ -121,6 +126,7 @@ const game = {
       {
         name: "CAN",
         strength: 0,
+        strengthPerTurn: [],
         points: 0,
         goals: 0,
         goalsAgainst: 0,
@@ -129,6 +135,7 @@ const game = {
       {
         name: "BAT",
         strength: 0,
+        strengthPerTurn: [],
         points: 0,
         goals: 0,
         goalsAgainst: 0,
