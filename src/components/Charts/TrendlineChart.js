@@ -20,23 +20,9 @@ export default class ScatterPlot extends React.Component {
     const data7 = this.props.data7;
     const data8 = this.props.data8;
 
-    const x = scaleLinear()
-      .domain([
-        0,
-        max(data, function (d) {
-          return d[0];
-        }),
-      ])
-      .range([0, width]);
+    const x = scaleLinear().domain([0, 30]).range([0, width]);
 
-    const y = scaleLinear()
-      .domain([
-        0,
-        max(data, function (d) {
-          return d[1];
-        }),
-      ])
-      .range([height, 0]);
+    const y = scaleLinear().domain([0, 20]).range([height, 0]);
 
     return (
       <div>
@@ -61,11 +47,7 @@ export default class ScatterPlot extends React.Component {
               scale={{ x, y }}
               style={{ stroke: "red", strokeWidth: "2" }}
             />
-            <ConnectedLines
-              data={data}
-              scale={{ x, y }}
-              style={{ stroke: "red", strokeWidth: "2" }}
-            />
+            <ConnectDots data={data} scale={{ x, y }} />
             <RenderCircles
               data={data2}
               scale={{ x, y }}
@@ -168,22 +150,35 @@ class RenderCircles extends React.Component {
   }
 }
 
-class ConnectedLines extends React.Component {
+class ConnectDots extends React.Component {
   render() {
-    let x_coords = this.props.data.map((n) => {
-      return n[0];
-    });
-    let y_coords = this.props.data.map((n) => {
-      return n[1];
-    });
-    let lines = line().x(x_coords).y(y_coords);
-    return (
-      <line
-        d={lines(y_coords)}
-        stroke={this.props.style.stroke}
-        style={this.props.style}
+    let renderConnections = this.props.data.map((coords, i) => (
+      <path
+        fill={"none"}
+        strokeWidth={1.5}
+        stroke={"#69b3a2"}
+        d={line()
+          .x(this.props.scale.x(coords[0]))
+          .y(this.props.scale.y(coords[1]))}
+        key={i}
       />
-    );
+    ));
+
+    return <g>{renderConnections}</g>;
+    // let x_coords = this.props.data.map((n) => {
+    //   return n[0];
+    // });
+    // let y_coords = this.props.data.map((n) => {
+    //   return n[1];
+    // });
+    // return (
+    //   <path
+    //     fill={"none"}
+    //     stroke-width={1.5}
+    //     stroke={"#69b3a2"}
+    //     d={line()(this.props.data)}
+    //   />
+    // );
   }
 }
 
