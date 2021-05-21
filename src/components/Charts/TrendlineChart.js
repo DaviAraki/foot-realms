@@ -1,10 +1,27 @@
 import React from "react";
-import { scaleLinear, max, axisLeft, axisBottom, select, line } from "d3";
+import {
+  scaleLinear,
+  max,
+  axisLeft,
+  axisBottom,
+  select,
+  line,
+  color,
+} from "d3";
 import { data } from "node-persist";
 
 function sortNumber(a, b) {
   return a - b;
 }
+
+const newData = [];
+const newData1 = [];
+const newData2 = [];
+const newData3 = [];
+const newData4 = [];
+const newData5 = [];
+const newData6 = [];
+const newData7 = [];
 
 export default class ScatterPlot extends React.Component {
   render() {
@@ -30,6 +47,7 @@ export default class ScatterPlot extends React.Component {
           width={width + margin.right + margin.left}
           height={height + margin.top + margin.bottom}
           className="chart"
+          style={{ backgroundColor: "white" }}
         >
           <g
             transform={"translate(" + margin.left + "," + margin.top + ")"}
@@ -47,7 +65,18 @@ export default class ScatterPlot extends React.Component {
               scale={{ x, y }}
               style={{ stroke: "red", strokeWidth: "2" }}
             />
-            <ConnectDots data={data} scale={{ x, y }} />
+            <ConnectDots
+              data={data}
+              scale={{ x, y }}
+              connectLines={newData}
+              stroke={"red"}
+            />
+            <RenderLabels
+              data={data}
+              scale={{ x, y }}
+              name={"Player"}
+              style={{ fill: "red", fontSize: 15 }}
+            />
             <RenderCircles
               data={data2}
               scale={{ x, y }}
@@ -57,6 +86,18 @@ export default class ScatterPlot extends React.Component {
               data={data2}
               scale={{ x, y }}
               style={{ stroke: "blue", strokeWidth: "2" }}
+            />
+            <ConnectDots
+              data={data2}
+              scale={{ x, y }}
+              connectLines={newData1}
+              stroke={"blue"}
+            />
+            <RenderLabels
+              data={data2}
+              scale={{ x, y }}
+              name={"BLA"}
+              style={{ fill: "blue", fontSize: 15 }}
             />
             <RenderCircles
               data={data3}
@@ -68,15 +109,39 @@ export default class ScatterPlot extends React.Component {
               scale={{ x, y }}
               style={{ stroke: "black", strokeWidth: "2" }}
             />
+            <ConnectDots
+              data={data3}
+              scale={{ x, y }}
+              connectLines={newData2}
+              stroke={"black"}
+            />
+            <RenderLabels
+              data={data3}
+              scale={{ x, y }}
+              name={"BLU"}
+              style={{ fill: "black", fontSize: 15 }}
+            />
             <RenderCircles
               data={data4}
               scale={{ x, y }}
-              style={{ fill: "white" }}
+              style={{ fill: "green" }}
             />
             <TrendLine
               data={data4}
               scale={{ x, y }}
-              style={{ stroke: "white", strokeWidth: "2" }}
+              style={{ stroke: "green", strokeWidth: "2" }}
+            />
+            <ConnectDots
+              data={data4}
+              scale={{ x, y }}
+              connectLines={newData3}
+              stroke={"green"}
+            />
+            <RenderLabels
+              data={data4}
+              scale={{ x, y }}
+              name={"ZAS"}
+              style={{ fill: "green", fontSize: 15 }}
             />
             <RenderCircles
               data={data5}
@@ -88,6 +153,18 @@ export default class ScatterPlot extends React.Component {
               scale={{ x, y }}
               style={{ stroke: "yellow", strokeWidth: "2" }}
             />
+            <ConnectDots
+              data={data5}
+              scale={{ x, y }}
+              connectLines={newData4}
+              stroke={"yellow"}
+            />
+            <RenderLabels
+              data={data5}
+              scale={{ x, y }}
+              name={"DOR"}
+              style={{ fill: "yellow", fontSize: 15 }}
+            />
             <RenderCircles
               data={data6}
               scale={{ x, y }}
@@ -97,6 +174,18 @@ export default class ScatterPlot extends React.Component {
               data={data6}
               scale={{ x, y }}
               style={{ stroke: "purple", strokeWidth: "2" }}
+            />
+            <ConnectDots
+              data={data6}
+              scale={{ x, y }}
+              connectLines={newData5}
+              stroke={"purple"}
+            />
+            <RenderLabels
+              data={data6}
+              scale={{ x, y }}
+              name={"FRU"}
+              style={{ fill: "purple", fontSize: 15 }}
             />
             <RenderCircles
               data={data7}
@@ -108,6 +197,18 @@ export default class ScatterPlot extends React.Component {
               scale={{ x, y }}
               style={{ stroke: "cian", strokeWidth: "2" }}
             />
+            <ConnectDots
+              data={data7}
+              scale={{ x, y }}
+              connectLines={newData6}
+              stroke={"cian"}
+            />
+            <RenderLabels
+              data={data7}
+              scale={{ x, y }}
+              name={"CAN"}
+              style={{ fill: "cian", fontSize: 15 }}
+            />
             <RenderCircles
               data={data8}
               scale={{ x, y }}
@@ -117,6 +218,18 @@ export default class ScatterPlot extends React.Component {
               data={data8}
               scale={{ x, y }}
               style={{ stroke: "grey", strokeWidth: "2" }}
+            />
+            <ConnectDots
+              data={data8}
+              scale={{ x, y }}
+              connectLines={newData7}
+              stroke={"grey"}
+            />
+            <RenderLabels
+              data={data8}
+              scale={{ x, y }}
+              name={"BAT"}
+              style={{ fill: "grey", fontSize: 15 }}
             />
             <Axis
               axis="x"
@@ -152,33 +265,29 @@ class RenderCircles extends React.Component {
 
 class ConnectDots extends React.Component {
   render() {
-    let renderConnections = this.props.data.map((coords, i) => (
+    // return <g>{renderConnections}</g>;
+    let x_coords = this.props.data.map((n) => {
+      return n[0];
+    });
+    let y_coords = this.props.data.map((n) => {
+      return n[1];
+    });
+
+    if (x_coords[0]) {
+      let dataHolder = [
+        this.props.scale.x(x_coords[x_coords.length - 1]),
+        this.props.scale.y(y_coords[y_coords.length - 1]),
+      ];
+      this.props.connectLines.push(dataHolder);
+    }
+    return (
       <path
         fill={"none"}
         strokeWidth={1.5}
-        stroke={"#69b3a2"}
-        d={line()
-          .x(this.props.scale.x(coords[0]))
-          .y(this.props.scale.y(coords[1]))}
-        key={i}
+        stroke={this.props.stroke}
+        d={line()(this.props.connectLines)}
       />
-    ));
-
-    return <g>{renderConnections}</g>;
-    // let x_coords = this.props.data.map((n) => {
-    //   return n[0];
-    // });
-    // let y_coords = this.props.data.map((n) => {
-    //   return n[1];
-    // });
-    // return (
-    //   <path
-    //     fill={"none"}
-    //     stroke-width={1.5}
-    //     stroke={"#69b3a2"}
-    //     d={line()(this.props.data)}
-    //   />
-    // );
+    );
   }
 }
 
@@ -211,7 +320,34 @@ class TrendLine extends React.Component {
     );
   }
 }
+class RenderLabels extends React.Component {
+  render() {
+    let x_coords = this.props.data.map((n) => {
+      return n[0];
+    });
+    let y_coords = this.props.data.map((n) => {
+      return n[1];
+    });
+    let newXCoords = 0;
+    let newYCoords = 1;
 
+    if (x_coords[0]) {
+      newXCoords = this.props.scale.x(x_coords[x_coords.length - 1]);
+      newYCoords = this.props.scale.y(y_coords[y_coords.length - 1]);
+    }
+    console.log(newXCoords);
+    console.log(newYCoords);
+    return (
+      <text
+        transform={"translate(" + newXCoords + "," + newYCoords + ")"}
+        x={12}
+        style={this.props.style}
+      >
+        {this.props.name}
+      </text>
+    );
+  }
+}
 class Axis extends React.Component {
   componentDidMount() {
     const node = this.refs[this.props.axis];
