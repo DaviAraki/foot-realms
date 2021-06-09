@@ -27,7 +27,7 @@ export default class ScatterPlot extends React.Component {
   render() {
     const margin = { top: 20, right: 15, bottom: 60, left: 60 };
     const width = 800 - margin.left - margin.right;
-    const height = 600 - margin.top - margin.bottom;
+    const height = 800 - margin.top - margin.bottom;
     const data = this.props.data;
     const data2 = this.props.data2;
     const data3 = this.props.data3;
@@ -39,7 +39,7 @@ export default class ScatterPlot extends React.Component {
 
     const x = scaleLinear().domain([0, 30]).range([0, width]);
 
-    const y = scaleLinear().domain([0, 20]).range([height, 0]);
+    const y = scaleLinear().domain([0, 42]).range([height, 0]);
 
     return (
       <div>
