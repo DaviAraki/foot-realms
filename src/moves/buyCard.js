@@ -1,4 +1,4 @@
-export default function buyCard(G, ctx, cardIndex) {
+function buyCard(G, ctx, cardIndex) {
   if (G.players[ctx.currentPlayer].money >= G.board.offerZone[cardIndex].cost) {
     G.players[ctx.currentPlayer].discardZone.push(G.board.offerZone[cardIndex]);
     G.players[ctx.currentPlayer].money =
@@ -6,3 +6,4 @@ export default function buyCard(G, ctx, cardIndex) {
     G.board.offerZone.splice(cardIndex, 1);
   }
 }
+export default buyCard;

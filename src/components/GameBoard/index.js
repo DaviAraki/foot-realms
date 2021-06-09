@@ -95,6 +95,7 @@ export default function GameBoard({ G, ctx, moves, events }) {
           data8={G.board.dummies[6].strengthPerTurn}
         />
       </div>
+      <div></div>
     </div>
   );
 }

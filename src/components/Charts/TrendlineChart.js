@@ -44,7 +44,7 @@ export default class ScatterPlot extends React.Component {
     return (
       <div>
         <svg
-          width={width + margin.right + margin.left}
+          width={width + margin.right + margin.left + 200}
           height={height + margin.top + margin.bottom}
           className="chart"
           style={{ backgroundColor: "white" }}
@@ -55,182 +55,126 @@ export default class ScatterPlot extends React.Component {
             height={height}
             className="main"
           >
+            <Legend
+              x={800}
+              y={30}
+              style={{ fill: "red" }}
+              teamName={"Player"}
+            />
             <RenderCircles
               data={data}
               scale={{ x, y }}
               style={{ fill: "red" }}
             />
-            <TrendLine
-              data={data}
-              scale={{ x, y }}
-              style={{ stroke: "red", strokeWidth: "2" }}
-            />
+            <TrendLine data={data} scale={{ x, y }} stroke={"red"} />
             <ConnectDots
               data={data}
               scale={{ x, y }}
               connectLines={newData}
               stroke={"red"}
             />
-            <RenderLabels
-              data={data}
-              scale={{ x, y }}
-              name={"Player"}
-              style={{ fill: "red", fontSize: 15 }}
-            />
+
             <RenderCircles
               data={data2}
               scale={{ x, y }}
               style={{ fill: "blue" }}
             />
-            <TrendLine
-              data={data2}
-              scale={{ x, y }}
-              style={{ stroke: "blue", strokeWidth: "2" }}
-            />
+            <TrendLine data={data2} scale={{ x, y }} stroke={"blue"} />
             <ConnectDots
               data={data2}
               scale={{ x, y }}
               connectLines={newData1}
               stroke={"blue"}
             />
-            <RenderLabels
-              data={data2}
-              scale={{ x, y }}
-              name={"BLA"}
-              style={{ fill: "blue", fontSize: 15 }}
-            />
+            <Legend x={800} y={50} style={{ fill: "blue" }} teamName={"BLA"} />
             <RenderCircles
               data={data3}
               scale={{ x, y }}
               style={{ fill: "black" }}
             />
-            <TrendLine
-              data={data3}
-              scale={{ x, y }}
-              style={{ stroke: "black", strokeWidth: "2" }}
-            />
+            <TrendLine data={data3} scale={{ x, y }} stroke={"black"} />
             <ConnectDots
               data={data3}
               scale={{ x, y }}
               connectLines={newData2}
               stroke={"black"}
             />
-            <RenderLabels
-              data={data3}
-              scale={{ x, y }}
-              name={"BLU"}
-              style={{ fill: "black", fontSize: 15 }}
-            />
+            <Legend x={800} y={70} style={{ fill: "black" }} teamName={"BLU"} />
             <RenderCircles
               data={data4}
               scale={{ x, y }}
               style={{ fill: "green" }}
             />
-            <TrendLine
-              data={data4}
-              scale={{ x, y }}
-              style={{ stroke: "green", strokeWidth: "2" }}
-            />
+            <TrendLine data={data4} scale={{ x, y }} stroke={"green"} />
             <ConnectDots
               data={data4}
               scale={{ x, y }}
               connectLines={newData3}
               stroke={"green"}
             />
-            <RenderLabels
-              data={data4}
-              scale={{ x, y }}
-              name={"ZAS"}
-              style={{ fill: "green", fontSize: 15 }}
-            />
+            <Legend x={800} y={90} style={{ fill: "green" }} teamName={"ZAS"} />
             <RenderCircles
               data={data5}
               scale={{ x, y }}
               style={{ fill: "yellow" }}
             />
-            <TrendLine
-              data={data5}
-              scale={{ x, y }}
-              style={{ stroke: "yellow", strokeWidth: "2" }}
-            />
+            <TrendLine data={data5} scale={{ x, y }} stroke={"yellow"} />
             <ConnectDots
               data={data5}
               scale={{ x, y }}
               connectLines={newData4}
               stroke={"yellow"}
             />
-            <RenderLabels
-              data={data5}
-              scale={{ x, y }}
-              name={"DOR"}
-              style={{ fill: "yellow", fontSize: 15 }}
+            <Legend
+              x={800}
+              y={110}
+              style={{ fill: "yellow" }}
+              teamName={"DOR"}
             />
             <RenderCircles
               data={data6}
               scale={{ x, y }}
               style={{ fill: "purple" }}
             />
-            <TrendLine
-              data={data6}
-              scale={{ x, y }}
-              style={{ stroke: "purple", strokeWidth: "2" }}
-            />
+            <TrendLine data={data6} scale={{ x, y }} stroke={"purple"} />
             <ConnectDots
               data={data6}
               scale={{ x, y }}
               connectLines={newData5}
               stroke={"purple"}
             />
-            <RenderLabels
-              data={data6}
-              scale={{ x, y }}
-              name={"FRU"}
-              style={{ fill: "purple", fontSize: 15 }}
+            <Legend
+              x={800}
+              y={130}
+              style={{ fill: "purple" }}
+              teamName={"FRU"}
             />
             <RenderCircles
               data={data7}
               scale={{ x, y }}
-              style={{ fill: "cian" }}
+              style={{ fill: "pink" }}
             />
-            <TrendLine
-              data={data7}
-              scale={{ x, y }}
-              style={{ stroke: "cian", strokeWidth: "2" }}
-            />
+            <TrendLine data={data7} scale={{ x, y }} stroke={"pink"} />
             <ConnectDots
               data={data7}
               scale={{ x, y }}
               connectLines={newData6}
-              stroke={"cian"}
+              stroke={"pink"}
             />
-            <RenderLabels
-              data={data7}
-              scale={{ x, y }}
-              name={"CAN"}
-              style={{ fill: "cian", fontSize: 15 }}
-            />
+            <Legend x={800} y={150} style={{ fill: "pink" }} teamName={"CAN"} />
             <RenderCircles
               data={data8}
               scale={{ x, y }}
               style={{ fill: "grey" }}
             />
-            <TrendLine
-              data={data8}
-              scale={{ x, y }}
-              style={{ stroke: "grey", strokeWidth: "2" }}
-            />
+            <TrendLine data={data8} scale={{ x, y }} stroke={"grey"} />
             <ConnectDots
               data={data8}
               scale={{ x, y }}
               connectLines={newData7}
               stroke={"grey"}
             />
-            <RenderLabels
-              data={data8}
-              scale={{ x, y }}
-              name={"BAT"}
-              style={{ fill: "grey", fontSize: 15 }}
-            />
+            <Legend x={800} y={170} style={{ fill: "grey" }} teamName={"BAT"} />
             <Axis
               axis="x"
               transform={"translate(0," + height + ")"}
@@ -283,7 +227,7 @@ class ConnectDots extends React.Component {
     return (
       <path
         fill={"none"}
-        strokeWidth={1.5}
+        strokeWidth={5}
         stroke={this.props.stroke}
         d={line()(this.props.connectLines)}
       />
@@ -315,8 +259,37 @@ class TrendLine extends React.Component {
         y1={this.props.scale.y(trendline_points[0][1])}
         x2={this.props.scale.x(trendline_points[1][0])}
         y2={this.props.scale.y(trendline_points[1][1])}
+        strokeDasharray={"4 4"}
+        strokeWidth={2}
+        stroke={this.props.stroke}
+      />
+    );
+  }
+}
+class Legend extends React.Component {
+  render() {
+    const circleLegend = (
+      <circle
+        cx={this.props.x}
+        cy={this.props.y}
+        r={6}
         style={this.props.style}
       />
+    );
+    const legendName = (
+      <text
+        x={this.props.x + 10}
+        y={this.props.y + 5}
+        style={{ fontSize: "16px", color: "black" }}
+      >
+        {this.props.teamName}
+      </text>
+    );
+    return (
+      <g>
+        {circleLegend}
+        {legendName}
+      </g>
     );
   }
 }
@@ -335,8 +308,6 @@ class RenderLabels extends React.Component {
       newXCoords = this.props.scale.x(x_coords[x_coords.length - 1]);
       newYCoords = this.props.scale.y(y_coords[y_coords.length - 1]);
     }
-    console.log(newXCoords);
-    console.log(newYCoords);
     return (
       <text
         transform={"translate(" + newXCoords + "," + newYCoords + ")"}
