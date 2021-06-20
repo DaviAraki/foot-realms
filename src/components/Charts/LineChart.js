@@ -16,15 +16,15 @@ function LineChart({ data }) {
 
       const y = d3
         .scaleLinear()
-        .domain([0, d3.max(data, (d) => d.strength)])
+        .domain([0, d3.max(data, (d) => d.points)])
         .nice()
         .range([height - margin.bottom, margin.top]);
 
       const line = d3
         .line()
-        .defined((d) => !isNaN(d.strength))
+        .defined((d) => !isNaN(d.points))
         .x((d) => x(d.turn))
-        .y((d) => y(d.strength));
+        .y((d) => y(d.points));
 
       const xAxis = (g) =>
         g.attr("transform", `translate(0,${height - margin.bottom})`).call(

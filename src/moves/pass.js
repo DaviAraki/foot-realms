@@ -2,12 +2,14 @@ import addQuarterGoals from "../actions/addQuarterGoals";
 import changeAttacker from "../actions/changeAttacker";
 import cleanUp from "../actions/cleanUp";
 import dealPowerToDummies from "../actions/dealPowerToDummies";
+import registerPoints from "../actions/registerPoints";
 import registerStrength from "../actions/registerStrength";
 import registerStrength2 from "../actions/registerStrength2";
 import setGoalsDiference from "../actions/setGoalsDiference";
 import setRoundWinners from "../actions/setRoundWinners";
 
 export default function pass(G, ctx) {
+  registerPoints(G, ctx);
   changeAttacker(G, ctx);
   addQuarterGoals(G, ctx);
   registerStrength(G, ctx);

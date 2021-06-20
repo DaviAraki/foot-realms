@@ -1,10 +1,6 @@
 import React from "react";
 import { scaleLinear, axisLeft, axisBottom, select, line } from "d3";
 
-function sortNumber(a, b) {
-  return a - b;
-}
-
 const newData = [];
 const newData1 = [];
 const newData2 = [];
@@ -14,7 +10,7 @@ const newData5 = [];
 const newData6 = [];
 const newData7 = [];
 
-export default class ScatterPlot extends React.Component {
+export default class PointChart extends React.Component {
   render() {
     const margin = { top: 20, right: 15, bottom: 60, left: 60 };
     const width = 800 - margin.left - margin.right;
@@ -57,7 +53,6 @@ export default class ScatterPlot extends React.Component {
               scale={{ x, y }}
               style={{ fill: "red" }}
             />
-            <TrendLine data={data} scale={{ x, y }} stroke={"red"} />
             <ConnectDots
               data={data}
               scale={{ x, y }}
@@ -70,7 +65,6 @@ export default class ScatterPlot extends React.Component {
               scale={{ x, y }}
               style={{ fill: "blue" }}
             />
-            <TrendLine data={data2} scale={{ x, y }} stroke={"blue"} />
             <ConnectDots
               data={data2}
               scale={{ x, y }}
@@ -83,7 +77,6 @@ export default class ScatterPlot extends React.Component {
               scale={{ x, y }}
               style={{ fill: "black" }}
             />
-            <TrendLine data={data3} scale={{ x, y }} stroke={"black"} />
             <ConnectDots
               data={data3}
               scale={{ x, y }}
@@ -96,7 +89,6 @@ export default class ScatterPlot extends React.Component {
               scale={{ x, y }}
               style={{ fill: "green" }}
             />
-            <TrendLine data={data4} scale={{ x, y }} stroke={"green"} />
             <ConnectDots
               data={data4}
               scale={{ x, y }}
@@ -109,7 +101,6 @@ export default class ScatterPlot extends React.Component {
               scale={{ x, y }}
               style={{ fill: "yellow" }}
             />
-            <TrendLine data={data5} scale={{ x, y }} stroke={"yellow"} />
             <ConnectDots
               data={data5}
               scale={{ x, y }}
@@ -127,7 +118,6 @@ export default class ScatterPlot extends React.Component {
               scale={{ x, y }}
               style={{ fill: "purple" }}
             />
-            <TrendLine data={data6} scale={{ x, y }} stroke={"purple"} />
             <ConnectDots
               data={data6}
               scale={{ x, y }}
@@ -145,7 +135,6 @@ export default class ScatterPlot extends React.Component {
               scale={{ x, y }}
               style={{ fill: "pink" }}
             />
-            <TrendLine data={data7} scale={{ x, y }} stroke={"pink"} />
             <ConnectDots
               data={data7}
               scale={{ x, y }}
@@ -158,7 +147,6 @@ export default class ScatterPlot extends React.Component {
               scale={{ x, y }}
               style={{ fill: "grey" }}
             />
-            <TrendLine data={data8} scale={{ x, y }} stroke={"grey"} />
             <ConnectDots
               data={data8}
               scale={{ x, y }}
@@ -226,37 +214,6 @@ class ConnectDots extends React.Component {
   }
 }
 
-class TrendLine extends React.Component {
-  render() {
-    let x_coords = this.props.data.map((n) => {
-      return n[0];
-    });
-    let y_coords = this.props.data.map((n) => {
-      return n[1];
-    });
-    const trendline = linearRegression(y_coords, x_coords);
-
-    // Lowest and highest x coordinates to draw a plot line
-    const lowest_x = x_coords.sort(sortNumber)[0];
-    const hightest_x = x_coords.sort(sortNumber)[x_coords.length - 1];
-    const trendline_points = [
-      [lowest_x, trendline(lowest_x)],
-      [hightest_x, trendline(hightest_x)],
-    ];
-
-    return (
-      <line
-        x1={this.props.scale.x(trendline_points[0][0])}
-        y1={this.props.scale.y(trendline_points[0][1])}
-        x2={this.props.scale.x(trendline_points[1][0])}
-        y2={this.props.scale.y(trendline_points[1][1])}
-        strokeDasharray={"4 4"}
-        strokeWidth={2}
-        stroke={this.props.stroke}
-      />
-    );
-  }
-}
 class Legend extends React.Component {
   render() {
     const circleLegend = (
@@ -284,32 +241,7 @@ class Legend extends React.Component {
     );
   }
 }
-class RenderLabels extends React.Component {
-  render() {
-    let x_coords = this.props.data.map((n) => {
-      return n[0];
-    });
-    let y_coords = this.props.data.map((n) => {
-      return n[1];
-    });
-    let newXCoords = 0;
-    let newYCoords = 1;
 
-    if (x_coords[0]) {
-      newXCoords = this.props.scale.x(x_coords[x_coords.length - 1]);
-      newYCoords = this.props.scale.y(y_coords[y_coords.length - 1]);
-    }
-    return (
-      <text
-        transform={"translate(" + newXCoords + "," + newYCoords + ")"}
-        x={12}
-        style={this.props.style}
-      >
-        {this.props.name}
-      </text>
-    );
-  }
-}
 class Axis extends React.Component {
   componentDidMount() {
     const node = this.refs[this.props.axis];
@@ -325,34 +257,4 @@ class Axis extends React.Component {
       />
     );
   }
-}
-
-function linearRegression(y, x) {
-  var lr = {};
-  var n = y.length;
-  var sum_x = 0;
-  var sum_y = 0;
-  var sum_xy = 0;
-  var sum_xx = 0;
-  var sum_yy = 0;
-
-  for (var i = 0; i < y.length; i++) {
-    sum_x += x[i];
-    sum_y += y[i];
-    sum_xy += x[i] * y[i];
-    sum_xx += x[i] * x[i];
-    sum_yy += y[i] * y[i];
-  }
-
-  lr["slope"] = (n * sum_xy - sum_x * sum_y) / (n * sum_xx - sum_x * sum_x);
-  lr["intercept"] = (sum_y - lr.slope * sum_x) / n;
-  lr["r2"] = Math.pow(
-    (n * sum_xy - sum_x * sum_y) /
-      Math.sqrt((n * sum_xx - sum_x * sum_x) * (n * sum_yy - sum_y * sum_y)),
-    2
-  );
-
-  return (x) => {
-    return lr.slope * x + lr.intercept;
-  };
 }

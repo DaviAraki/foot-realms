@@ -4,8 +4,9 @@ import GamePlayerBoard from "../GamePlayerBoard";
 import GameSchedule from "../GameSchedule";
 import ScoreTrack from "../ScoreTrack";
 import "./styles.css";
-import ScatterPlot, { Chart } from "../Charts/TrendlineChart";
+import ScatterPlot from "../Charts/TrendlineChart";
 import "c3/c3.css";
+import PointChart from "../Charts/poinstsScoreChart";
 
 export default function GameBoard({ G, ctx, moves, events }) {
   function buyCardHandler(k) {
@@ -95,7 +96,18 @@ export default function GameBoard({ G, ctx, moves, events }) {
           data8={G.board.dummies[6].strengthPerTurn}
         />
       </div>
-      <div></div>
+      <div>
+        <PointChart
+          data={G.players[ctx.currentPlayer].pointsPerTurn}
+          data2={G.board.dummies[0].pointsPerTurn}
+          data3={G.board.dummies[1].pointsPerTurn}
+          data4={G.board.dummies[2].pointsPerTurn}
+          data5={G.board.dummies[3].pointsPerTurn}
+          data6={G.board.dummies[4].pointsPerTurn}
+          data7={G.board.dummies[5].pointsPerTurn}
+          data8={G.board.dummies[6].pointsPerTurn}
+        />
+      </div>
     </div>
   );
 }
