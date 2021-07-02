@@ -10,9 +10,9 @@ export default class ace3 extends basicCard {
       cost: 8,
       chuteira: 5,
       position: "3",
-      power(G, ctx) {
-        scorePlayerGoal(G, ctx);
-      },
+      // power(G, ctx) {
+      //   scorePlayerGoal(G, ctx);
+      // },
       powerText: "Score a Goal",
     });
   }
