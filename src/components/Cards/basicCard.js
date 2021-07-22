@@ -1,4 +1,4 @@
-import generateUniqueId from "../../utils/generateUniqueId";
+import generateUniqueId from '../../utils/generateUniqueId';
 
 export default class BasicCard {
   constructor(data) {
@@ -11,7 +11,7 @@ export default class BasicCard {
     this.position = data.position || 0;
     this.role = data.role;
     this.power = data.power;
-    this.powerText = data.powerText;
+    this.powerText = data.powerText || '';
     this.onDraw = data.onDraw;
   }
 }
