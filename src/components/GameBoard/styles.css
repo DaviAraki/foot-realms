@@ -49,3 +49,31 @@
   border-radius: 3mm;
   border: 1.5mm solid hsla(0, 0%, 0%, 0.6);
 }
+
+.game-status{
+  display: flex;
+}
+
+.game-status h1{
+  background-color: hsla(80, 61%, 30%, 100%);
+  box-sizing: border-box;
+  border: 0.5mm solid rgba(0, 0, 0, 0.6);
+  border-radius: 1mm;
+  padding: 3mm;
+  line-height: 4mm;
+  font-size: 4mm;
+  text-transform: uppercase;
+  text-align: center;
+  box-shadow: 0.5mm 0.5mm rgba(0, 0, 0, 0.2);
+  text-shadow: 0.3mm 0.3mm rgba(0, 0, 0, 0.6);
+  font-weight: bold;
+  width: 1fr;
+  color: white;
+  width: 100%;
+}
+
+
+
+.game-status h1.defense {
+  background-color: rgb(123, 30, 30);
+}

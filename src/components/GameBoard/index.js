@@ -65,12 +65,14 @@ export default function GameBoard({ G, ctx, moves, events }) {
       <ScoreTrack G={G} />
       <GameSchedule G={G} />
       <div className="card-offer">
-        <h1>
-          Phase:{ctx.phase} Round:{~~((ctx.turn - 1) / 4) + 1} Quarter:
-          {((ctx.turn - 1) % 4) + 1} Is Attacking: {G.board.attacking}
-        </h1>
-        <h1>Offer:</h1>
-        <h1>Challenge: {G.board.desafio}</h1>
+        <div className="game-status">
+          <h1>Round: {~~((ctx.turn - 1) / 4) + 1}</h1>
+          <h1>Quarter: {((ctx.turn - 1) % 4) + 1}</h1>
+          <h1 className={G.board.attacking ? `attack` : `defense`}>{G.board.attacking ? `on ATTACK` : `on DEFENSE`}</h1>
+          <h1>Phase: {ctx.phase}</h1>
+          {/* <h1>Challenge: {G.board.desafio}</h1> */}
+        </div>
+        <h1>Choose a card to buy:</h1>
         <div className="card-offer-cards">{cards}</div>
       </div>
       <div className="player-boards">

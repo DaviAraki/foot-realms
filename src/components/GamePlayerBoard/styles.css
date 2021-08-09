@@ -9,12 +9,14 @@
   
 }
 .player-board .passButton{
-  right: 1.5mm;
-  bottom: 1.5mm;
-  background-color: lightblue;
+  background-color: rgb(173, 184, 164);
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.6;
 }
-.player-board h1 {
-  font-size: 5mm;
+.player-board h1, .player-board summary {
   font-size: 5mm;
 }
 .player-board > h1,
@@ -46,3 +48,28 @@
 details {
   font-size: 6mm;
 } 
+
+.player-status{
+  display: flex;
+  width: 100%;
+}
+
+.player-status h1{
+  background-color: hsla(80, 61%, 30%, 100%);
+  box-sizing: border-box;
+  border: 0.5mm solid rgba(0, 0, 0, 0.6);
+  border-radius: 1mm;
+  padding: 3mm;
+  line-height: 4mm;
+  font-size: 4mm;
+  text-transform: uppercase;
+  text-align: center;
+  box-shadow: 0.5mm 0.5mm rgba(0, 0, 0, 0.2);
+  text-shadow: 0.3mm 0.3mm rgba(0, 0, 0, 0.6);
+  font-weight: bold;
+  width: 1fr;
+  width: 100%;
+}
+div.player-status h1{
+  color: white;
+}
