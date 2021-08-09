@@ -52,7 +52,7 @@ export default class GameBoard extends React.Component {
   
 
         <div className="player-hand">
-          <h1>Card in Play</h1>
+          <h1>Cards in Play</h1>
           <div style={{minHeight: 260}}>{cardsInPlay}</div>
         </div>
         <div className="player-hand">
