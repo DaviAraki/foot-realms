@@ -77,36 +77,36 @@ export default function GameBoard({ G, ctx, moves, events }) {
         <h1>Players:</h1>
         <div className="player-areas">{players}</div>
       </div>
-      <div className="schedule">
-        <GameSchedule
+      <div className="charts">
+        {/* <GameSchedule
           player={G.players[0]}
           turn={ctx.turn}
           bots={G.board.dummies}
-        />
-      </div>
-      <div>
-        <ScatterPlot
-          data={G.players[ctx.currentPlayer].strengthPerTurn2}
-          data2={G.board.dummies[0].strengthPerTurn}
-          data3={G.board.dummies[1].strengthPerTurn}
-          data4={G.board.dummies[2].strengthPerTurn}
-          data5={G.board.dummies[3].strengthPerTurn}
-          data6={G.board.dummies[4].strengthPerTurn}
-          data7={G.board.dummies[5].strengthPerTurn}
-          data8={G.board.dummies[6].strengthPerTurn}
-        />
-      </div>
-      <div>
-        <PointChart
-          data={G.players[ctx.currentPlayer].pointsPerTurn}
-          data2={G.board.dummies[0].pointsPerTurn}
-          data3={G.board.dummies[1].pointsPerTurn}
-          data4={G.board.dummies[2].pointsPerTurn}
-          data5={G.board.dummies[3].pointsPerTurn}
-          data6={G.board.dummies[4].pointsPerTurn}
-          data7={G.board.dummies[5].pointsPerTurn}
-          data8={G.board.dummies[6].pointsPerTurn}
-        />
+        /> */}
+        <div>
+          <ScatterPlot
+            data={G.players[ctx.currentPlayer].strengthPerTurn2}
+            data2={G.board.dummies[0].strengthPerTurn}
+            data3={G.board.dummies[1].strengthPerTurn}
+            data4={G.board.dummies[2].strengthPerTurn}
+            data5={G.board.dummies[3].strengthPerTurn}
+            data6={G.board.dummies[4].strengthPerTurn}
+            data7={G.board.dummies[5].strengthPerTurn}
+            data8={G.board.dummies[6].strengthPerTurn}
+          />
+        </div>
+        <div>
+          <PointChart
+            data={G.players[ctx.currentPlayer].pointsPerTurn}
+            data2={G.board.dummies[0].pointsPerTurn}
+            data3={G.board.dummies[1].pointsPerTurn}
+            data4={G.board.dummies[2].pointsPerTurn}
+            data5={G.board.dummies[3].pointsPerTurn}
+            data6={G.board.dummies[4].pointsPerTurn}
+            data7={G.board.dummies[5].pointsPerTurn}
+            data8={G.board.dummies[6].pointsPerTurn}
+          />
+        </div>
       </div>
     </div>
   );

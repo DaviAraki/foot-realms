@@ -6,20 +6,20 @@
   -webkit-font-smoothing: antialised;
   max-width: calc(1.1 * 6 * 45mm);
   width: 100%;
-  margin: 0;
+  margin: 1.5mm 0;
   padding: 3mm;
-  border: 3mm solid hsla(120, 100%, 10%, 100%);
-  background-color: hsl(120, 100%, 25%);
   border-radius: 3mm;
+  border: 3mm solid hsla(0, 0%, 0%, 0.6);
+  background-color: hsl(80, 61%, 50%);
   zoom: 0.6;
 }
 
 .card-offer,
 .player-boards {
+  margin: 1.5mm 0;
   padding: 3mm;
-  border: 3mm dotted hsla(120, 100%, 10%, 30%);
   border-radius: 3mm;
-  margin-bottom: 3mm;
+  border: 1.5mm solid hsla(0, 0%, 0%, 0.6);
 }
 .card-offer .card-offer-cards {
   display: flex;
@@ -41,4 +41,11 @@
   background: #fff;
   width: 90%;
   margin: 1em auto;
+}
+
+.charts {
+  margin: 1.5mm 0;
+  padding: 3mm;
+  border-radius: 3mm;
+  border: 1.5mm solid hsla(0, 0%, 0%, 0.6);
 }

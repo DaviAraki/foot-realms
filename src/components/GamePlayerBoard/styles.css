@@ -1,11 +1,12 @@
 .player-board {
-  padding: 2mm;
-  margin: 0.5mm;
-  background-color: hsla(120, 53%, 79%, 50%);
-  border: 2mm solid hsla(0, 0%, 0%, 60%);
-  border-radius: 2mm;
+  margin: 1.5mm 0;
+  padding: 3mm;
+  border-radius: 3mm;
+  border: 1.5mm solid hsla(0, 0%, 0%, 0.6);  
   display: flex;
   flex-wrap: wrap;
+
+  
 }
 .player-board .passButton{
   right: 1.5mm;
