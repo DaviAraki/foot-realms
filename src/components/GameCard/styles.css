@@ -13,6 +13,7 @@
 
 .game-card > div {
   background-color: hsla(80, 61%, 30%, 100%);
+  background-color: hsla(0, 0%, 00%, 0.3);
   position: absolute;
   height: 7mm;
   box-sizing: border-box;
@@ -20,7 +21,7 @@
   border-radius: 3mm;
   padding: 1mm;
   line-height: 4mm;
-  font-size: 4mm;
+  font-size: 3mm;
   text-transform: uppercase;
   text-align: center;
   display: flex;
@@ -31,7 +32,7 @@
 }
 
 .game-card > div > label {
-  flex: 2;
+  flex: 1;
 }
 
 .game-card > div > div {
@@ -69,6 +70,10 @@
   height: 40%;
   left: 1.5mm;
   bottom: 9.5mm;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .game-card .discard {
@@ -78,14 +83,14 @@
 }
 
 .position0 {
-  background-color: blue;
+  background-color: #199AA6;
 }
 .position1 {
-  background-color: red;
+  background-color: #2BE35E;
 }
 .position2 {
-  background-color: yellow;
+  background-color: #E3BF2B;
 }
 .position3 {
-  background-color: black;
+  background-color: #D46C0B;
 }
