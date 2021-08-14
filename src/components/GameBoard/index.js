@@ -7,6 +7,7 @@ import "./styles.css";
 import ScatterPlot from "../Charts/TrendlineChart";
 import "c3/c3.css";
 import PointChart from "../Charts/poinstsScoreChart";
+import MoneyChart from "../Charts/MoneyChart";
 
 export default function GameBoard({ G, ctx, moves, events }) {
   function buyCardHandler(k) {
@@ -108,6 +109,10 @@ export default function GameBoard({ G, ctx, moves, events }) {
             data7={G.board.dummies[5].pointsPerTurn}
             data8={G.board.dummies[6].pointsPerTurn}
           />
+        </div>
+        <div>
+          <MoneyChart 
+            data={G.players[ctx.currentPlayer].moneyPerTurn} />
         </div>
       </div>
     </div>

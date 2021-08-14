@@ -53,7 +53,6 @@ const game = {
       name: "PLA",
       hand: [],
       deck: [].concat(
-        joker0.create(1),
         playerKid0.create(1),
         playerKid1.create(1),
         playerKid2.create(1),
@@ -69,6 +68,7 @@ const game = {
       strength: 0,
       points: 0,
       pointsPerTurn: [0],
+      moneyPerTurn: [],
       goals: 0,
       goalsAgainst: 0,
       goalsDiference: 0,
