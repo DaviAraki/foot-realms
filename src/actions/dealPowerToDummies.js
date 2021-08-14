@@ -5,6 +5,6 @@ export default function dealPowerToDummies(G, ctx) {
   }
   for (let i = 0; i < G.board.dummies.length; i++) {
     dummies[i].strength =
-      dummies[i].strength + Math.floor(Math.random() * 3) + 3;
+      dummies[i].strength + Math.floor(Math.random() * 3) + 1;
   }
 }
