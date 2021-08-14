@@ -7,6 +7,7 @@ import giveOffer from './actions/giveOffer';
 import updateStrenghtSchedule from './actions/updateStrengthSchedule';
 import regularBot from './AI/Bots/regularBot';
 import smartBot from './AI/Bots/smartBot';
+import registerPoints from './actions/registerPoints';
 
 const FootRealms = {
   name: 'FootRealms',

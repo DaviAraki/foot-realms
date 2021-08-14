@@ -9,7 +9,7 @@ import setGoalsDiference from "../actions/setGoalsDiference";
 import setRoundWinners from "../actions/setRoundWinners";
 
 export default function pass(G, ctx) {
-  registerPoints(G, ctx);
+
   changeAttacker(G, ctx);
   addQuarterGoals(G, ctx);
   registerStrength(G, ctx);
@@ -20,7 +20,7 @@ export default function pass(G, ctx) {
     dealPowerToDummies(G, ctx);
     setGoalsDiference(G, ctx);
   }
-
+  registerPoints(G, ctx);
   cleanUp(G, ctx);
   ctx.events.endPhase();
 }
