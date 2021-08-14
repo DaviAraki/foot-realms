@@ -1,5 +1,5 @@
 import React from "react";
-import { scaleLinear, axisLeft, axisBottom, select, line } from "d3";
+import { scaleLinear, axisLeft, axisBottom, select, line, text } from "d3";
 
 function sortNumber(a, b) {
   return a - b;
@@ -30,18 +30,19 @@ export default class ScatterPlot extends React.Component {
 
     const x = scaleLinear().domain([0, 30]).range([0, width]);
 
-    const y = scaleLinear().domain([0, 42]).range([height, 0]);
+    const y = scaleLinear().domain([0, 51]).range([height, 0]);
 
     return (
       <div>
         <svg
-          width={width + margin.right + margin.left + 200}
-          height={height + margin.top + margin.bottom}
+          width={width + margin.right + margin.left + 220}
+          height={height + margin.top + margin.bottom + 20}
           className="chart"
           style={{ backgroundColor: "white" }}
         >
+          
           <g
-            transform={"translate(" + margin.left + "," + margin.top + ")"}
+            transform={`translate(${margin.left+40}  ,  ${margin.top} )`}
             width={width}
             height={height}
             className="main"
@@ -77,7 +78,7 @@ export default class ScatterPlot extends React.Component {
               connectLines={newData1}
               stroke={"blue"}
             />
-            <Legend x={800} y={50} style={{ fill: "blue" }} teamName={"BLA"} />
+            <Legend x={800} y={70} style={{ fill: "blue" }} teamName={"BLA"} />
             <RenderCircles
               data={data3}
               scale={{ x, y }}
@@ -90,7 +91,7 @@ export default class ScatterPlot extends React.Component {
               connectLines={newData2}
               stroke={"black"}
             />
-            <Legend x={800} y={70} style={{ fill: "black" }} teamName={"BLU"} />
+            <Legend x={800} y={110} style={{ fill: "black" }} teamName={"BLU"} />
             <RenderCircles
               data={data4}
               scale={{ x, y }}
@@ -103,7 +104,7 @@ export default class ScatterPlot extends React.Component {
               connectLines={newData3}
               stroke={"green"}
             />
-            <Legend x={800} y={90} style={{ fill: "green" }} teamName={"ZAS"} />
+            <Legend x={800} y={150} style={{ fill: "green" }} teamName={"ZAS"} />
             <RenderCircles
               data={data5}
               scale={{ x, y }}
@@ -118,7 +119,7 @@ export default class ScatterPlot extends React.Component {
             />
             <Legend
               x={800}
-              y={110}
+              y={190}
               style={{ fill: "yellow" }}
               teamName={"DOR"}
             />
@@ -136,7 +137,7 @@ export default class ScatterPlot extends React.Component {
             />
             <Legend
               x={800}
-              y={130}
+              y={230}
               style={{ fill: "purple" }}
               teamName={"FRU"}
             />
@@ -152,7 +153,7 @@ export default class ScatterPlot extends React.Component {
               connectLines={newData6}
               stroke={"pink"}
             />
-            <Legend x={800} y={150} style={{ fill: "pink" }} teamName={"CAN"} />
+            <Legend x={800} y={270} style={{ fill: "pink" }} teamName={"CAN"} />
             <RenderCircles
               data={data8}
               scale={{ x, y }}
@@ -165,17 +166,33 @@ export default class ScatterPlot extends React.Component {
               connectLines={newData7}
               stroke={"grey"}
             />
-            <Legend x={800} y={170} style={{ fill: "grey" }} teamName={"BAT"} />
+            <Legend x={800} y={310} style={{ fill: "grey" }} teamName={"BAT"} />
             <Axis
               axis="x"
               transform={"translate(0," + height + ")"}
               scale={axisBottom().scale(x)}
+              
             />
             <Axis
               axis="y"
               transform="translate(0,0)"
               scale={axisLeft().scale(y)}
             />
+                  <text
+        x={width/2}
+        y={height + 60}
+        style={{ fontSize: "25px", color: "black" }}
+      >
+        Turno
+      </text> 
+      <text
+        x={-width/2}
+        y={-60}
+        style={{ fontSize: "25px", color: "black" }}
+        transform={'rotate(-90)'}
+      >
+        Poder
+      </text> 
           </g>
         </svg>
       </div>
@@ -263,15 +280,15 @@ class Legend extends React.Component {
       <circle
         cx={this.props.x}
         cy={this.props.y}
-        r={6}
+        r={8}
         style={this.props.style}
       />
     );
     const legendName = (
       <text
-        x={this.props.x + 10}
-        y={this.props.y + 5}
-        style={{ fontSize: "16px", color: "black" }}
+        x={this.props.x + 15}
+        y={this.props.y + 10}
+        style={{ fontSize: "30px", color: "black" }}
       >
         {this.props.teamName}
       </text>
@@ -322,6 +339,9 @@ class Axis extends React.Component {
         className="main axis date"
         transform={this.props.transform}
         ref={this.props.axis}
+        style={{fontSize: 30}}
+        
+
       />
     );
   }
