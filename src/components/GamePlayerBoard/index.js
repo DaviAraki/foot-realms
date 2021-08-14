@@ -40,30 +40,33 @@ export default class GameBoard extends React.Component {
 
     return (
       <div className="player-board">
-
-        <h1>{this.props.player.name} </h1>
-        <h1>Money: {this.props.player.money} Strength: {this.props.player.strength} Points: {this.props.player.points}</h1>
-        {(!this.props.ctx.gameover)?(<div className="passButton" onClick={this.clickPassPhase.bind(this)}>Pass</div>):''}
+        <div className="player-status">
+          <h1>Player: {this.props.player.name} </h1>
+          <h1>Money: {this.props.player.money} </h1>
+          <h1>Strength: {this.props.player.strength} </h1>
+          <h1>Points: {this.props.player.points}</h1>
+        </div>
+        
           
         
   
 
         <div className="player-hand">
-          <h1>In play</h1>
-          <div>{cardsInPlay}</div>
+          <h1>Cards in Play</h1>
+          <div style={{minHeight: 260}}>{cardsInPlay}</div>
         </div>
         <div className="player-hand">
-          <h1>Hand</h1>
-          <div>{cardsHand}</div>
+          <h1>Cards in Hand</h1>
+          <div>{cardsHand}
+          {(!this.props.ctx.gameover)?(<div className="passButton game-card position0" onClick={this.clickPassPhase.bind(this)}>End your Turn</div>):''}
+          </div>
         </div>
         {/* <div className="player-deck">
           <h1>Deck:</h1>
           <div>{cardsDeck}</div>
         </div> */}
         <details className="player-discard">
-          <summary>
-            Discard
-          </summary>
+          <summary>Cards on Discard</summary>
           <div>{cardsDiscard}</div>
         </details>
       </div>

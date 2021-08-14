@@ -65,48 +65,50 @@ export default function GameBoard({ G, ctx, moves, events }) {
       <ScoreTrack G={G} />
       <GameSchedule G={G} />
       <div className="card-offer">
-        <h1>
-          Phase:{ctx.phase} Round:{~~((ctx.turn - 1) / 4) + 1} Quarter:
-          {((ctx.turn - 1) % 4) + 1} Is Attacking: {G.board.attacking}
-        </h1>
-        <h1>Offer:</h1>
-        <h1>Challenge: {G.board.desafio}</h1>
+        <div className="game-status">
+          <h1>Round: {~~((ctx.turn - 1) / 4) + 1}</h1>
+          <h1>Quarter: {((ctx.turn - 1) % 4) + 1}</h1>
+          <h1 className={G.board.attacking ? `attack` : `defense`}>{G.board.attacking ? `on ATTACK` : `on DEFENSE`}</h1>
+          <h1>Phase: {ctx.phase}</h1>
+          {/* <h1>Challenge: {G.board.desafio}</h1> */}
+        </div>
+        <h1>Choose a card to buy:</h1>
         <div className="card-offer-cards">{cards}</div>
       </div>
       <div className="player-boards">
         <h1>Players:</h1>
         <div className="player-areas">{players}</div>
       </div>
-      <div className="schedule">
-        <GameSchedule
+      <div className="charts">
+        {/* <GameSchedule
           player={G.players[0]}
           turn={ctx.turn}
           bots={G.board.dummies}
-        />
-      </div>
-      <div>
-        <ScatterPlot
-          data={G.players[ctx.currentPlayer].strengthPerTurn2}
-          data2={G.board.dummies[0].strengthPerTurn}
-          data3={G.board.dummies[1].strengthPerTurn}
-          data4={G.board.dummies[2].strengthPerTurn}
-          data5={G.board.dummies[3].strengthPerTurn}
-          data6={G.board.dummies[4].strengthPerTurn}
-          data7={G.board.dummies[5].strengthPerTurn}
-          data8={G.board.dummies[6].strengthPerTurn}
-        />
-      </div>
-      <div>
-        <PointChart
-          data={G.players[ctx.currentPlayer].pointsPerTurn}
-          data2={G.board.dummies[0].pointsPerTurn}
-          data3={G.board.dummies[1].pointsPerTurn}
-          data4={G.board.dummies[2].pointsPerTurn}
-          data5={G.board.dummies[3].pointsPerTurn}
-          data6={G.board.dummies[4].pointsPerTurn}
-          data7={G.board.dummies[5].pointsPerTurn}
-          data8={G.board.dummies[6].pointsPerTurn}
-        />
+        /> */}
+        <div>
+          <ScatterPlot
+            data={G.players[ctx.currentPlayer].strengthPerTurn2}
+            data2={G.board.dummies[0].strengthPerTurn}
+            data3={G.board.dummies[1].strengthPerTurn}
+            data4={G.board.dummies[2].strengthPerTurn}
+            data5={G.board.dummies[3].strengthPerTurn}
+            data6={G.board.dummies[4].strengthPerTurn}
+            data7={G.board.dummies[5].strengthPerTurn}
+            data8={G.board.dummies[6].strengthPerTurn}
+          />
+        </div>
+        <div>
+          <PointChart
+            data={G.players[ctx.currentPlayer].pointsPerTurn}
+            data2={G.board.dummies[0].pointsPerTurn}
+            data3={G.board.dummies[1].pointsPerTurn}
+            data4={G.board.dummies[2].pointsPerTurn}
+            data5={G.board.dummies[3].pointsPerTurn}
+            data6={G.board.dummies[4].pointsPerTurn}
+            data7={G.board.dummies[5].pointsPerTurn}
+            data8={G.board.dummies[6].pointsPerTurn}
+          />
+        </div>
       </div>
     </div>
   );

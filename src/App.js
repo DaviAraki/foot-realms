@@ -14,7 +14,7 @@ const FootReamlsClient = Client({
 });
 
 const App = () => (
-  <div>
+  <div className="App">
     <FootReamlsClient playerID="0" />
   </div>
 )

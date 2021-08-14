@@ -4,22 +4,22 @@
   font-family: Rubik, Arial, Helvetica, sans-serif;
   font-size: 14px;
   -webkit-font-smoothing: antialised;
-  max-width: calc(1.1 * 6 * 45mm);
+  max-width: calc(1.0 * 7 * 45mm);
   width: 100%;
-  margin: 0;
+  margin: 1.5mm 0;
   padding: 3mm;
-  border: 3mm solid hsla(120, 100%, 10%, 100%);
-  background-color: hsl(120, 100%, 25%);
   border-radius: 3mm;
+  border: 3mm solid hsla(0, 0%, 0%, 0.6);
+  background-color: hsl(80, 61%, 50%);
   zoom: 0.6;
 }
 
 .card-offer,
 .player-boards {
+  margin: 1.5mm 0;
   padding: 3mm;
-  border: 3mm dotted hsla(120, 100%, 10%, 30%);
   border-radius: 3mm;
-  margin-bottom: 3mm;
+  border: 1.5mm solid hsla(0, 0%, 0%, 0.6);
 }
 .card-offer .card-offer-cards {
   display: flex;
@@ -41,4 +41,39 @@
   background: #fff;
   width: 90%;
   margin: 1em auto;
+}
+
+.charts {
+  margin: 1.5mm 0;
+  padding: 3mm;
+  border-radius: 3mm;
+  border: 1.5mm solid hsla(0, 0%, 0%, 0.6);
+}
+
+.game-status{
+  display: flex;
+}
+
+.game-status h1{
+  background-color: hsla(80, 61%, 30%, 100%);
+  box-sizing: border-box;
+  border: 0.5mm solid rgba(0, 0, 0, 0.6);
+  border-radius: 1mm;
+  padding: 3mm;
+  line-height: 4mm;
+  font-size: 4mm;
+  text-transform: uppercase;
+  text-align: center;
+  box-shadow: 0.5mm 0.5mm rgba(0, 0, 0, 0.2);
+  text-shadow: 0.3mm 0.3mm rgba(0, 0, 0, 0.6);
+  font-weight: bold;
+  width: 1fr;
+  color: white;
+  width: 100%;
+}
+
+
+
+.game-status h1.defense {
+  background-color: rgb(123, 30, 30);
 }
