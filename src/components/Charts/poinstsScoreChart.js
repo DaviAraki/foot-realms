@@ -42,24 +42,7 @@ export default class PointChart extends React.Component {
             height={height}
             className="main"
           >
-            <Legend
-              x={800}
-              y={30}
-              style={{ fill: "red" }}
-              teamName={"Player"}
-            />
-            <RenderCircles
-              data={data}
-              scale={{ x, y }}
-              style={{ fill: "red" }}
-            />
-            <ConnectDots
-              data={data}
-              scale={{ x, y }}
-              connectLines={newData}
-              stroke={"red"}
-            />
-
+           
             <RenderCircles
               data={data2}
               scale={{ x, y }}
@@ -154,6 +137,24 @@ export default class PointChart extends React.Component {
               stroke={"grey"}
             />
             <Legend x={800} y={310} style={{ fill: "grey" }} teamName={"BAT"} />
+            <Legend
+              x={800}
+              y={30}
+              style={{ fill: "red" }}
+              teamName={"Player"}
+            />
+            <RenderCircles
+              data={data}
+              scale={{ x, y }}
+              style={{ fill: "red" }}
+            />
+            <ConnectDots
+              data={data}
+              scale={{ x, y }}
+              connectLines={newData}
+              stroke={"red"}
+            />
+
             <Axis
               axis="x"
               transform={"translate(0," + height + ")"}
