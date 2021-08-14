@@ -6,7 +6,7 @@ export default class BasicCard {
     this.name = data.name;
     this.cards = data.cards || 0;
     this.coin = data.coin || 0;
-    this.cost = (data.cost) || 0;
+    this.cost = (data.cost - 1) || 0;
     this.chuteira = data.chuteira || 0;
     this.position = data.position || 0;
     this.role = data.role;
