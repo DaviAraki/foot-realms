@@ -6,7 +6,7 @@ export default class ace2 extends basicCard {
     super({
       name: "Ace2",
       cards: 0,
-      coin: 5,
+      coin: 0,
       cost: 8,
       chuteira: 5,
       position: "2",

@@ -68,7 +68,7 @@ export default function GameBoard({ G, ctx, moves, events }) {
         <div className="game-status">
           <h1>Round: {~~((ctx.turn - 1) / 4) + 1}</h1>
           <h1>Quarter: {((ctx.turn - 1) % 4) + 1}</h1>
-          <h1 className={G.board.attacking ? `attack` : `defense`}>{G.board.attacking ? `on ATTACK` : `on DEFENSE`}</h1>
+          <h1 className={G.board.attacking==='A' ? `attack` : `defense`}>{G.board.attacking==='A' ? `on ATTACK` : `on DEFENSE`}</h1>
           <h1>Phase: {ctx.phase}</h1>
           {/* <h1>Challenge: {G.board.desafio}</h1> */}
         </div>

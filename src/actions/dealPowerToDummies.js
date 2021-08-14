@@ -8,3 +8,4 @@ export default function dealPowerToDummies(G, ctx) {
       dummies[i].strength + Math.floor(Math.random() * 3) + 3;
   }
 }
+
