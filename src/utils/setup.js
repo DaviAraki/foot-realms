@@ -28,7 +28,6 @@ import generateSchedule from "./generateSchedule";
 import shuffleOffer from "../actions/shuffleOffer";
 import dealPowerToDummies from "../actions/dealPowerToDummies";
 import updateStrenghtSchedule from "../actions/updateStrengthSchedule";
-import joker0 from "../components/Cards/joker0";
 import defender0 from "../components/Cards/defender0";
 import attacker0 from "../components/Cards/attacker0";
 import ace1 from "../components/Cards/ace1";
@@ -53,7 +52,6 @@ const game = {
       name: "PLA",
       hand: [],
       deck: [].concat(
-        joker0.create(1),
         playerKid0.create(1),
         playerKid1.create(1),
         playerKid2.create(1),
