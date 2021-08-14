@@ -26,7 +26,7 @@ export default class PointChart extends React.Component {
 
     const x = scaleLinear().domain([0, 30]).range([0, width]);
 
-    const y = scaleLinear().domain([0, 42]).range([height, 0]);
+    const y = scaleLinear().domain([0, 22]).range([height, 0]);
 
     return (
       <div>
