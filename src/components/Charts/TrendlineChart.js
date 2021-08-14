@@ -30,7 +30,7 @@ export default class ScatterPlot extends React.Component {
 
     const x = scaleLinear().domain([0, 30]).range([0, width]);
 
-    const y = scaleLinear().domain([0, 51]).range([height, 0]);
+    const y = scaleLinear().domain([0, 61]).range([height, 0]);
 
     return (
       <div>
